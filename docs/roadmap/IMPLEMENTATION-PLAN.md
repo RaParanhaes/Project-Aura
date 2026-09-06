@@ -101,9 +101,15 @@ Rules:
 ## F2 — Protocol Foundation
 
 ### F2.1 Freeze compatibility target
-- Record exact tested Polaris commit/version.
-- Record exact tested Octane build/version.
-- Snapshot/reference Polaris packet contracts used by AURA.
+- [x] Record exact Polaris version/base commit.
+- [x] Record Polaris dirty-state fingerprint and runtime JAR SHA-256.
+- [x] Record exact Octane commit/package version and dirty-state fingerprint.
+- [x] Record exact Octane Renderer version/commit and clean state.
+- [x] Reference the Polaris packet contract by schema and SHA-256.
+- [x] Confirm effective client release behavior and Octane/Polaris release agreement.
+- [x] Define host and same-Compose-network WebSocket targets without machine-specific paths.
+
+**F2.1 validation:** the local hotel target is frozen in `docs/reference/COMPATIBILITY.md` using immutable commits/fingerprints/hashes. Polaris is `4.2.82` based on `11f35d8c4d2a6f371b355107d4c7e477717cb2de` with a dirty-tree fingerprint and runtime JAR SHA-256; Octane and the renderer are likewise pinned; the protocol contract is schema 2 with SHA-256 `fb8dd00dcaa7657b58781b835c035fefc692797c1fabb9db5ba6770ce52d67b`; and the effective client release is confirmed as `NITRO-3-6-0`. This freezes the target but does not yet claim successful AURA-to-Polaris integration.
 
 ### F2.2 Study existing implementation evidence
 - Inspect Polaris `packet-field-contracts.json` and relevant handlers.
