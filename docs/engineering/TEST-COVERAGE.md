@@ -10,6 +10,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Test runner baseline | ✅ | — | — | — | — | — |
 | Architecture guardrails | ✅ | — | — | — | — | — |
 | Observability baseline | ✅ | — | — | — | — | — |
+| F1 verification gate | ✅ | — | — | — | — | — |
 | Packet codec | — | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
@@ -27,8 +28,10 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/architecture-guardrails.test.ts` proves accepted/forbidden workspace edges, deep-import detection and circular-dependency detection.
 - `tests/unit/observability.test.ts` proves structured log correlation fields and credential redaction.
 - `pnpm run architecture` validates the real repository manifests and source imports.
-- `pnpm run verify` is the canonical CI/local gate and currently includes repository structure, architecture boundaries, strict type checking and unit tests.
-- Coverage percentage thresholds are intentionally not introduced yet; meaningful behavior does not exist yet to make a percentage useful.
+- `pnpm run verify` is the canonical local/CI gate and includes `doctor`, repository structure, architecture boundaries, strict type checking and unit tests.
+- GitHub Actions installs from the committed dependency graph with `pnpm install --frozen-lockfile` before running the same `pnpm run verify` command.
+- F1 intentionally uses strict type checking as its compile gate; emitted runtime build validation begins when an executable/package output exists.
+- Coverage percentage thresholds are intentionally not introduced yet; meaningful product behavior does not exist yet to make a percentage useful.
 
 ## Planned Golden Scenarios
 
