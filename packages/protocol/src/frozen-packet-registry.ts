@@ -70,6 +70,7 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
   frozenPacket({ name: 'UNIT_WHISPER', direction: 'client_to_server', header: 1543, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserWhisperEvent', clientSymbol: 'RoomUnitWhisperComposer' }),
   frozenPacket({ name: 'UNIT_SHOUT', direction: 'client_to_server', header: 2085, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserShoutEvent', clientSymbol: 'RoomUnitShoutComposer' }),
   frozenPacket({ name: 'UNIT_WALK', direction: 'client_to_server', header: 3320, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserWalkEvent', clientSymbol: 'RoomUnitWalkComposer' }),
+  frozenPacket({ name: 'ENABLE_EFFECT', direction: 'client_to_server', header: 1752, owner: 'composer', contractStatus: 'contract', serverSymbol: 'EnableEffectEvent', clientSymbol: 'EnableEffectComposer' }),
   frozenPacket({
     name: 'SECURITY_TICKET',
     direction: 'client_to_server',
@@ -143,6 +144,7 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
     clientSymbol: 'ClientPingParser',
   }),
   frozenPacket({ name: 'UNIT_STATUS', direction: 'server_to_client', header: 1640, owner: 'parser', contractStatus: 'contract', serverSymbol: 'RoomUserStatusComposer', clientSymbol: 'RoomUnitStatusParser' }),
+  frozenPacket({ name: 'ROOM_USER_EFFECT', direction: 'server_to_client', header: 1167, owner: 'parser', contractStatus: 'contract', serverSymbol: 'RoomUserEffectComposer', clientSymbol: 'RoomUserEffectParser' }),
   frozenPacket({
     name: 'DISCONNECT_REASON',
     direction: 'server_to_client',

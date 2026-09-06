@@ -24,6 +24,7 @@ export {
   SayComposer,
   ShoutComposer,
   RoomUnitWalkComposer,
+  EnableEffectComposer,
   RoomOpenParser,
   StartTypingComposer,
   StopTypingComposer,
@@ -36,6 +37,8 @@ export {
 } from './initial-packets.js';
 export { parseUnitStatus } from './unit-status.js';
 export type { UnitStatus } from './unit-status.js';
+export { parseRoomUserEffect } from './room-user-effect.js';
+export type { RoomUserEffect } from './room-user-effect.js';
 export {
   InvalidPacketDefinitionError,
   PACKET_DIRECTIONS,

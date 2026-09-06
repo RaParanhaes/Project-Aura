@@ -1,6 +1,7 @@
 import {
   AuthenticatedParser,
   ClientHelloComposer,
+  EnableEffectComposer,
   InfoRetrieveComposer,
   PacketStreamCodec,
   PongComposer,
@@ -8,6 +9,7 @@ import {
   UniqueIDComposer,
   type PacketFrame
 } from '@aura/protocol';
+import { parseRoomUserEffect } from '@aura/protocol';
 import { OriginWebSocket } from './origin-websocket.js';
 import { FileCheckpointStore } from '@aura/persistence';
 import {
@@ -61,6 +63,7 @@ class PolarisHandshake implements AuthHandshake {
     for (const frame of this.codec.push(payload)) {
       if (frame.header === 3928) void this.transport?.send(new PongComposer().encode());
       if (frame.header === 2491) void this.transport?.send(new InfoRetrieveComposer().encode());
+      if (frame.header === 1167 && parseRoomUserEffect(frame).effectId !== 0) void this.transport?.send(new EnableEffectComposer(0).encode());
       if (frame.header === this.parser.definition.header) {
         try { this.recovery.set(this.parser.parse(frame).recoveryToken); this.authenticated?.(); } catch (error) { this.failed?.(error); }
       }
