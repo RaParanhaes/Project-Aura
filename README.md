@@ -15,7 +15,7 @@ AURA is not the game server and is not the renderer:
 
 **D0 — Documentation Foundation: COMPLETE**  
 **F1 — Development Foundation: COMPLETE**  
-**Current phase: F4 — WorldState**
+**Current phase: F8 — Foundation Validation**
 **F2.1 — Freeze Compatibility Target: COMPLETE**  
 **F2.2 — Study Existing Implementation Evidence: COMPLETE**  
 **F2.3 — Packet Primitives: COMPLETE**  
@@ -31,10 +31,16 @@ AURA is not the game server and is not the renderer:
 **F4.2 — Room Hydration: COMPLETE**
 **F4.3 — Observed WorldState: COMPLETE**
 **F4.4 — State Rules: COMPLETE**
-**F5.1 — Capability Contracts: IN PROGRESS**
-**Next milestone: F5.2 — ENTER_ROOM**
+**F5 — Capabilities: COMPLETE**
+**F6 — Persistence and Continuity: COMPLETE**
+**F7 — Multi-session Validation: COMPLETE**
+**F8.1 — Golden Scenario Audit: COMPLETE**
+**F8.2 — WALK_TO Wire Validation: COMPLETE**
+**F8.3 — Reconnect and Session Recovery: COMPLETE**
+**F8.4 — Polaris Restart Reconciliation: COMPLETE**
+**Next milestone: F8.5 — Complete Golden Scenario and Foundation Gate**
 
-The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect coordination, event normalization, room hydration barriers, an observed WorldState projection with stale-event protection and a semantic capability boundary.
+The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for handshake, authentication, keepalive, room entry, chat and movement packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect recovery, event normalization, room hydration barriers, an observed WorldState projection with stale-event protection, persistence checkpoints and a semantic capability boundary. Live validation covers room visibility, movement confirmation, chat, multi-session operation and recovery after a controlled Polaris restart.
 
 Start with:
 
@@ -91,7 +97,7 @@ The current development foundation includes:
 - Pino 10.3.1 structured logging;
 - one canonical `pnpm run verify` quality gate.
 
-A JavaScript `dist/` build is intentionally not emitted yet. The workspaces are still private development surfaces and no executable RealSession runtime exists to package. Build/emission will be introduced when the runtime shape requires it rather than inventing packaging decisions early.
+A JavaScript `dist/` build is intentionally not emitted yet. The workspaces remain private development surfaces; the executable `aura-core` composition runs directly through the workspace TypeScript loader for local validation.
 
 ## Planning
 

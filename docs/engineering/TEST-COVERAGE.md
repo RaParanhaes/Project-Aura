@@ -19,7 +19,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | WebSocket transport / heartbeat | ✅ | — | — | — | — | — |
 | Authentication boundary | ✅ | — | — | — | — | — |
 | First-login flow | ✅ | — | — | — | — | — |
-| Disconnect/reconnect coordination | ✅ | — | — | — | — | — |
+| Disconnect/reconnect coordination | ✅ | — | ✅ | — | ✅ | — |
 | Event normalization | ✅ | — | — | — | — | — |
 | Room hydration barrier | ✅ | — | — | — | — | — |
 | Observed WorldState | ✅ | — | — | — | — | — |
@@ -32,13 +32,14 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | SHOUT capability and chat packet | ✅ | ✅ | ✅ | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
-| Walk | — | — | — | — | — | — |
+| Walk | ✅ | ✅ | ✅ | ⚠ | — | — |
 | Look / turn | — | — | — | — | — | — |
 | Typing | — | — | — | — | — | — |
 | Chat | — | — | — | — | — | — |
-| Reconnect | — | — | — | — | — | — |
-| AURA restart recovery | — | — | — | — | — | — |
-| 30 sessions | — | — | — | — | — | — |
+| Reconnect | ✅ | ✅ | ✅ | — | ✅ | — |
+| AURA restart recovery | ✅ | — | ✅ | ✅ | ✅ | — |
+| 20 sessions | — | — | ✅ | — | — | ✅ |
+| 30 sessions | — | — | — | — | — | ⚠ deferred |
 
 ## Current test baseline
 
@@ -69,6 +70,10 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/shout.test.ts` proves shout validation and room precondition; a live room AAA run proves the renderer flow.
 - `tests/unit/polaris-typing.test.ts` proves both typing transitions emit complete bodyless Polaris packets (1597 and 1474).
 - Local Polaris validation with two test accounts proved that an existing room occupant receives header 374 for the account entering afterwards; this environment check is repeatable but is not part of the hermetic CI suite.
+- A live four-session Polaris run with `aura_f7_1` through `aura_f7_4` authenticated concurrently, entered room AAA and confirmed that every session received a roster containing all four F7 identities. The accounts and password are stored only in the local protected test-credentials file; tickets were process-only.
+- A live ten-session Polaris run with `aura_f7_1` through `aura_f7_10` authenticated concurrently, entered room AAA and confirmed that every session received a roster containing all ten F7 identities. The observed roster also included the three pre-existing room occupants.
+- A live twenty-session Polaris run with `aura_f7_1` through `aura_f7_20` authenticated concurrently, entered AAA after a temporary capacity increase and confirmed that every session received a roster containing all twenty identities. The AAA capacity was restored to 10 and Polaris restarted after the run. A post-run sample measured Polaris at 363.7 MiB, CMS at 12.78 MiB and MariaDB at 85.76 MiB.
+- The executable `@aura/core` composition authenticated `Ana_libras` against the local CMS/Polaris stack twice with fresh process-only SSO tickets, stayed online for approximately 12 seconds per run and disconnected cleanly. The second run restored checkpoint sequence 1 from `AURA_STATE_PATH` and saved sequence 2. The test file contained two validated records and no credentials.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.

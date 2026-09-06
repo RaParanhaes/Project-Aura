@@ -1,17 +1,59 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
-**Current phase:** F6 — Persistence & Recovery
-**Last completed milestone:** F6.5 — Restart scenarios
-**Next milestone:** F6 — completion review
-**Status:** F6 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED; F6.1 DURABLE STATE BOUNDARY IMPLEMENTED AND VERIFIED; F6.2 ACTIONJOURNAL IMPLEMENTED AND VERIFIED; F6.3 CHECKPOINTS IMPLEMENTED AND VERIFIED; F6.4 RECONCILIATION IMPLEMENTED AND VERIFIED; F6.5 RESTART RECOVERY IMPLEMENTED AND VERIFIED
+**Current phase:** F8 — Foundation Validation
+**Last completed milestone:** F7.4 — Twenty-session stability and resource baseline
+**Next milestone:** F8.5 — Complete golden scenario and Foundation gate
+**Status:** F8 IN PROGRESS
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED AND LIVE VALIDATED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED; F6.1 DURABLE STATE BOUNDARY IMPLEMENTED AND VERIFIED; F6.2 ACTIONJOURNAL IMPLEMENTED AND VERIFIED; F6.3 CHECKPOINTS IMPLEMENTED AND VERIFIED; F6.4 RECONCILIATION IMPLEMENTED AND VERIFIED; F6.5 RESTART RECOVERY IMPLEMENTED AND VERIFIED
 
 ## F6.1 result — durable state boundary
 
 `@aura/persistence` now defines the versioned `AgentState` schema and the `AgentStateRepository` storage port. `parseAgentState` validates untrusted persisted data before restoration, rejects unsupported versions and unknown fields, and limits the state to stable identity, objective, room references and update time. `InMemoryAgentStateRepository` provides a deterministic adapter for tests and clones values at the boundary.
 
 Sockets, timers, live clients and transient room rosters are intentionally excluded from the durable schema. The production database adapter remains a later F6 concern.
+
+The executable `aura-core` composition was live-validated against the local CMS/Polaris stack with `Ana_libras`: SSO login succeeded, the session remained online for approximately 30 seconds and disconnected cleanly. `FileCheckpointStore` is now wired into the executable through `AURA_STATE_PATH`; two independent authenticated runs restored sequence 1 and saved sequence 2 in the second process. The file-backed adapter validates records and uses atomic replacement writes.
+
+## F7.1 result — session fleet baseline
+
+`@aura/runtime` now exposes `SessionFleet` over `SessionManager`. It starts resident sessions concurrently, enforces unique identities and a configurable capacity (30 by default), isolates authentication failures to the affected resident and stops all managed sessions together. The four-session hermetic baseline passed with three successful sessions and one deliberate authentication failure; the three healthy sessions remained online and were shut down cleanly.
+
+## F7.2 result — four-session live baseline
+
+Four newly registered CMS identities (`aura_f7_1` through `aura_f7_4`) authenticated concurrently against the local CMS, connected to Polaris, entered room AAA (room ID 1) and remained visible in the shared `RoomUsers` roster. Each session observed all four F7 identities alongside the existing room occupants. The test used fresh process-only SSO tickets and disconnected all four sessions after the observation window. Movement and seating remain a separate protocol task.
+
+## F7.3 result — ten-session headless baseline
+
+Six additional local CMS identities (`aura_f7_5` through `aura_f7_10`) were registered with the protected F7 test credentials. Ten fresh SSO tickets were consumed concurrently; all ten sessions authenticated, entered AAA and observed a roster containing all ten F7 identities. The run completed without cross-session failures and disconnected the sessions after the observation window. Movement and seating remain outside this baseline.
+
+## F7.4 result — twenty-session stability and resource baseline
+
+Ten additional local CMS identities (`aura_f7_11` through `aura_f7_20`) were registered for the target-scale test. After temporarily raising AAA capacity and restarting Polaris to reload it, twenty fresh sessions authenticated concurrently, entered AAA and each observed all twenty F7 identities. The post-run sample was Polaris 363.7 MiB, CMS 12.78 MiB and MariaDB 85.76 MiB. The original AAA capacity of 10 was restored in the database and Polaris was restarted again; no permanent emulator configuration change remains.
+
+## F7 completion
+
+The user-authorized thirty-session run was intentionally skipped. The architecture was validated through twenty concurrent real sessions, with bounded capacity of 30 in `SessionFleet`; the remaining F7.5 target run is documented as deferred rather than assumed.
+
+## F8.1 result — golden scenario audit
+
+The foundation audit is now active. Authentication, room entry/roster visibility, typing, chat, persistence/restart, reconnect and multi-session scenarios have repeatable evidence. The complete golden scenario and final documentation/coverage audit remain before the F8 completion gate.
+
+## F8.2 result — WALK_TO wire validation
+
+`@aura/protocol` now exposes the renderer-compatible `UNIT_WALK` composer (header 3320, integer `x,y`) and a strict `UNIT_STATUS` parser (header 1640) for movement/posture observations. `PolarisWalkAdapter` sends the composer through the normal packet adapter boundary. A live AAA test moved `aura_f7_1` from `(3,5)` to `(4,5)` and observed the matching `mv 4,5,0.0` status from Polaris.
+
+## F8.3 result — reconnect and session recovery
+
+The aura-core handshake now keeps the short-lived Polaris recovery token in memory and includes it on the next SSO handshake. The token is never written to checkpoints, logs or the repository; it is cleared with the process. `SessionRecoveryTokenStore` has focused unit coverage.
+
+A live test with `aura_f7_1` against the local CMS/Polaris stack authenticated, entered room AAA, closed the WebSocket and reconnected after one second. Polaris returned `sessionResumed=true` with `roomId=1`, confirming recovery of the same authenticated room session. The test required the local Polaris setting `session.recovery.enabled=1`; it was restored to `0` and Polaris was restarted after validation.
+
+## F8.4 result — Polaris restart reconciliation
+
+A controlled container restart was exercised with `aura_f7_1` active in AAA and a valid recovery token. Polaris checkpointed the active authentication, consumed the one-time recovery token after startup and now reports the controlled recovery as `sessionResumed=true`. Because a restarted emulator has no surviving in-memory room instance, it correctly reports `roomId=0`; AURA then performs the normal room-entry handshake and returns to AAA.
+
+The local Polaris response was corrected to distinguish controlled restart recovery from a new login without treating transient room state as durable. Focused Java 25 tests passed, the local image was rebuilt, and the end-to-end scenario passed against the replacement container. `session.recovery.enabled` was restored to `0` after validation.
 
 ## F1 result
 

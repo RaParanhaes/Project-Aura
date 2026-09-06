@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node --experimental-transform-types --experimental-loader ../../scripts/ts-workspace-loader.mjs src/main.ts"
   },
   "dependencies": {
     "@aura/domain": "workspace:*",

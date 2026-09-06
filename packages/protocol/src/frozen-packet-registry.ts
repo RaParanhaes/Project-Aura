@@ -69,6 +69,7 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
   frozenPacket({ name: 'UNIT_CHAT', direction: 'client_to_server', header: 1314, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserTalkEvent', clientSymbol: 'RoomUnitChatComposer' }),
   frozenPacket({ name: 'UNIT_WHISPER', direction: 'client_to_server', header: 1543, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserWhisperEvent', clientSymbol: 'RoomUnitWhisperComposer' }),
   frozenPacket({ name: 'UNIT_SHOUT', direction: 'client_to_server', header: 2085, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserShoutEvent', clientSymbol: 'RoomUnitShoutComposer' }),
+  frozenPacket({ name: 'UNIT_WALK', direction: 'client_to_server', header: 3320, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserWalkEvent', clientSymbol: 'RoomUnitWalkComposer' }),
   frozenPacket({
     name: 'SECURITY_TICKET',
     direction: 'client_to_server',
@@ -141,6 +142,7 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
     serverSymbol: 'PingComposer',
     clientSymbol: 'ClientPingParser',
   }),
+  frozenPacket({ name: 'UNIT_STATUS', direction: 'server_to_client', header: 1640, owner: 'parser', contractStatus: 'contract', serverSymbol: 'RoomUserStatusComposer', clientSymbol: 'RoomUnitStatusParser' }),
   frozenPacket({
     name: 'DISCONNECT_REASON',
     direction: 'server_to_client',

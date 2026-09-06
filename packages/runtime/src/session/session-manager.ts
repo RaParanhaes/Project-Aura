@@ -14,6 +14,10 @@ export class SessionManager {
 
   get(agentId: string): RealSession | undefined { return this.sessions.get(agentId); }
 
+  entries(): IterableIterator<[string, RealSession]> { return this.sessions.entries(); }
+
+  get size(): number { return this.sessions.size; }
+
   unregister(session: RealSession): void {
     if (this.sessions.get(session.agentId) === session) this.sessions.delete(session.agentId);
   }

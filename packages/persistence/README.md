@@ -20,3 +20,6 @@ Provide the durable state boundary behind repositories and later checkpoint/reco
 
 ## F6.5 restart recovery
 `RestartRecovery` restores the latest checkpoint, marks agent actions left `pending` by a process restart as `ambiguous`, and returns a plan requiring the ephemeral world state to be rebuilt from Polaris. Actions belonging to other agents are left untouched.
+
+## File-backed checkpoints
+`FileCheckpointStore` is the durable adapter used by `aura-core`. It validates every record before restore and writes the JSON log through a temporary file plus rename. Configure its location with `AURA_STATE_PATH`; the default is `/tmp/aura-core-state.json`. The file contains only versioned continuity state and must not contain credentials, sockets or live room rosters.

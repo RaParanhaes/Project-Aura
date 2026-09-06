@@ -4,3 +4,5 @@ export { PolarisTypingAdapter } from './typing.js';
 export type { PolarisTypingPacketSender } from './typing.js';
 export { PolarisChatAdapter } from './chat.js';
 export type { PolarisChatPacketSender } from './chat.js';
+export { PolarisWalkAdapter } from './walk.js';
+export type { PolarisWalkPacketSender } from './walk.js';

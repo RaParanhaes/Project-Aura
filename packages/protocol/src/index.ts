@@ -23,6 +23,7 @@ export {
   RoomEntryDataComposer,
   SayComposer,
   ShoutComposer,
+  RoomUnitWalkComposer,
   RoomOpenParser,
   StartTypingComposer,
   StopTypingComposer,
@@ -33,6 +34,8 @@ export {
   type AuthenticatedPayload,
   type UserHomeRoomPayload,
 } from './initial-packets.js';
+export { parseUnitStatus } from './unit-status.js';
+export type { UnitStatus } from './unit-status.js';
 export {
   InvalidPacketDefinitionError,
   PACKET_DIRECTIONS,

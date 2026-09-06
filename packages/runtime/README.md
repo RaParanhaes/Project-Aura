@@ -6,6 +6,7 @@ Run active residents and coordinate sessions, events, world projection and capab
 ## Initial responsibilities
 - RealSession lifecycle;
 - SessionManager;
+- SessionFleet for bounded concurrent resident startup and failure isolation;
 - EventBus;
 - Room hydration/world projection;
 - AgentRuntime durable-state attachment;

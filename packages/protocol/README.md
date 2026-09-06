@@ -27,7 +27,8 @@ F2.5 adds concrete composers/parsers for the first session path:
 - ClientHello, UniqueID and SSOTicket composers;
 - Pong and InfoRetrieve composers;
 - RoomEnter composer with optional spawn coordinates and the bodyless RoomEntryData composer used after RoomOpen;
-- Authenticated, UserHomeRoom, Ping and RoomOpen parsers.
+- Authenticated, UserHomeRoom, Ping and RoomOpen parsers;
+- `UNIT_WALK` composition and strict `UNIT_STATUS` movement/posture observation parsing.
 
 Every codec resolves its numeric header through `FROZEN_PACKET_REGISTRY`, validates the expected direction and rejects trailing body data. The reader remains fail-fast on malformed/truncated primitive data.
 

@@ -18,6 +18,8 @@ export type { AuthHandshake, CredentialProvider } from './session/authentication
 export { firstLogin } from './session/first-login.js';
 export type { FirstLoginResult } from './session/first-login.js';
 export { SessionManager } from './session/session-manager.js';
+export { SessionFleet } from './session/session-fleet.js';
+export type { SessionFactory, SessionFleetResult } from './session/session-fleet.js';
 export { EventNormalizer } from './world/event-normalizer.js';
 export type { EventDecoder, InboundPacket } from './world/event-normalizer.js';
 export { RoomHydrator } from './world/room-hydrator.js';
@@ -43,3 +45,4 @@ export { registerWhisper } from './capabilities/whisper-command.js';
 export type { WhisperCommand, WhisperInput } from './capabilities/whisper-command.js';
 export { registerShout } from './capabilities/shout-command.js';
 export type { ShoutCommand, ShoutInput } from './capabilities/shout-command.js';
+export * from './session/recovery-token.js';
