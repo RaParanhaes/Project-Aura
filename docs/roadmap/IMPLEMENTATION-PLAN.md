@@ -368,6 +368,8 @@ After ambiguous failure, query/observe Polaris before repeating non-idempotent a
 - Polaris restart while AURA stays online;
 - both restart and agents rebuild ephemeral world state.
 
+**F6.5 result:** `RestartRecovery` restores the latest checkpoint, marks pending agent actions ambiguous after a process restart, leaves other agents untouched and explicitly requires rebuilding ephemeral world state from Polaris. **Status: COMPLETE.**
+
 **F6 Done when:** agent continuity survives failures without pretending transient world state is durable truth.
 
 ---
