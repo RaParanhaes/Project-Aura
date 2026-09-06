@@ -31,3 +31,5 @@ export { registerWalkTo } from './capabilities/walk-to.js';
 export type { WalkToCommand, WalkToInput } from './capabilities/walk-to.js';
 export { registerLookAt } from './capabilities/look-at.js';
 export type { LookAtCommand, LookAtInput } from './capabilities/look-at.js';
+export { registerStartTyping } from './capabilities/start-typing.js';
+export type { StartTypingCommand, StartTypingInput } from './capabilities/start-typing.js';
