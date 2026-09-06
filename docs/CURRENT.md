@@ -2,10 +2,16 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
 **Current phase:** F6 — Persistence & Recovery
-**Last completed milestone:** F5.9 — SHOUT
-**Next milestone:** F6.1 — Durable state boundary
+**Last completed milestone:** F6.2 — ActionJournal
+**Next milestone:** F6.3 — Checkpoints
 **Status:** F6 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED; F6.1 DURABLE STATE BOUNDARY IMPLEMENTED AND VERIFIED; F6.2 ACTIONJOURNAL IMPLEMENTED AND VERIFIED
+
+## F6.1 result — durable state boundary
+
+`@aura/persistence` now defines the versioned `AgentState` schema and the `AgentStateRepository` storage port. `parseAgentState` validates untrusted persisted data before restoration, rejects unsupported versions and unknown fields, and limits the state to stable identity, objective, room references and update time. `InMemoryAgentStateRepository` provides a deterministic adapter for tests and clones values at the boundary.
+
+Sockets, timers, live clients and transient room rosters are intentionally excluded from the durable schema. The production database adapter remains a later F6 concern.
 
 ## F1 result
 
