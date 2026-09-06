@@ -24,6 +24,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Room hydration barrier | ✅ | — | — | — | — | — |
 | Observed WorldState | ✅ | — | — | — | — | — |
 | WorldState stale-event rules | ✅ | — | — | — | — | — |
+| Capability contracts | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -52,6 +53,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/room-hydrator.test.ts` proves event buffering, snapshot validation and ready/failed hydration transitions.
 - `tests/unit/world-state.test.ts` proves observed-event projection, monotonic revisions and preservation of room facts across ping events.
 - `tests/unit/world-state.test.ts` also proves stale observations are ignored without revision regression.
+- `tests/unit/capability-registry.test.ts` proves semantic input validation, preconditions, unknown-capability rejection and pending execution results.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.
