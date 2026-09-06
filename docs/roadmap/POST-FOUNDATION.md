@@ -23,7 +23,7 @@ Goal: give each resident a bounded, current and explainable view of the shared r
 - apply stable tie-breaking and a bounded focus set;
 - retain the source perception/world revision.
 
-**Done when:** the same perception always produces the same ranked focus set and invalid/stale inputs fail safely.
+**Done when:** the same perception always produces the same ranked focus set and invalid/stale inputs fail safely. **Status: COMPLETE.**
 
 ### P1.3 — Perception event window
 
