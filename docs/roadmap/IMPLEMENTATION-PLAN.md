@@ -191,10 +191,12 @@ Rules:
 **F3.1 validation:** `@aura/runtime` exposes `RealSession`, `SessionTransport` and `AuthProvider`. Unit tests cover startup, authentication failure, transport loss, reconnect and send/close state gates. Concrete WebSocket transport and real credentials remain F3.2/F3.3 work.
 
 ### F3.2 Transport
-- WebSocket connection.
-- Incoming packet dispatch.
-- Outgoing packet send boundary.
-- Heartbeat and timeout handling.
+- [x] WebSocket connection adapter over an injected socket implementation.
+- [x] Incoming binary packet dispatch.
+- [x] Outgoing packet send boundary.
+- [x] Heartbeat and timeout handling.
+
+**F3.2 validation:** `WebSocketSessionTransport` and `HeartbeatController` are exported from `@aura/runtime` and covered by unit tests without a live server. The adapter deliberately does not decode protocol packets; that remains the responsibility of the protocol/runtime integration.
 
 ### F3.3 Authentication boundary
 - Define `AuthProvider` interface.

@@ -9,3 +9,7 @@ export type {
   SessionTransport,
   Unsubscribe
 } from './session/real-session.js';
+export { HeartbeatController } from './session/heartbeat.js';
+export { WebSocketSessionTransport } from './session/websocket-transport.js';
+export type { HeartbeatOptions, TimerApi } from './session/heartbeat.js';
+export type { WebSocketFactory, WebSocketLike } from './session/websocket-transport.js';
