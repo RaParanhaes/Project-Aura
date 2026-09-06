@@ -43,6 +43,21 @@ Goal: give each resident a bounded, current and explainable view of the shared r
 
 **P1 done when:** perception and attention operate repeatably in the local Polaris room without an LLM and without accessing raw packets or the complete world outside their runtime boundary.
 
+P1.4 was validated live with `aura_f7_1`, `aura_f7_2` and `Cabana` in AAA. The resident-relative view contained the other AURA resident and Cabana, the explicit interaction signal selected the other resident as focus, the event window retained the scenario evidence, and reconnect returned `sessionResumed=true` in room 1.
+
+## P2 — Goals and activities
+
+The next layer turns durable resident objectives into bounded activities while keeping execution behind validated capabilities.
+
+### P2.1 — Goal and activity contracts
+
+- define goal, activity, status and cancellation contracts;
+- keep desired intent separate from observed world state;
+- attach world/perception revisions to plans;
+- reject stale or unsupported activity proposals.
+
+**Done when:** contracts and lifecycle tests exist without introducing an LLM dependency.
+
 ## Later layers
 
 Goals/activities, skills/habits, social/group conversation, memory/knowledge, shared LLM gateway, human realism and extended economy/gameplay remain sequenced after P1. Their detailed contracts will be written from evidence gathered in the preceding layer.
