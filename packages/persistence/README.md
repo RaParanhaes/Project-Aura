@@ -17,3 +17,6 @@ Provide the durable state boundary behind repositories and later checkpoint/reco
 
 ## F6.4 reconciliation
 `ActionReconciler` requires a Polaris observation for every ambiguous action. Confirmed or rejected observations resolve the journal entry; an unknown observation keeps it ambiguous and always reports `retryAllowed: false`, so non-idempotent effects are never blindly replayed.
+
+## F6.5 restart recovery
+`RestartRecovery` restores the latest checkpoint, marks agent actions left `pending` by a process restart as `ambiguous`, and returns a plan requiring the ephemeral world state to be rebuilt from Polaris. Actions belonging to other agents are left untouched.
