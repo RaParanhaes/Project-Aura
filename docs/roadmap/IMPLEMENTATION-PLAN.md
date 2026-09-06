@@ -361,6 +361,8 @@ Persist only continuity that is meaningful to restore.
 ### F6.4 Reconciliation
 After ambiguous failure, query/observe Polaris before repeating non-idempotent actions.
 
+**F6.4 result:** `ActionReconciler` requires an observation before resolving an ambiguous action. Confirmed/rejected observations update the journal; unknown observations remain ambiguous and explicitly disallow automatic retry. **Status: COMPLETE.**
+
 ### F6.5 Restart scenarios
 - AURA process restart while Polaris stays online;
 - Polaris restart while AURA stays online;
