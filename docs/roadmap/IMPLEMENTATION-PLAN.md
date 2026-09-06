@@ -356,6 +356,8 @@ Track action ID, intent, start time and outcome states such as pending, confirme
 ### F6.3 Checkpoints
 Persist only continuity that is meaningful to restore.
 
+**F6.3 result:** `CheckpointStore` persists versioned continuity checkpoints with monotonic sequence numbers, reason and creation time. Checkpoints validate the embedded `AgentState`, enforce identity consistency and expose latest/list reads without transient world or runtime data. **Status: COMPLETE.**
+
 ### F6.4 Reconciliation
 After ambiguous failure, query/observe Polaris before repeating non-idempotent actions.
 
