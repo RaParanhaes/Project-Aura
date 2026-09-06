@@ -82,7 +82,7 @@ export class RealSession {
   }
 
   async reconnect(): Promise<void> {
-    if (this._state !== 'failed' && this._state !== 'disconnected') {
+    if (this._state !== 'failed' && this._state !== 'disconnected' && this._state !== 'reconnecting') {
       throw new SessionError(`Cannot reconnect a session from ${this._state}`);
     }
     this.transition('reconnecting');
