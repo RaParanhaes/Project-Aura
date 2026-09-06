@@ -1,34 +1,70 @@
 # Current Project State
 
-**Phase:** F0 — Repository Foundation  
-**Status:** IN PROGRESS  
-**Primary objective:** make Project AURA easy to navigate, change and validate before protocol implementation begins.
+**Completed phase:** D0 — Documentation Foundation  
+**Status:** COMPLETE  
+**Next phase:** F1 — Development Foundation  
+**Implementation status:** NOT STARTED
 
-## Working now
+## D0 result
 
-- GitHub repository initialized.
-- Foundation architecture direction agreed.
-- Documentation hierarchy defined.
-- Minimal `doctor`, `preflight` and `verify` workflow being bootstrapped.
+The repository now provides enough durable context for a new human or coding agent to determine, without chat history:
 
-## Current focus
+- what AURA is and is not;
+- what Polaris, Octane and AURA each own;
+- the accepted Polaris ↔ AURA ↔ future LLM flow;
+- the difference between observed world state, desired/pending action and persistent agent continuity;
+- accepted decisions versus research/open questions;
+- the implementation phase sequence and operational task order;
+- the lightweight development workflow and Definition of Done;
+- the authority order for conflicting documentation;
+- where future work belongs in the repository.
 
-1. Merge the F0 repository bootstrap.
-2. Add TypeScript strict workspace/tooling.
-3. Add CI and architecture guards.
-4. Add contract/test skeletons.
-5. Only then begin F1 protocol implementation.
+## Completed documentation foundation
 
-## Do not work on yet
+- Repository and module folder structure.
+- Root/module READMEs.
+- Project vision, objectives, principles and glossary.
+- Architecture overview and end-to-end flow.
+- Initial accepted ADRs.
+- Roadmap and step-by-step implementation plan.
+- Foundation completion gate.
+- External references catalog.
+- Open technical questions.
+- Development workflow and Definition of Done.
+- Coding-agent navigation rules in `AGENTS.md`.
+- Documentation router in `INDEX.md`.
 
-- Ollama integration.
-- Long-term memory engine.
-- Social engine.
-- Needs/beliefs/norms implementation.
-- Economy/room planner.
+## Next work — F1 Development Foundation
 
-Those systems are planned extension layers, not Foundation blockers.
+F1 begins only in a new focused implementation change.
 
-## Next technical milestone
+Planned order:
+1. runtime/workspace baseline (Node/pnpm/strict TypeScript);
+2. test baseline;
+3. architecture/dependency guardrails;
+4. structured logging baseline;
+5. expanded `pnpm run verify` gate.
 
-**F1 — Protocol Foundation:** prove packet framing/encoding/decoding against Polaris contracts and fixtures without AI dependencies.
+Detailed steps: `roadmap/IMPLEMENTATION-PLAN.md`.
+
+## Do not start early
+
+- Polaris protocol implementation (F2).
+- RealSession implementation (F3).
+- WorldState implementation (F4).
+- Capability implementation (F5).
+- Persistence/recovery implementation (F6).
+- Ollama/LLM integration.
+- Long-term memory.
+- Social/group conversation engine.
+- Needs, beliefs and norms.
+- Economy/room planning.
+
+## Sources for the next contributor
+
+- `INDEX.md` — documentation router.
+- `roadmap/ROADMAP.md` — phase-level sequence.
+- `roadmap/IMPLEMENTATION-PLAN.md` — operational task sequence.
+- `development/WORKFLOW.md` — how changes should be made.
+- `development/DEFINITION-OF-DONE.md` — completion evidence.
+- `research/OPEN-QUESTIONS.md` — unresolved questions that require evidence rather than guesses.

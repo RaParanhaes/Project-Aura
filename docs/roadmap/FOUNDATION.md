@@ -1,77 +1,72 @@
-# AURA Foundation Roadmap
+# AURA Foundation — Completion Gate
 
-The Foundation ends when AURA can reliably operate real headless users without any LLM dependency.
+This document defines **what must be true for the AURA Foundation to be considered stable**.
 
-## F0 — Repository Foundation
+It intentionally does not duplicate phase numbering. Use:
+- `ROADMAP.md` for the phase-level sequence;
+- `IMPLEMENTATION-PLAN.md` for the step-by-step implementation order.
 
-- [x] Repository initialized.
-- [x] Documentation hierarchy established.
-- [x] Architecture direction documented.
-- [x] ADR process bootstrapped.
-- [x] Minimal doctor/preflight/verify commands added.
-- [ ] TypeScript strict workspace added.
-- [ ] CI added.
-- [ ] Architecture dependency guards added.
-- [ ] Issue/PR templates added.
-- [ ] Initial coding-agent skills added.
+## Foundation purpose
 
-## F1 — Protocol Foundation
+The Foundation is the non-AI platform that lets AURA operate real headless residents reliably through the normal Polaris protocol.
 
-- packet framing/codec;
-- typed headers/contracts;
-- fixtures from supported Polaris version;
-- contract tests;
-- property-based codec tests;
-- upstream contract comparison strategy.
+It must be useful without Ollama, long-term memory, social intelligence or other future cognition layers.
 
-## F2 — RealSession
+## Required capabilities
 
-- WebSocket lifecycle;
-- release/machine handshake;
-- authentication/SSO abstraction;
-- heartbeat;
-- clean disconnect;
-- reconnect/session-resume handling.
+Before declaring **AURA FOUNDATION STABLE**, AURA must prove that it can:
 
-## F3 — World State
-
-- room lifecycle/hydration;
-- room users;
-- positions/rotations/status;
-- ordered chat/typing events;
-- current observed room state.
-
-## F4 — Deterministic Capabilities
-
-- enter room;
-- walk;
+- authenticate a real headless user account;
+- maintain a coherent RealSession lifecycle;
+- enter/change rooms;
+- hydrate enough room state to safely resolve users/events;
+- observe room users and their relevant current state;
+- walk and confirm resulting position from Polaris observations;
 - look/turn;
-- start typing;
-- stop typing;
-- say;
-- capability preconditions/results.
+- start typing, speak and stop typing through normal protocol capabilities;
+- distinguish pending actions from confirmed world state;
+- disconnect and reconnect without duplicate active sessions;
+- preserve meaningful agent continuity across AURA process restart;
+- rebuild transient world state from Polaris rather than treating old snapshots as truth;
+- recover/reconcile after relevant Polaris/AURA failures;
+- operate multiple sessions concurrently and progressively validate the target scale;
+- explain failures through structured diagnostics/tests.
 
-## F5 — Persistence & Recovery
+## Required evidence
 
-- versioned agent state;
-- checkpoints;
-- restart recovery;
-- action journal;
-- capability recovery semantics;
-- reconciliation after ambiguous failures.
+Foundation acceptance requires repeatable evidence, not only implementation presence.
 
-## F6 — Multi-session
+Required evidence includes:
+- protocol/contract fixtures for critical packets;
+- integration tests against the supported Polaris target;
+- golden scenario tests;
+- recovery scenarios;
+- multi-session/load evidence;
+- current compatibility record;
+- documented known limitations;
+- architecture/documentation audit.
 
-Validate 1 → 4 → 10 → 20 → 30 real sessions with health/reconnect behavior and bounded resource usage.
+## Primary golden scenario
 
-## F7 — Foundation Validation
+A representative resident should be able to:
 
-- Golden Scenarios;
-- recovery suite;
-- load suite;
-- architecture/documentation audit;
-- compatibility snapshot.
+`connect → authenticate → enter room → observe another user → walk → start typing → say → stop typing → lose connection → recover → return operational`
 
-## Foundation completion gate
+The exact scenario may expand as Foundation capabilities mature.
 
-AURA Foundation is stable only after a real account can authenticate, enter a room, observe users, walk, look, type, speak, disconnect/reconnect and recover in repeatable tests — with no Ollama required.
+## Explicitly not required for Foundation stability
+
+- Ollama or another LLM provider;
+- long-term episodic/semantic memory;
+- social relationship engine;
+- group conversation coordination;
+- needs/beliefs/norms;
+- economy intelligence;
+- autonomous room decoration/planning;
+- human-realism tuning.
+
+Those systems are built **on top of** a stable Foundation.
+
+## Gate rule
+
+Do not declare Foundation stable while a required scenario is only assumed, manually demonstrated once, or lacks a reproducible validation path.

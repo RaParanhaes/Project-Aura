@@ -11,13 +11,17 @@ AURA is not the game server and is not the renderer:
 - **AURA** manages headless sessions, world projections, agent continuity, capabilities, recovery and, later, cognition/social behavior.
 - **LLMs (for example Ollama)** are optional reasoning providers used only when language or higher-level reasoning is needed.
 
-## Current phase
+## Project status
 
-**F0 — Repository Foundation**
+**D0 — Documentation Foundation: COMPLETE**  
+**Next: F1 — Development Foundation**
 
-The first objective is not to build an AI resident. It is to build a reliable platform that can later support intelligent residents without rewriting the core.
+The repository now records the accepted project direction, architecture, implementation sequence, open questions and development rules so future work does not depend on chat history.
 
-Start with [`docs/CURRENT.md`](docs/CURRENT.md) and [`docs/INDEX.md`](docs/INDEX.md).
+Start with:
+
+1. [`docs/CURRENT.md`](docs/CURRENT.md)
+2. [`docs/INDEX.md`](docs/INDEX.md)
 
 ## Core rule
 
@@ -51,16 +55,22 @@ Project-Aura/
 │   ├── recovery/
 │   └── load/
 ├── docs/                       # durable project knowledge and decisions
-├── .agents/skills/             # task-specific guidance for coding agents
+├── .agents/skills/             # repeatable coding-agent procedures when mature
 ├── scripts/                    # developer workflow utilities
 └── .github/                    # CI and contribution templates
 ```
 
 Folders intentionally contain small `README.md` files that define ownership and boundaries before implementation grows.
 
-## Foundation target
+## Planning
 
-The first stable foundation must provide typed protocol contracts, real headless sessions, multi-session lifecycle management, world-state projection, internal events, deterministic capabilities, persistence/recovery, structured observability and strong tests.
+- [`docs/project/OBJECTIVES.md`](docs/project/OBJECTIVES.md) — what AURA must achieve.
+- [`docs/project/GLOSSARY.md`](docs/project/GLOSSARY.md) — shared vocabulary.
+- [`docs/architecture/OVERVIEW.md`](docs/architecture/OVERVIEW.md) — accepted architecture.
+- [`docs/architecture/FLOW.md`](docs/architecture/FLOW.md) — Polaris ↔ AURA ↔ LLM flow.
+- [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) — phase sequence.
+- [`docs/roadmap/IMPLEMENTATION-PLAN.md`](docs/roadmap/IMPLEMENTATION-PLAN.md) — operational step-by-step plan.
+- [`docs/research/OPEN-QUESTIONS.md`](docs/research/OPEN-QUESTIONS.md) — questions that require evidence rather than guesses.
 
 ## Development workflow
 
@@ -70,15 +80,6 @@ pnpm run preflight -- reconnect
 pnpm run verify
 ```
 
-During early F0 these commands validate repository/tooling structure. They will grow as TypeScript, tests and CI are added.
-
-## Where to read next
-
-- [`AGENTS.md`](AGENTS.md) — rules and navigation for humans/AI coding agents.
-- [`docs/CURRENT.md`](docs/CURRENT.md) — what the project is doing now.
-- [`docs/INDEX.md`](docs/INDEX.md) — documentation router.
-- [`docs/architecture/OVERVIEW.md`](docs/architecture/OVERVIEW.md) — architecture boundaries.
-- [`docs/architecture/FLOW.md`](docs/architecture/FLOW.md) — Polaris → AURA → LLM → Polaris flow.
-- [`docs/roadmap/FOUNDATION.md`](docs/roadmap/FOUNDATION.md) — F0–F7 foundation roadmap.
+These commands currently support the repository bootstrap and will grow with the implementation phases.
 
 Before changing code or architecture, read [`AGENTS.md`](AGENTS.md).
