@@ -29,6 +29,7 @@ Read in this order:
 
 - `architecture/FLOW.md`
 - `reference/COMPATIBILITY.md`
+- `research/POLARIS-PROTOCOL-EVIDENCE.md` — confirmed F2.2 wire/session evidence and phase boundaries.
 - `research/OPEN-QUESTIONS.md`
 - `research/REFERENCES.md`
 - `packages/protocol/README.md`
