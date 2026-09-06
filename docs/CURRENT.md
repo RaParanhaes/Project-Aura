@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F2 — Protocol Foundation  
-**Last completed milestone:** F2.5 — Initial Packets
-**Next milestone:** F2.6 — Fixtures and Tests
+**Last completed milestone:** F2.6 — Fixtures and Tests
+**Next milestone:** F3 — RealSession
 **Status:** F2 IN PROGRESS  
-**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES + PACKET REGISTRY + INITIAL PACKET BODIES READY; FROZEN FIXTURE COVERAGE REMAINS
+**Implementation status:** F2 PROTOCOL FOUNDATION READY FOR SESSION INTEGRATION; RUNTIME WEBSOCKET/AUTHENTICATION NOT IMPLEMENTED
 
 ## F1 result
 
@@ -110,13 +110,15 @@ All codecs resolve their headers through the frozen registry and fail on wrong h
 
 Focused tests cover exact bytes, optional fields, bodyless packets, strict parser fields, room-id normalization, wrong headers and trailing data.
 
-## Next work — F2.6 Fixtures and Tests
+## F2.6 result — fixtures and contract tests implemented
 
-Add frozen Polaris byte fixtures and broader encode/decode contract coverage for the initial packet bodies.
+`tests/contracts/initial-packets.contract.test.ts` now compares the initial packet composers/parsers with deterministic frozen-target byte fixtures and checks that fixture headers resolve to the F2.4 registry identities. The fixtures contain no credentials and use only stable test values.
+
+The initial F2 packet surface is now complete. Runtime WebSocket transport, authentication credential acquisition, heartbeat orchestration, reconnect and recovery remain F3 work.
 
 ## Do not start early
 
-- concrete handshake/auth/keepalive packet implementations before F2.5;
+- WebSocket/session/authentication lifecycle before F3;
 - RealSession/WebSocket/authentication lifecycle before F3;
 - WorldState implementation (F4);
 - Capabilities (F5);

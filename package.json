@@ -13,7 +13,7 @@
     "preflight": "node scripts/preflight.mjs",
     "architecture": "node scripts/verify-architecture.mjs",
     "typecheck": "pnpm -r --if-present run typecheck",
-    "test": "vitest run tests/unit",
+    "test": "vitest run tests/unit tests/contracts",
     "test:unit": "vitest run tests/unit",
     "verify:structure": "node scripts/verify-structure.mjs",
     "verify": "pnpm run doctor && pnpm run verify:structure && pnpm run architecture && pnpm run typecheck && pnpm run test"

@@ -168,9 +168,14 @@ Rules:
 **F2.5 boundary:** frozen Polaris byte fixtures and exhaustive contract comparison remain F2.6 work; WebSocket/session lifecycle remains F3. **Status: COMPLETE.**
 
 ### F2.6 Fixtures and tests
-- Known byte fixtures.
-- Encode/decode contract tests.
-- Property-based tests for codec invariants where valuable.
+- [x] Record deterministic frozen byte fixtures for the initial session packets.
+- [x] Add encode/decode contract tests against those fixtures.
+- [x] Verify fixture headers through the F2.4 packet registry.
+- [ ] Add property-based tests for codec invariants where valuable.
+
+**F2.6 validation:** `tests/contracts/initial-packets.contract.test.ts` compares the F2.5 composers/parsers with deterministic fixtures derived from the frozen Polaris/Octane target and verifies registry identity/header alignment. Property-based testing remains optional and is not required for the current packet set.
+
+**F2.6 status:** INITIAL FIXTURES AND CONTRACT TESTS COMPLETE; CATALOG-WIDE FIXTURE COVERAGE REMAINS FUTURE WORK.
 
 **F2 Done when:** AURA can encode/decode the selected minimum Polaris protocol deterministically and prove compatibility with fixtures/contracts without any AI logic.
 

@@ -29,7 +29,9 @@ F2.5 adds concrete composers/parsers for the first session path:
 - RoomEnter composer with optional spawn coordinates;
 - Authenticated, UserHomeRoom, Ping and RoomOpen parsers.
 
-Every codec resolves its numeric header through `FROZEN_PACKET_REGISTRY`, validates the expected direction and rejects trailing body data. The reader remains fail-fast on malformed/truncated primitive data; frozen byte fixtures and exhaustive contract comparison begin in F2.6.
+Every codec resolves its numeric header through `FROZEN_PACKET_REGISTRY`, validates the expected direction and rejects trailing body data. The reader remains fail-fast on malformed/truncated primitive data.
+
+F2.6 adds deterministic first-session byte fixtures and contract tests under `tests/contracts`. The fixtures validate the initial packet surface against the frozen target without storing credentials or claiming runtime WebSocket integration.
 
 ## Does not own
 Authentication policy, WebSocket/session lifecycle, agent goals, world semantics, persistence or AI behavior.
