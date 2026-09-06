@@ -335,7 +335,7 @@ For every capability define:
 - timeout/failure result;
 - recovery semantics.
 
-**F5 Done when:** the first golden scenario can be expressed entirely through semantic capabilities, not raw packet calls from agent/runtime code.
+**F5 Done when:** the first golden scenario can be expressed entirely through semantic capabilities, not raw packet calls from agent/runtime code. **Status: COMPLETE.**
 
 ---
 
