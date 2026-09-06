@@ -6,3 +6,5 @@ export {
 export type { AgentState, AgentStateRepository } from './state.js';
 export { ACTION_OUTCOMES, InMemoryActionJournal } from './action-journal.js';
 export type { ActionJournal, ActionJournalEntry, ActionOutcome } from './action-journal.js';
+export { CHECKPOINT_SCHEMA_VERSION, InMemoryCheckpointStore, parseAgentCheckpoint } from './checkpoint.js';
+export type { AgentCheckpoint, CheckpointStore } from './checkpoint.js';
