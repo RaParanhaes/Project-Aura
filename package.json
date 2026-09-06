@@ -12,10 +12,13 @@
     "doctor": "node scripts/doctor.mjs",
     "preflight": "node scripts/preflight.mjs",
     "typecheck": "pnpm -r --if-present run typecheck",
+    "test": "vitest run tests/unit",
+    "test:unit": "vitest run tests/unit",
     "verify:structure": "node scripts/verify-structure.mjs",
-    "verify": "pnpm run verify:structure && pnpm run typecheck"
+    "verify": "pnpm run verify:structure && pnpm run typecheck && pnpm run test"
   },
   "devDependencies": {
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
   }
 }
