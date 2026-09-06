@@ -276,6 +276,13 @@ Golden proof:
 
 **F5.1 validation:** `CapabilityRegistry` validates and dispatches semantic requests without exposing raw protocol calls; unit tests cover valid, invalid, precondition-failed and unknown requests.
 
+### F5.2 ENTER_ROOM
+- [x] Define room-id/password input schema and current-room precondition.
+- [x] Map execution through an injected adapter command.
+- [x] Keep successful requests pending until room observation confirms entry.
+
+**F5.2 validation:** `registerEnterRoom` exposes the semantic contract and unit tests cover validation, duplicate-room rejection and adapter dispatch. Protocol packet mapping and live room confirmation remain adapter/integration work.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`

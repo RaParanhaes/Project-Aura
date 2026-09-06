@@ -25,3 +25,5 @@ export type { RoomHydrationState } from './world/room-hydrator.js';
 export { WorldState } from './world/world-state.js';
 export { CapabilityRegistry } from './capabilities/capability-registry.js';
 export type { CapabilityContext, CapabilityDefinition, CapabilityResult } from './capabilities/capability-registry.js';
+export { registerEnterRoom } from './capabilities/enter-room.js';
+export type { EnterRoomCommand, EnterRoomInput } from './capabilities/enter-room.js';

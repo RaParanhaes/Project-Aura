@@ -1,11 +1,11 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
-**Current phase:** F4 — WorldState
-**Last completed milestone:** F4.3 — Observed WorldState
-**Next milestone:** F5.2 — ENTER_ROOM
-**Status:** F4 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 CAPABILITY CONTRACTS IMPLEMENTED
+**Current phase:** F5 — Capabilities
+**Last completed milestone:** F5.1 — Capability Contracts
+**Next milestone:** F5.3 — WALK_TO
+**Status:** F5 IN PROGRESS
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED
 
 ## F1 result
 
@@ -161,6 +161,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F5.1 result — capability contracts
 
 `CapabilityRegistry` validates semantic inputs and preconditions, invokes an injected executor and always reports accepted execution as `pending` until Polaris observations confirm the effect. Unknown capabilities and invalid requests are rejected explicitly.
+
+## F5.2 result — ENTER_ROOM
+
+`registerEnterRoom` adds room-id/password validation, a current-room precondition and an injected command adapter. Accepted requests remain `pending` until a later room observation confirms entry.
 
 ## F3.2 result — transport boundary
 
