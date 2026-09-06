@@ -37,7 +37,7 @@ Rules:
 - [x] Development workflow.
 - [x] Definition of Done.
 - [x] Update documentation router and live project state.
-- [ ] Final documentation audit and merge.
+- [x] Final documentation audit.
 
 **D0 Done when:** a new coding agent can determine the project purpose, accepted architecture, authority order, current phase, next task and prohibited shortcuts from the repository alone.
 
