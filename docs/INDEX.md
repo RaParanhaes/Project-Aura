@@ -43,6 +43,13 @@ Read in this order:
 - `development/DEFINITION-OF-DONE.md`
 - `engineering/TEST-COVERAGE.md`
 
+## I am working on post-Foundation perception or attention
+
+- `roadmap/POST-FOUNDATION.md`
+- `packages/runtime/src/perception/README.md`
+- `architecture/FLOW.md`
+- `development/DEFINITION-OF-DONE.md`
+
 ## I am working on persistence / recovery
 
 - `packages/persistence/README.md`

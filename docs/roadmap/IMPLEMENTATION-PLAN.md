@@ -427,3 +427,5 @@ Do not pre-implement these during F1–F8. They will receive their own plans whe
 - LLM gateway and Ollama;
 - human realism;
 - economy, catalog, furniture, trade and room planning.
+
+Foundation is now stable. The active post-Foundation milestones are maintained in [`POST-FOUNDATION.md`](POST-FOUNDATION.md), beginning with P1 perception and attention.
