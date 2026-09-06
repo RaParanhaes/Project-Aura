@@ -18,9 +18,10 @@ AURA is not the game server and is not the renderer:
 **Current phase: F2 — Protocol Foundation**  
 **F2.1 — Freeze Compatibility Target: COMPLETE**  
 **F2.2 — Study Existing Implementation Evidence: COMPLETE**  
-**Next milestone: F2.3 — Packet Primitives**
+**F2.3 — Packet Primitives: COMPLETE**  
+**Next milestone: F2.4 — Registry and Contracts**
 
-The repository has a verified TypeScript/Node development foundation, an explicit Polaris/Octane compatibility target and confirmed static wire-protocol evidence. F2.3 is the first protocol implementation milestone and is intentionally limited to generic packet primitives/framing; concrete packet IDs and WebSocket session lifecycle remain later milestones.
+The repository now has the generic packet wire layer required by later Polaris contracts: strict primitive readers/writers, deterministic framing and incremental stream decoding. F2.4 adds packet identity/registry metadata; concrete handshake/auth packet bodies and WebSocket session lifecycle remain later milestones.
 
 Start with:
 
