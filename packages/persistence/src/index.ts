@@ -8,3 +8,5 @@ export { ACTION_OUTCOMES, InMemoryActionJournal } from './action-journal.js';
 export type { ActionJournal, ActionJournalEntry, ActionOutcome } from './action-journal.js';
 export { CHECKPOINT_SCHEMA_VERSION, InMemoryCheckpointStore, parseAgentCheckpoint } from './checkpoint.js';
 export type { AgentCheckpoint, CheckpointStore } from './checkpoint.js';
+export { ActionReconciler } from './reconciliation.js';
+export type { ObserveAction, ReconciliationObservation, ReconciliationResult } from './reconciliation.js';
