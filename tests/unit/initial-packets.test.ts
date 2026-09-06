@@ -8,6 +8,7 @@ import {
   PingParser,
   PongComposer,
   RoomEnterComposer,
+  RoomEntryDataComposer,
   RoomOpenParser,
   SSOTicketComposer,
   UniqueIDComposer,
@@ -46,6 +47,7 @@ describe('initial packet composers', () => {
   it('encodes bodyless keepalive and user-info packets', () => {
     expect(hex(new PongComposer().encode())).toBe('000000020a24');
     expect(hex(new InfoRetrieveComposer().encode())).toBe('000000020165');
+    expect(hex(new RoomEntryDataComposer().encode())).toBe('0000000208fc');
   });
 
   it('encodes room entry with optional spawn coordinates', () => {

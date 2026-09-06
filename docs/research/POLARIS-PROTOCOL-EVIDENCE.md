@@ -81,6 +81,9 @@ WebSocket connected
 → InfoRetrieve from Octane
 → application Ping/Pong heartbeat
 → RoomEnter when requested
+→ RoomOpen from Polaris
+→ GetRoomEntryData from the client
+→ Polaris adds the user and broadcasts RoomUsers
 ```
 
 Key packets identified for later F2.5 contract implementation:
@@ -97,8 +100,10 @@ Key packets identified for later F2.5 contract implementation:
 | 8 | C→S | PongMessageComposer | 2596 | empty body |
 | 9 | C→S | InfoRetrieveMessageComposer | 357 | empty body |
 | 10 | C→S | RequestRoomLoadEvent / RoomEnterComposer | 2312 | room id, password; optional spawn coordinates |
+| 11 | S→C | RoomOpenComposer / RoomEnterParser | 758 | empty body; room assets may now be requested |
+| 12 | C→S | RequestRoomHeightmapEvent / GetRoomEntryDataMessageComposer | 2300 | empty body; completes entry and triggers room roster broadcast |
 
-The following room responses are relevant to later F4 hydration, not F2.3 primitives: RoomOpen (758), RoomModel (2031), RoomRelativeMap (2753), RoomHeightMap (1301), RoomData (687), RoomUsers (374), plus unit/status messages.
+The following room responses are relevant to later F4 hydration, not F2.3 primitives: RoomModel (2031), RoomRelativeMap (2753), RoomHeightMap (1301), RoomData (687), RoomUsers (374), plus unit/status messages.
 
 ## Authentication findings
 

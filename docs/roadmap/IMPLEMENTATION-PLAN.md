@@ -276,6 +276,15 @@ Golden proof:
 
 **F5.1 validation:** `CapabilityRegistry` validates and dispatches semantic requests without exposing raw protocol calls; unit tests cover valid, invalid, precondition-failed and unknown requests.
 
+### F5.2 ENTER_ROOM
+- [x] Define room-id/password input schema and current-room precondition.
+- [x] Map execution through an injected adapter command.
+- [x] Keep successful requests pending until room observation confirms entry.
+- [x] Complete the Polaris `2312 -> 758 -> 2300` room-entry exchange.
+- [x] Validate that a user already in the room receives the entering user's `RoomUsers` record.
+
+**F5.2 validation:** `registerEnterRoom` exposes the semantic contract and unit tests cover validation, duplicate-room rejection and adapter dispatch. `PolarisRoomEntryAdapter` sends the required second-stage room data request after `RoomOpen`. A live local test with two test accounts in room AAA confirmed that the existing occupant receives header `374` containing the entering account and that the entrant receives the complete roster.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`

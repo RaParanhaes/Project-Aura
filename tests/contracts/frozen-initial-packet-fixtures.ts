@@ -26,6 +26,7 @@ export const FROZEN_INITIAL_PACKET_FIXTURES = Object.freeze({
   infoRetrieve: '000000020165',
   roomEnter: '0000000809080000002a0000',
   roomEnterWithSpawn: '0000001209080000002a000270770000000300000004',
+  roomEntryData: '0000000208fc',
   authenticated: '0000000a09bb01ffffffff000158',
   ping: '000000020f58',
   userHomeRoom: '0000000a0b3b0000000700000008',
