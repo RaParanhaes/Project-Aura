@@ -3,9 +3,9 @@
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F3 — RealSession
 **Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F3.2 — Transport
+**Next milestone:** F3.3 — Authentication Boundary
 **Status:** F3 IN PROGRESS
-**Implementation status:** F3.1 SESSION LIFECYCLE MODEL COMPLETE; TRANSPORT ADAPTER, HEARTBEAT AND AUTHENTICATION INTEGRATION REMAIN
+**Implementation status:** F3.1 COMPLETE; F3.2 TRANSPORT ADAPTER AND HEARTBEAT CONTROLLER COMPLETE; REAL CREDENTIAL INTEGRATION REMAINS
 
 ## F1 result
 
@@ -129,5 +129,9 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 - Capabilities (F5);
 - Persistence/recovery implementation (F6);
 - Ollama, memory and social systems.
+
+## F3.2 result — transport boundary
+
+`@aura/runtime` now exposes `WebSocketSessionTransport`, an adapter over an injected WebSocket implementation that configures binary frames, dispatches inbound payloads, gates sends on an open socket and forwards close/error events. `HeartbeatController` sends periodic pings and invokes a timeout callback when no activity is observed within the configured interval. Both remain independent of protocol packet details and can be tested without a live hotel.
 
 Detailed sequence: `roadmap/IMPLEMENTATION-PLAN.md`.
