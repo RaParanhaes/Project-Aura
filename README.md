@@ -16,9 +16,10 @@ AURA is not the game server and is not the renderer:
 **D0 — Documentation Foundation: COMPLETE**  
 **F1 — Development Foundation: COMPLETE**  
 **Current phase: F2 — Protocol Foundation**  
-**Next milestone: F2.1 — Freeze Compatibility Target**
+**F2.1 — Freeze Compatibility Target: COMPLETE**  
+**Next milestone: F2.2 — Study Existing Implementation Evidence**
 
-The repository has a verified TypeScript/Node development foundation. Polaris protocol/session/gameplay implementation has not started yet; F2 begins by freezing the exact Polaris/Octane compatibility target before packet code is written.
+The repository has a verified TypeScript/Node development foundation and an explicit Polaris/Octane compatibility target. Protocol implementation has not started yet; F2.2 studies the frozen contract and existing implementation evidence before AURA writes packet primitives.
 
 Start with:
 
