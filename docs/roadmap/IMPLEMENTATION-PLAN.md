@@ -57,9 +57,12 @@ Rules:
 **F1.1 validation:** GitHub Actions successfully installs the workspace and passes structure verification plus strict TypeScript checking for `aura-core` and all existing packages.
 
 ### F1.2 Test baseline
-- Add Vitest.
-- Add first unit/smoke test.
-- Keep test classes separated: unit, contracts, integration, scenarios, recovery and load.
+- [x] Pin Vitest test runner.
+- [x] Add first unit/smoke test.
+- [x] Keep test classes separated: unit, contracts, integration, scenarios, recovery and load.
+- [x] Add tests to `pnpm run verify` and CI.
+
+**F1.2 validation:** GitHub Actions successfully installs Vitest 5.0.0 and passes the first TypeScript smoke/unit test through the canonical `pnpm run verify` gate.
 
 ### F1.3 Architecture guardrails
 - Add dependency-cruiser rules for allowed/forbidden module dependencies.
