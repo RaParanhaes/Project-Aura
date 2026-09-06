@@ -75,12 +75,18 @@ Rules:
 **F1.3 validation:** GitHub Actions passes repository-owned architecture verification and unit tests. `dependency-cruiser@18.2.0` is deliberately deferred because it does not support the pinned TypeScript 7.0.2; re-evaluate after TypeScript 7.1+ compatibility. Knip is deferred until the repository contains enough implementation for dead-code analysis to provide useful signal.
 
 ### F1.4 Observability baseline
-- Add structured logging with trace/session/agent fields.
-- Avoid ad-hoc console logging in runtime code.
+- [x] Add structured logging with correlation fields.
+- [x] Provide one public logger creation entry point through `@aura/observability`.
+- [x] Add trace/session/agent/action/component child context.
+- [x] Redact common credential fields before output.
+- [x] Add focused unit tests and validate through CI.
+
+**F1.4 validation:** GitHub Actions passes Pino 10.3.1 structured logging tests for correlation context and credential redaction. The shared TypeScript configuration keeps AURA source strict while using `skipLibCheck: true` to avoid revalidating incompatible third-party declaration internals.
 
 ### F1.5 Verification gate
 - Expand `pnpm run verify` to include the checks that exist at this stage.
 - Make CI run the same verification command.
+- Review the final F1 Definition of Done and compatibility record.
 
 **F1 Done when:** a minimal AURA application/package can build, typecheck and test in CI, and architecture violations are automatically detected.
 
