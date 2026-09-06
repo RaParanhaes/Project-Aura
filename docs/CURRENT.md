@@ -2,14 +2,14 @@
 
 **Completed phase:** D0 — Documentation Foundation  
 **Current phase:** F1 — Development Foundation  
-**Last completed milestone:** F1.1 — Runtime / Workspace Baseline  
-**Next milestone:** F1.2 — Test Baseline  
+**Last completed milestone:** F1.2 — Test Baseline  
+**Next milestone:** F1.3 — Architecture Guardrails  
 **Status:** F1 IN PROGRESS  
-**Implementation status:** TOOLING BASELINE READY
+**Implementation status:** TYPECHECK + TEST BASELINE READY
 
 ## F1.1 result
 
-The approved repository skeleton is now a real strict TypeScript workspace without introducing Polaris protocol, session, gameplay or AI behavior.
+The approved repository skeleton is a real strict TypeScript workspace without introducing Polaris protocol, session, gameplay or AI behavior.
 
 Validated in CI:
 
@@ -19,21 +19,34 @@ Validated in CI:
 - shared strict compiler settings live in `tsconfig.base.json`;
 - `apps/aura-core` and all existing `packages/*` modules are real pnpm workspace projects;
 - declared workspace dependencies resolve through type-only imports;
-- `pnpm run verify` now performs structure verification plus workspace type checking;
-- GitHub Actions installs dependencies and runs the same verification gate successfully.
+- `pnpm run verify` performs structure verification plus workspace type checking.
 
-## Next work — F1.2 Test Baseline
+## F1.2 result
 
-Add the minimum test foundation only:
+The repository now has a minimal executable test baseline.
 
-1. add Vitest;
-2. add one focused smoke/unit test proving the baseline;
-3. keep the existing test-category folders intact;
-4. integrate tests into `pnpm run verify` and CI.
+Validated in CI:
+
+- Vitest is pinned to 5.0.0;
+- `tests/unit/foundation.test.ts` is the first smoke/unit test;
+- the test runner loads the TypeScript AURA application entrypoint successfully;
+- test categories remain separated under `tests/`;
+- `pnpm run test` / `pnpm run test:unit` execute unit tests;
+- `pnpm run verify` now runs structure verification, strict type checking and tests;
+- GitHub Actions passes the same verification gate.
+
+## Next work — F1.3 Architecture Guardrails
+
+Add only the architecture enforcement baseline:
+
+1. add dependency-cruiser;
+2. encode the first allowed/forbidden dependency rules;
+3. detect circular dependencies;
+4. integrate architecture checks into `pnpm run verify` and CI;
+5. evaluate Knip only if it adds useful signal at this stage.
 
 ## Do not start early
 
-- Architecture dependency enforcement (F1.3).
 - Pino/structured logging implementation (F1.4).
 - Polaris packet implementation (F2).
 - RealSession/WebSocket/authentication (F3).
