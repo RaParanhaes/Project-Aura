@@ -12,6 +12,8 @@ const CLIENT_PONG = c2s('CLIENT_PONG');
 const USER_INFO = c2s('USER_INFO');
 const ROOM_ENTER = c2s('ROOM_ENTER');
 const ROOM_ENTRY_DATA = c2s('ROOM_MODEL');
+const UNIT_TYPING_STOP = c2s('UNIT_TYPING_STOP');
+const UNIT_TYPING = c2s('UNIT_TYPING');
 const AUTHENTICATED = s2c('AUTHENTICATED');
 const CLIENT_PING = s2c('CLIENT_PING');
 const USER_HOME_ROOM = s2c('USER_HOME_ROOM');
@@ -120,6 +122,16 @@ export class RoomEntryDataComposer {
   public encode(): Uint8Array {
     return encodePacketBody(this.definition, () => undefined);
   }
+}
+
+export class StartTypingComposer {
+  public readonly definition = UNIT_TYPING;
+  public encode(): Uint8Array { return encodePacketBody(this.definition, () => undefined); }
+}
+
+export class StopTypingComposer {
+  public readonly definition = UNIT_TYPING_STOP;
+  public encode(): Uint8Array { return encodePacketBody(this.definition, () => undefined); }
 }
 
 export interface AuthenticatedPayload {

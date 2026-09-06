@@ -60,6 +60,8 @@ Done when the capability defines:
 - recovery semantics (retry/reconcile/recalculate/do-not-repeat);
 - appropriate tests.
 
+For state-changing commands, the adapter must implement the complete protocol exchange confirmed by Polaris and the existing renderer, including required follow-up packets and server acknowledgements. A capability is incomplete when it only sends its first request and assumes the state change.
+
 ## Persistence / recovery changes
 
 Done when:

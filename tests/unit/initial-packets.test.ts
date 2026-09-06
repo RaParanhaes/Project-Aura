@@ -9,6 +9,8 @@ import {
   PongComposer,
   RoomEnterComposer,
   RoomEntryDataComposer,
+  StartTypingComposer,
+  StopTypingComposer,
   RoomOpenParser,
   SSOTicketComposer,
   UniqueIDComposer,
@@ -48,6 +50,8 @@ describe('initial packet composers', () => {
     expect(hex(new PongComposer().encode())).toBe('000000020a24');
     expect(hex(new InfoRetrieveComposer().encode())).toBe('000000020165');
     expect(hex(new RoomEntryDataComposer().encode())).toBe('0000000208fc');
+    expect(hex(new StartTypingComposer().encode())).toBe('00000002063d');
+    expect(hex(new StopTypingComposer().encode())).toBe('0000000205c2');
   });
 
   it('encodes room entry with optional spawn coordinates', () => {

@@ -35,3 +35,5 @@ export { registerRoomUsersObservation } from './world/room-users-observation.js'
 export type { RoomUsersDecoder } from './world/room-users-observation.js';
 export { registerStartTyping } from './capabilities/start-typing.js';
 export type { StartTypingCommand, StartTypingInput } from './capabilities/start-typing.js';
+export { registerStopTyping } from './capabilities/stop-typing.js';
+export type { StopTypingCommand, StopTypingInput } from './capabilities/stop-typing.js';
