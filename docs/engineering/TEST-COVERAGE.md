@@ -19,6 +19,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | WebSocket transport / heartbeat | ✅ | — | — | — | — | — |
 | Authentication boundary | ✅ | — | — | — | — | — |
 | First-login flow | ✅ | — | — | — | — | — |
+| Disconnect/reconnect coordination | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -42,6 +43,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/session-transport.test.ts` proves binary WebSocket message dispatch/send behavior and heartbeat ping/timeout handling with fake timers.
 - `tests/unit/authentication-boundary.test.ts` proves injected credential/handshake ports and credential zeroization on success and failure.
 - `tests/unit/first-login.test.ts` proves the composed first-login flow reaches `online` only after transport and authentication complete.
+- `tests/unit/session-manager.test.ts` proves duplicate active sessions are rejected and cleanup permits recovery.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.

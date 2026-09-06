@@ -214,9 +214,11 @@ Golden proof:
 **F3.4 validation:** `firstLogin(session)` returns success only after the session reaches `online`, with unit coverage for sequencing. The local end-to-end golden proof remains pending environment credentials and is the next integration activity.
 
 ### F3.5 Disconnect/reconnect
-- Detect transport loss.
-- Reconnect without duplicate active sessions.
-- Integrate Polaris-native resume support when available/compatible.
+- [x] Detect transport loss and make the session eligible for recovery.
+- [x] Reconnect without duplicate active sessions.
+- [ ] Integrate Polaris-native resume support when available/compatible.
+
+**F3.5 validation:** `RealSession` accepts reconnect after transport loss and `SessionManager` enforces one registered session per agent. Live resume-token behavior remains pending a recovery integration test against Polaris.
 
 **F3 Done when:** one real account can repeatedly connect, authenticate, survive normal connection loss and return to a known session state.
 

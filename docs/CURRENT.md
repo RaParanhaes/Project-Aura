@@ -3,9 +3,9 @@
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F3 — RealSession
 **Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F3.5 — Disconnect/Reconnect
+**Next milestone:** F4 — WorldState
 **Status:** F3 IN PROGRESS
-**Implementation status:** F3.1/F3.2/F3.3 COMPLETE; F3.4 FIRST-LOGIN FLOW READY; LOCAL CMS/SSO PROOF REMAINS
+**Implementation status:** F3.1/F3.2/F3.3/F3.4 COMPLETE; F3.5 DISCONNECT/RECONNECT IMPLEMENTED; LIVE RECOVERY PROOF REMAINS
 
 ## F1 result
 
@@ -137,6 +137,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F3.4 result — first-login flow
 
 `firstLogin(session)` now composes the transport, authentication boundary and `RealSession`, returning success only after the session reaches `online`. Unit coverage proves transport readiness precedes authentication and that the result exposes the agent identity. End-to-end proof against the local hotel remains pending a configured account and CMS/SSO endpoint.
+
+## F3.5 result — disconnect/reconnect coordination
+
+`RealSession` accepts recovery after an unexpected transport close, and `SessionManager` enforces at most one registered session per agent identity. Unit coverage proves duplicate-session rejection, cleanup and reconnect eligibility. Live reconnect/resume behavior remains environment-dependent.
 
 ## F3.2 result — transport boundary
 
