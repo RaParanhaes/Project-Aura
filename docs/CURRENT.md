@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F2 — Protocol Foundation  
-**Last completed milestone:** F2.4 — Registry and Contracts
-**Next milestone:** F2.5 — Initial Packets
+**Last completed milestone:** F2.5 — Initial Packets
+**Next milestone:** F2.6 — Fixtures and Tests
 **Status:** F2 IN PROGRESS  
-**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES + PACKET REGISTRY READY; CONCRETE PACKET BODIES NOT IMPLEMENTED
+**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES + PACKET REGISTRY + INITIAL PACKET BODIES READY; FROZEN FIXTURE COVERAGE REMAINS
 
 ## F1 result
 
@@ -93,17 +93,26 @@ The registry contains identity metadata only. It does not encode/decode concrete
 
 Focused tests cover compatibility identity, definition validation, direction/ownership rules, duplicate detection, unknown lookups, opposite-direction semantics and immutable metadata.
 
-## Next work — F2.5 Initial Packets
+## F2.5 result — initial packet bodies implemented
 
-Implement only the concrete packet bodies required by the first session path:
+`@aura/protocol` now exposes concrete codecs for the first session path:
 
-1. release/version handshake;
-2. machine identification;
-3. secure login/authentication;
-4. ping/pong keepalive;
-5. user-info request and the minimum room-transition packets needed by F3/F4;
-6. use registry definitions for every header rather than repeating numeric IDs;
-7. keep WebSocket/session lifecycle and authentication orchestration in F3.
+- ClientHello/release version;
+- machine identification;
+- SSO ticket/secure login;
+- authenticated response;
+- application Ping/Pong keepalive;
+- user-info request;
+- room enter with optional spawn coordinates;
+- UserHomeRoom and RoomOpen response parsing.
+
+All codecs resolve their headers through the frozen registry and fail on wrong headers or trailing body bytes. Body codecs remain independent of WebSocket/session lifecycle and authentication credential acquisition.
+
+Focused tests cover exact bytes, optional fields, bodyless packets, strict parser fields, room-id normalization, wrong headers and trailing data.
+
+## Next work — F2.6 Fixtures and Tests
+
+Add frozen Polaris byte fixtures and broader encode/decode contract coverage for the initial packet bodies.
 
 ## Do not start early
 

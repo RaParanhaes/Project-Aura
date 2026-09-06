@@ -33,7 +33,7 @@ function frozenPacket(identity: FrozenPacketIdentity): PacketDefinition {
 }
 
 /**
- * Packet identities required by the first session path. Body codecs remain F2.5 work.
+ * Packet identities required by the first session path. Body codecs use these definitions.
  * All numeric headers live here so later composers/parsers can depend on definitions.
  */
 export const FROZEN_PACKET_DEFINITIONS = Object.freeze([

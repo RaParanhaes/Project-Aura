@@ -22,7 +22,14 @@ F2.4 adds the identity layer used by later concrete packets:
 - frozen Polaris/client/contract compatibility metadata;
 - an initial identity catalog for the first session path.
 
-The reader remains fail-fast on malformed/truncated primitive data. Registry definitions do not contain body codecs; concrete composers/parsers begin in F2.5.
+F2.5 adds concrete composers/parsers for the first session path:
+
+- ClientHello, UniqueID and SSOTicket composers;
+- Pong and InfoRetrieve composers;
+- RoomEnter composer with optional spawn coordinates;
+- Authenticated, UserHomeRoom, Ping and RoomOpen parsers.
+
+Every codec resolves its numeric header through `FROZEN_PACKET_REGISTRY`, validates the expected direction and rejects trailing body data. The reader remains fail-fast on malformed/truncated primitive data; frozen byte fixtures and exhaustive contract comparison begin in F2.6.
 
 ## Does not own
 Authentication policy, WebSocket/session lifecycle, agent goals, world semantics, persistence or AI behavior.

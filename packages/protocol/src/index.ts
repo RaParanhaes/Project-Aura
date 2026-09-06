@@ -12,6 +12,21 @@ export {
   type PacketFrame,
 } from './packet-frame.js';
 export { PacketReader } from './packet-reader.js';
+export { PacketBodyError, encodePacketBody, parsePacketBody } from './packet-body.js';
+export {
+  AuthenticatedParser,
+  ClientHelloComposer,
+  InfoRetrieveComposer,
+  PingParser,
+  PongComposer,
+  RoomEnterComposer,
+  RoomOpenParser,
+  SSOTicketComposer,
+  UniqueIDComposer,
+  UserHomeRoomParser,
+  type AuthenticatedPayload,
+  type UserHomeRoomPayload,
+} from './initial-packets.js';
 export {
   InvalidPacketDefinitionError,
   PACKET_DIRECTIONS,
