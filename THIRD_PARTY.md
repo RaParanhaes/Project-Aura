@@ -8,6 +8,7 @@ This file tracks external projects/libraries considered or used by AURA. No exte
 | XState | lifecycle state machines | MIT | planned dependency after F1 |
 | Zod | runtime/type/AI schemas | MIT | planned dependency after F1 |
 | Vitest 5.0.0 | test runner | MIT | dependency |
+| dependency-cruiser 18.2.0 | architecture/import dependency enforcement | MIT; evaluated, deferred because TypeScript 7.0.2 is not supported | reference/evaluation |
 | fast-check | property/state-machine testing | MIT | planned for critical tests |
 | Drizzle ORM | persistence/migrations | Apache-2.0 | planned evaluation |
 | Pino | structured logging | MIT | planned dependency in F1.4 |
@@ -20,5 +21,6 @@ This file tracks external projects/libraries considered or used by AURA. No exte
 - **adapted** — compatible source/concept ported with attribution/license compliance.
 - **vendored** — external source kept in repository.
 - **reference** — studied only; no source copied.
+- **evaluation** — actively considered, but not installed/adopted because current constraints do not justify it.
 
 Any code reuse must update this file and preserve required attribution/license obligations.

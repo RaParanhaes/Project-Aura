@@ -2,52 +2,51 @@
 
 **Completed phase:** D0 — Documentation Foundation  
 **Current phase:** F1 — Development Foundation  
-**Last completed milestone:** F1.2 — Test Baseline  
-**Next milestone:** F1.3 — Architecture Guardrails  
+**Last completed milestone:** F1.3 — Architecture Guardrails  
+**Next milestone:** F1.4 — Observability Baseline  
 **Status:** F1 IN PROGRESS  
-**Implementation status:** TYPECHECK + TEST BASELINE READY
+**Implementation status:** TYPECHECK + TESTS + ARCHITECTURE GUARDS READY
 
 ## F1.1 result
 
-The approved repository skeleton is a real strict TypeScript workspace without introducing Polaris protocol, session, gameplay or AI behavior.
-
-Validated in CI:
-
-- Node.js remains constrained to major 24;
-- pnpm remains pinned to 11.25.0 through `packageManager`;
-- TypeScript is pinned to 7.0.2;
-- shared strict compiler settings live in `tsconfig.base.json`;
-- `apps/aura-core` and all existing `packages/*` modules are real pnpm workspace projects;
-- declared workspace dependencies resolve through type-only imports;
-- `pnpm run verify` performs structure verification plus workspace type checking.
+The repository is a strict TypeScript pnpm workspace on Node 24 with a canonical `pnpm run verify` gate.
 
 ## F1.2 result
 
-The repository now has a minimal executable test baseline.
+Vitest is active and the unit/smoke baseline runs in CI.
+
+## F1.3 result
+
+The repository now mechanically protects the current AURA workspace boundaries.
 
 Validated in CI:
 
-- Vitest is pinned to 5.0.0;
-- `tests/unit/foundation.test.ts` is the first smoke/unit test;
-- the test runner loads the TypeScript AURA application entrypoint successfully;
-- test categories remain separated under `tests/`;
-- `pnpm run test` / `pnpm run test:unit` execute unit tests;
-- `pnpm run verify` now runs structure verification, strict type checking and tests;
-- GitHub Actions passes the same verification gate.
+- `pnpm run architecture` validates package manifests and source imports;
+- allowed/forbidden `@aura/*` dependency directions are explicit;
+- internal dependencies must use `workspace:` versions;
+- source imports must be declared in the importing workspace manifest;
+- deep imports into another workspace are forbidden;
+- relative imports crossing workspace boundaries are forbidden;
+- circular dependencies are detected in both manifest and source-import graphs;
+- unit tests prove valid edges, invalid edges, deep-import recognition and cycle detection;
+- `pnpm run verify` now runs structure verification, architecture verification, strict type checking and unit tests.
 
-## Next work — F1.3 Architecture Guardrails
+`dependency-cruiser@18.2.0` was evaluated but not installed because it does not currently support the project's pinned TypeScript 7.0.2. The repository-owned verifier is the accepted F1.3 baseline; dependency-cruiser should be re-evaluated when TypeScript 7.1+ compatibility is available.
 
-Add only the architecture enforcement baseline:
+Knip was not added because dead-code analysis has little useful signal at this stage and is not required to enforce the current architecture.
 
-1. add dependency-cruiser;
-2. encode the first allowed/forbidden dependency rules;
-3. detect circular dependencies;
-4. integrate architecture checks into `pnpm run verify` and CI;
-5. evaluate Knip only if it adds useful signal at this stage.
+## Next work — F1.4 Observability Baseline
+
+Add only the structured logging foundation:
+
+1. add Pino;
+2. define the minimum log fields needed later for agent/session/trace correlation;
+3. provide a single observability entry point instead of ad-hoc console logging;
+4. add focused tests;
+5. keep protocol/session implementation out of scope.
 
 ## Do not start early
 
-- Pino/structured logging implementation (F1.4).
 - Polaris packet implementation (F2).
 - RealSession/WebSocket/authentication (F3).
 - WorldState implementation (F4).

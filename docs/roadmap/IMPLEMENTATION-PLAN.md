@@ -65,9 +65,14 @@ Rules:
 **F1.2 validation:** GitHub Actions successfully installs Vitest 5.0.0 and passes the first TypeScript smoke/unit test through the canonical `pnpm run verify` gate.
 
 ### F1.3 Architecture guardrails
-- Add dependency-cruiser rules for allowed/forbidden module dependencies.
-- Detect circular dependencies.
-- Add dead-code/dependency analysis with Knip when useful.
+- [x] Encode allowed/forbidden workspace dependency directions.
+- [x] Validate both package manifests and source imports.
+- [x] Detect circular dependencies.
+- [x] Forbid deep imports and cross-workspace relative imports.
+- [x] Add architecture tests and integrate them into `pnpm run verify` / CI.
+- [x] Evaluate dependency-cruiser and Knip for current usefulness.
+
+**F1.3 validation:** GitHub Actions passes repository-owned architecture verification and unit tests. `dependency-cruiser@18.2.0` is deliberately deferred because it does not support the pinned TypeScript 7.0.2; re-evaluate after TypeScript 7.1+ compatibility. Knip is deferred until the repository contains enough implementation for dead-code analysis to provide useful signal.
 
 ### F1.4 Observability baseline
 - Add structured logging with trace/session/agent fields.
