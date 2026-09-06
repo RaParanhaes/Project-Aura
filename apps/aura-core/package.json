@@ -1,0 +1,17 @@
+{
+  "name": "@aura/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@aura/domain": "workspace:*",
+    "@aura/observability": "workspace:*",
+    "@aura/persistence": "workspace:*",
+    "@aura/polaris": "workspace:*",
+    "@aura/protocol": "workspace:*",
+    "@aura/runtime": "workspace:*"
+  }
+}
