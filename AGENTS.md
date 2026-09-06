@@ -7,9 +7,9 @@ This file is a GPS, not an encyclopedia. Follow links to the authoritative sourc
 1. Read `docs/CURRENT.md` for the live phase and next objective.
 2. Read `docs/INDEX.md` to locate architecture, roadmap, decisions and procedures.
 3. Read the nearest module `README.md` / `AGENTS.md` before editing that area.
-4. Run `pnpm preflight -- <task keywords>` before substantial work.
+4. Run `pnpm run preflight -- <task keywords>` before substantial work.
 5. Make the smallest coherent change.
-6. Run `pnpm verify` before claiming completion.
+6. Run `pnpm run verify` before claiming completion.
 
 ## Authority order
 

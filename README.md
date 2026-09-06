@@ -32,9 +32,9 @@ The first stable foundation must provide typed protocol contracts, real headless
 ## Development workflow
 
 ```bash
-pnpm doctor
-pnpm preflight -- reconnect
-pnpm verify
+pnpm run doctor
+pnpm run preflight -- reconnect
+pnpm run verify
 ```
 
 During early F0 these commands validate repository/tooling structure. They will grow as TypeScript, tests and CI are added.

@@ -28,7 +28,7 @@ jobs:
           corepack prepare pnpm@11.25.0 --activate
 
       - name: Doctor
-        run: pnpm doctor
+        run: pnpm run doctor
 
       - name: Verify repository structure
-        run: pnpm verify
+        run: pnpm run verify

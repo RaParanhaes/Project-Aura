@@ -8,7 +8,7 @@
 
 ## Validation
 
-- [ ] `pnpm verify`
+- [ ] `pnpm run verify`
 - [ ] Relevant focused tests (when implemented)
 - [ ] Integration/environment limitations are stated explicitly
 - [ ] Documentation/contracts updated when architecture or behavior changed
