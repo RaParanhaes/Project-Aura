@@ -43,6 +43,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Primary golden scenario | ✅ | ✅ | ✅ | ✅ | ✅ | — |
 | Resident-relative perception filter | ✅ | — | — | — | — | — |
 | Deterministic attention ranking | ✅ | — | — | — | — | — |
+| Perception event window | ✅ | — | — | — | — | — |
 
 ## Current test baseline
 

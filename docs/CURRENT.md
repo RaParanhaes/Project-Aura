@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
 **Current phase:** P1 — Perception and Attention
-**Last completed milestone:** P1.2 — Deterministic attention ranking
-**Next milestone:** P1.3 — Perception event window
+**Last completed milestone:** P1.3 — Perception event window
+**Next milestone:** P1.4 — Live shared-room validation
 **Status:** FOUNDATION STABLE; P1 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1.1 COMPLETE; P1.2 COMPLETE
+**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1.1 COMPLETE; P1.2 COMPLETE; P1.3 COMPLETE
 
 ## F6.1 result — durable state boundary
 
@@ -70,6 +70,10 @@ The post-Foundation sequence is defined in `docs/roadmap/POST-FOUNDATION.md`. P1
 ## P1.2 result — deterministic attention ranking
 
 `AttentionRanker` consumes only the bounded perception snapshot and explicit interaction signals. It scores direct interaction, mentions, recent interaction and proximity, applies stable tie-breaking, limits the focus set and preserves the source WorldState revision. Incomplete or stale perception produces no focus targets.
+
+## P1.3 result — perception event window
+
+`PerceptionEventWindow` retains recent roster, movement, typing and chat evidence with bounded capacity and time-to-live. Movement updates for one user are coalesced, ordered social events remain intact, capacity drops are observable and chat text is preserved as opaque data.
 
 ### Visual validation note
 
