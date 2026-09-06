@@ -75,7 +75,8 @@ Done when:
 - existing code could not reasonably solve the problem more simply;
 - maintenance/fit has been checked;
 - license/attribution implications are recorded;
-- reuse mode is clear: dependency, adapted, vendored or reference only.
+- reuse mode is clear: dependency, adapted, vendored or reference only;
+- dependency changes update the committed `pnpm-lock.yaml`, and frozen installation plus the canonical verification gate pass.
 
 ## Architecture changes
 
