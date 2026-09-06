@@ -4,19 +4,26 @@ This file tracks unresolved questions that can materially affect implementation.
 
 ## Compatibility / stack
 
-- What exact Polaris commit/version will be the first official AURA compatibility target?
-- What exact Octane build/version is paired with that Polaris target?
-- What CMS/auth flow currently produces the SSO token used by the working local stack?
-- Is `cayank/packet-client` wire-compatible with the exact Polaris/Octane stack without patching?
-- Which protocol contracts/headers differ between upstream Polaris and the user's running version, if any?
+F2.1/F2.2 resolved the first Polaris/Octane compatibility target, protocol framing, minimum handshake order and primary keepalive path. See:
+
+- `docs/reference/COMPATIBILITY.md`
+- `docs/research/POLARIS-PROTOCOL-EVIDENCE.md`
+
+Remaining stack questions:
+
+- What CMS/auth flow should the first AURA `AuthProvider` use to obtain a fresh SSO ticket in the real local stack?
+- Will host-based AURA integration connect directly to localhost port `2096`, or will the deployment require an HTTP/WebSocket proxy route?
+- Is `InfoRetrieveMessageComposer` intentionally ignored by the frozen Polaris server, or does the running environment have an indirect behavior not found in static inspection?
 
 ## RealSession / transport
 
-- What is the exact login/handshake sequence required by the current stack?
-- Which keepalive messages are mandatory versus optional?
-- Which disconnect cases are cleanly resumable through Polaris native session recovery?
-- What grace/recovery timing should AURA use around Polaris-native resume?
+- What is the effective Polaris session-resume grace period loaded from the real database/configuration?
+- Does runtime behavior confirm normal SSO consumption exactly as the inspected `HabboManager` code indicates, including failure/reuse edge cases?
+- What exact recovery-token behavior is accepted during reconnect in the running target?
+- What close code/reason is observed when the application heartbeat times out?
 - How should duplicate/ghost session protection be detected and resolved?
+
+The questions above are **not blockers for F2.3 packet primitives**. Resolve them during concrete packet/session integration where AURA can observe actual runtime behavior.
 
 ## Room hydration / world state
 
