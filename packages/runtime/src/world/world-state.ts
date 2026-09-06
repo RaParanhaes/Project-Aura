@@ -6,6 +6,7 @@ export class WorldState {
   private roomIdValue: number | undefined;
   private homeRoomValue: number | undefined;
   private observedAtValue: number | undefined;
+  private usersValue: WorldStateSnapshot['users'] = [];
 
   get snapshot(): WorldStateSnapshot {
     return {
@@ -13,6 +14,7 @@ export class WorldState {
       roomId: this.roomIdValue,
       homeRoom: this.homeRoomValue,
       lastObservedAt: this.observedAtValue,
+      users: this.usersValue,
     };
   }
 
@@ -27,6 +29,7 @@ export class WorldState {
       case 'user_home_room_observed': this.homeRoomValue = (event.payload as { readonly homeRoom: number }).homeRoom; break;
       case 'room_opened': break;
       case 'server_ping': break;
+      case 'room_users_observed': this.usersValue = (event.payload as { readonly users: WorldStateSnapshot['users'] }).users; break;
     }
     return this.snapshot;
   }
