@@ -28,10 +28,7 @@ jobs:
           corepack prepare pnpm@11.25.0 --activate
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Doctor
-        run: pnpm run doctor
+        run: pnpm install --frozen-lockfile
 
       - name: Verify foundation
         run: pnpm run verify

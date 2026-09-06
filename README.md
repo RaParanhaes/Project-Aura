@@ -14,11 +14,11 @@ AURA is not the game server and is not the renderer:
 ## Project status
 
 **D0 — Documentation Foundation: COMPLETE**  
-**F1 — Development Foundation: IN PROGRESS**  
-**F1.1 — Runtime / Workspace Baseline: COMPLETE**  
-**Next: F1.2 — Test Baseline**
+**F1 — Development Foundation: COMPLETE**  
+**Current phase: F2 — Protocol Foundation**  
+**Next milestone: F2.1 — Freeze Compatibility Target**
 
-The repository now has a strict TypeScript workspace baseline validated in CI, while protocol/session/gameplay/AI implementation remains intentionally untouched.
+The repository has a verified TypeScript/Node development foundation. Polaris protocol/session/gameplay implementation has not started yet; F2 begins by freezing the exact Polaris/Octane compatibility target before packet code is written.
 
 Start with:
 
@@ -62,7 +62,20 @@ Project-Aura/
 └── .github/                    # CI and contribution templates
 ```
 
-Each existing app/package is now a pnpm workspace project with its own `package.json`, `tsconfig.json` and minimal TypeScript public surface. The actual feature implementations are introduced only in their planned phases.
+## F1 development baseline
+
+The current development foundation includes:
+
+- Node.js 24.x;
+- pnpm 11.25.0;
+- committed `pnpm-lock.yaml`;
+- TypeScript 7.0.2 strict workspace configuration;
+- Vitest 5.0.0;
+- architecture/import/cycle guardrails;
+- Pino 10.3.1 structured logging;
+- one canonical `pnpm run verify` quality gate.
+
+A JavaScript `dist/` build is intentionally not emitted yet. The workspaces are still private development surfaces and no executable RealSession runtime exists to package. Build/emission will be introduced when the runtime shape requires it rather than inventing packaging decisions early.
 
 ## Planning
 
@@ -76,13 +89,14 @@ Each existing app/package is now a pnpm workspace project with its own `package.
 
 ## Development workflow
 
+For a clean checkout:
+
 ```bash
 corepack enable
-pnpm install
-pnpm run doctor
+pnpm install --frozen-lockfile
 pnpm run verify
 ```
 
-`pnpm run verify` currently checks required repository artifacts and strict TypeScript compilation across the workspace. More checks are added only when their corresponding F1 milestones are implemented.
+`pnpm run verify` is the single local/CI gate. It currently runs environment/document checks, repository structure verification, architecture boundary checks, strict TypeScript type checking and unit tests.
 
 Before changing code or architecture, read [`AGENTS.md`](AGENTS.md).

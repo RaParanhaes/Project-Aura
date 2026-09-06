@@ -4,6 +4,7 @@ const required = [
   'README.md',
   'AGENTS.md',
   'package.json',
+  'pnpm-lock.yaml',
   'pnpm-workspace.yaml',
   'tsconfig.base.json',
   'docs/INDEX.md',

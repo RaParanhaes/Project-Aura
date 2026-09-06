@@ -16,7 +16,7 @@
     "test": "vitest run tests/unit",
     "test:unit": "vitest run tests/unit",
     "verify:structure": "node scripts/verify-structure.mjs",
-    "verify": "pnpm run verify:structure && pnpm run architecture && pnpm run typecheck && pnpm run test"
+    "verify": "pnpm run doctor && pnpm run verify:structure && pnpm run architecture && pnpm run typecheck && pnpm run test"
   },
   "devDependencies": {
     "typescript": "7.0.2",
