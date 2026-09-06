@@ -29,6 +29,8 @@ export { PerceptionFilter } from './perception/perception-filter.js';
 export type { PerceivedRoomUser, PerceptionFilterOptions, PerceptionSnapshot, PerceptionStatus } from './perception/perception-filter.js';
 export { AttentionRanker } from './perception/attention-ranker.js';
 export type { AttentionFocus, AttentionReason, AttentionRankerOptions, AttentionSignal, AttentionSnapshot } from './perception/attention-ranker.js';
+export { PerceptionEventWindow } from './perception/event-window.js';
+export type { PerceptionEvent, PerceptionEventWindowOptions, PerceptionEventWindowSnapshot } from './perception/event-window.js';
 export { CapabilityRegistry } from './capabilities/capability-registry.js';
 export type { CapabilityContext, CapabilityDefinition, CapabilityResult } from './capabilities/capability-registry.js';
 export { registerEnterRoom } from './capabilities/enter-room.js';

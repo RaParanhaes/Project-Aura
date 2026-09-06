@@ -32,7 +32,7 @@ Goal: give each resident a bounded, current and explainable view of the shared r
 - keep untrusted chat text as data;
 - expose enough evidence to explain why attention changed.
 
-**Done when:** tests cover ordering, coalescing, expiration and untrusted text handling.
+**Done when:** tests cover ordering, coalescing, expiration and untrusted text handling. **Status: COMPLETE.**
 
 ### P1.4 — Live shared-room validation
 

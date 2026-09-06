@@ -42,8 +42,9 @@ AURA is not the game server and is not the renderer:
 **Foundation status: STABLE**
 **P1.1 — Resident-relative Perception: COMPLETE**
 **P1.2 — Deterministic Attention Ranking: COMPLETE**
+**P1.3 — Perception Event Window: COMPLETE**
 **Current phase: P1 — Perception and Attention**
-**Next milestone: P1.3 — Perception Event Window**
+**Next milestone: P1.4 — Live Shared-Room Validation**
 
 The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for handshake, authentication, keepalive, room entry, chat and movement packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect recovery, event normalization, room hydration barriers, an observed WorldState projection with stale-event protection, persistence checkpoints and a semantic capability boundary. Live validation covers room visibility, movement confirmation, chat, multi-session operation and recovery after a controlled Polaris restart.
 
