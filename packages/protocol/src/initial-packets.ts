@@ -18,6 +18,7 @@ const UNIT_CHAT = c2s('UNIT_CHAT');
 const UNIT_WHISPER = c2s('UNIT_WHISPER');
 const UNIT_SHOUT = c2s('UNIT_SHOUT');
 const UNIT_WALK = c2s('UNIT_WALK');
+const ENABLE_EFFECT = c2s('ENABLE_EFFECT');
 const AUTHENTICATED = s2c('AUTHENTICATED');
 const CLIENT_PING = s2c('CLIENT_PING');
 const USER_HOME_ROOM = s2c('USER_HOME_ROOM');
@@ -168,6 +169,13 @@ export class RoomUnitWalkComposer {
   public encode(): Uint8Array {
     return encodePacketBody(this.definition, (writer) => writer.writeInt(this.x).writeInt(this.y));
   }
+}
+
+/** Sends effect id 0 to the server, which clears the resident's active effect. */
+export class EnableEffectComposer {
+  public readonly definition = ENABLE_EFFECT;
+  public constructor(private readonly effectId = 0) {}
+  public encode(): Uint8Array { return encodePacketBody(this.definition, writer => writer.writeInt(this.effectId)); }
 }
 
 export interface AuthenticatedPayload {
