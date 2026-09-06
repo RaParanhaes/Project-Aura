@@ -1,11 +1,11 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
-**Current phase:** P1 — Perception and Attention
-**Last completed milestone:** P1.3 — Perception event window
-**Next milestone:** P1.4 — Live shared-room validation
-**Status:** FOUNDATION STABLE; P1 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1.1 COMPLETE; P1.2 COMPLETE; P1.3 COMPLETE
+**Current phase:** P2 — Goals and Activities
+**Last completed milestone:** P1.4 — Live shared-room validation
+**Next milestone:** P2.1 — Goal and activity contracts
+**Status:** FOUNDATION STABLE; P1 COMPLETE; P2 IN PROGRESS
+**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1 COMPLETE
 
 ## F6.1 result — durable state boundary
 
@@ -74,6 +74,18 @@ The post-Foundation sequence is defined in `docs/roadmap/POST-FOUNDATION.md`. P1
 ## P1.3 result — perception event window
 
 `PerceptionEventWindow` retains recent roster, movement, typing and chat evidence with bounded capacity and time-to-live. Movement updates for one user are coalesced, ordered social events remain intact, capacity drops are observable and chat text is preserved as opaque data.
+
+## P1.4 result — live shared-room validation
+
+The live P1.4 run used two AURA residents and Cabana in room AAA. `aura_f7_1` produced a ready resident-relative perception containing `aura_f7_2` and Cabana; deterministic attention selected `aura_f7_2` after an explicit interaction signal. The bounded event window recorded roster, typing, chat and movement evidence, and the recovery connection returned `sessionResumed=true` with `roomId=1`.
+
+P1 is complete. The next post-Foundation layer is P2.1, which will define goal and activity contracts without adding an LLM dependency.
+
+## Effect guard correction
+
+The live P1.4 observation exposed a transient Polaris `CAMERABOT` effect (`effectId=188`) on an AURA avatar, even though the users had no persisted or rank effect. `aura-core` now sends the standard `EnableEffectEvent(0)` clear command whenever it receives a non-zero room-effect event, preventing an external room/client trigger from remaining active on the resident. The Polaris emulator remains unchanged.
+
+The corrected live run observed the non-zero event, sent the clear packet, and then received only `effectId=0`; no effect remained active during recovery.
 
 ### Visual validation note
 
