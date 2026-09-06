@@ -30,6 +30,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      - name: Capture generated lockfile
+        run: |
+          echo '=== AURA_LOCKFILE_BEGIN ==='
+          cat pnpm-lock.yaml
+          echo '=== AURA_LOCKFILE_END ==='
+
       - name: Doctor
         run: pnpm run doctor
 
