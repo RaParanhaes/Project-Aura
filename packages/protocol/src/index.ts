@@ -56,3 +56,4 @@ export {
   type PacketStreamCodecOptions,
 } from './packet-stream-codec.js';
 export { PacketWriter } from './packet-writer.js';
+export { parseRoomUsers, type RoomUser } from './room-users.js';
