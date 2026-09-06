@@ -21,6 +21,7 @@ export {
   PongComposer,
   RoomEnterComposer,
   RoomEntryDataComposer,
+  SayComposer,
   RoomOpenParser,
   StartTypingComposer,
   StopTypingComposer,
