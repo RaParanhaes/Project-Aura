@@ -44,6 +44,8 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Resident-relative perception filter | ✅ | — | — | — | — | — |
 | Deterministic attention ranking | ✅ | — | — | — | — | — |
 | Perception event window | ✅ | — | — | — | — | — |
+| Live shared-room perception and attention | — | ✅ | ✅ | ✅ | ✅ | — |
+| Transient room-effect clear guard | — | ✅ | ✅ | — | ✅ | — |
 
 ## Current test baseline
 
