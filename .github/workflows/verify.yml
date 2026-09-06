@@ -7,7 +7,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   foundation:
@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Setup Node.js 24
         uses: actions/setup-node@v4
@@ -30,11 +32,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Capture generated lockfile
+      - name: Persist initial lockfile
+        if: github.event_name == 'pull_request'
         run: |
-          printf 'AURA_LOCK_GZ_BASE64='
-          gzip -c pnpm-lock.yaml | base64 -w0
-          printf '\n'
+          if git ls-files --error-unmatch pnpm-lock.yaml >/dev/null 2>&1; then
+            echo 'pnpm-lock.yaml is already tracked.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add pnpm-lock.yaml
+          git commit -m 'chore: lock workspace dependencies'
+          git push origin HEAD:${{ github.head_ref }}
 
       - name: Doctor
         run: pnpm run doctor
