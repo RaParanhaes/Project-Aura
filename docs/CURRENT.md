@@ -1,51 +1,58 @@
 # Current Project State
 
-**Phase:** D0 — Documentation Foundation  
-**Status:** IN PROGRESS  
-**Primary objective:** make Project AURA self-explanatory before functional implementation begins.
+**Completed phase:** D0 — Documentation Foundation  
+**Status:** COMPLETE  
+**Next phase:** F1 — Development Foundation  
+**Implementation status:** NOT STARTED
 
-## Completed
+## D0 result
+
+The repository now provides enough durable context for a new human or coding agent to determine, without chat history:
+
+- what AURA is and is not;
+- what Polaris, Octane and AURA each own;
+- the accepted Polaris ↔ AURA ↔ future LLM flow;
+- the difference between observed world state, desired/pending action and persistent agent continuity;
+- accepted decisions versus research/open questions;
+- the implementation phase sequence and operational task order;
+- the lightweight development workflow and Definition of Done;
+- the authority order for conflicting documentation;
+- where future work belongs in the repository.
+
+## Completed documentation foundation
 
 - Repository and module folder structure.
 - Root/module READMEs.
-- Project vision and principles.
-- Project objectives and shared glossary.
-- Architecture overview and Polaris ↔ AURA ↔ LLM flow.
+- Project vision, objectives, principles and glossary.
+- Architecture overview and end-to-end flow.
 - Initial accepted ADRs.
-- High-level roadmap and detailed implementation plan.
-- External references catalog and open technical questions.
-- Lightweight development workflow and Definition of Done.
-- Initial `doctor`, `preflight`, `verify` and CI bootstrap.
+- Roadmap and step-by-step implementation plan.
+- Foundation completion gate.
+- External references catalog.
+- Open technical questions.
+- Development workflow and Definition of Done.
+- Coding-agent navigation rules in `AGENTS.md`.
+- Documentation router in `INDEX.md`.
 
-## Current focus
+## Next work — F1 Development Foundation
 
-**D0 final documentation audit.**
+F1 begins only in a new focused implementation change.
 
-Check that a coding agent with no conversation history can determine:
-1. what AURA is and is not;
-2. what Polaris, Octane and AURA each own;
-3. how events/actions flow through the architecture;
-4. which decisions are accepted versus still research/open questions;
-5. what the current phase is;
-6. what the next implementation task is;
-7. which shortcuts are prohibited;
-8. where to find the relevant source of truth without reading every document.
+Planned order:
+1. runtime/workspace baseline (Node/pnpm/strict TypeScript);
+2. test baseline;
+3. architecture/dependency guardrails;
+4. structured logging baseline;
+5. expanded `pnpm run verify` gate.
 
-## Next phase
+Detailed steps: `roadmap/IMPLEMENTATION-PLAN.md`.
 
-**F1 — Development Foundation**
-
-Only after D0 is accepted:
-- strict TypeScript/workspace baseline;
-- test baseline;
-- architecture/dependency guards;
-- structured logging baseline;
-- expanded `pnpm run verify` gate.
-
-## Do not start yet
+## Do not start early
 
 - Polaris protocol implementation (F2).
 - RealSession implementation (F3).
+- WorldState implementation (F4).
+- Capability implementation (F5).
 - Persistence/recovery implementation (F6).
 - Ollama/LLM integration.
 - Long-term memory.
@@ -53,8 +60,11 @@ Only after D0 is accepted:
 - Needs, beliefs and norms.
 - Economy/room planning.
 
-## Planning sources
+## Sources for the next contributor
 
+- `INDEX.md` — documentation router.
 - `roadmap/ROADMAP.md` — phase-level sequence.
 - `roadmap/IMPLEMENTATION-PLAN.md` — operational task sequence.
+- `development/WORKFLOW.md` — how changes should be made.
+- `development/DEFINITION-OF-DONE.md` — completion evidence.
 - `research/OPEN-QUESTIONS.md` — unresolved questions that require evidence rather than guesses.
