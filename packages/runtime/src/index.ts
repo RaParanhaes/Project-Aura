@@ -15,3 +15,5 @@ export type { HeartbeatOptions, TimerApi } from './session/heartbeat.js';
 export type { WebSocketFactory, WebSocketLike } from './session/websocket-transport.js';
 export { CredentialAuthProvider } from './session/authentication.js';
 export type { AuthHandshake, CredentialProvider } from './session/authentication.js';
+export { firstLogin } from './session/first-login.js';
+export type { FirstLoginResult } from './session/first-login.js';
