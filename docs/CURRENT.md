@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F4 — WorldState
-**Last completed milestone:** F4.2 — Room Hydration
-**Next milestone:** F4.4 — State Rules
+**Last completed milestone:** F4.3 — Observed WorldState
+**Next milestone:** F5 — Capabilities
 **Status:** F4 IN PROGRESS
-**Implementation status:** F3 COMPLETE; F4.1/F4.2 COMPLETE; F4.3 OBSERVED WORLDSTATE IMPLEMENTED
+**Implementation status:** F3 COMPLETE; F4.1/F4.2/F4.3 COMPLETE; F4.4 STATE RULES IMPLEMENTED
 
 ## F1 result
 
@@ -153,6 +153,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F4.3 result — observed WorldState
 
 `WorldState` projects only normalized domain observations, increments a monotonic revision for each event and tracks observed room/home-room context. Pings advance observation time without changing room facts; no requested action can mutate the projection.
+
+## F4.4 result — state rules
+
+`WorldState` discards observations older than the latest accepted timestamp, preserving its revision and room facts.
 
 ## F3.2 result — transport boundary
 
