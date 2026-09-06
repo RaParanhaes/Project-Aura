@@ -39,3 +39,5 @@ export { registerStopTyping } from './capabilities/stop-typing.js';
 export type { StopTypingCommand, StopTypingInput } from './capabilities/stop-typing.js';
 export { registerSay } from './capabilities/say-command.js';
 export type { SayCommand, SayInput } from './capabilities/say-command.js';
+export { registerWhisper } from './capabilities/whisper-command.js';
+export type { WhisperCommand, WhisperInput } from './capabilities/whisper-command.js';

@@ -298,7 +298,15 @@ Golden proof:
 - [x] Add room precondition and maximum chat length validation.
 - [x] Add exact-byte and adapter tests.
 
-**F5.7 validation:** `registerSay` and `PolarisChatAdapter` pass unit tests; SAY encodes the complete body required by Polaris and rejects empty, oversized or roomless input.
+**F5.7 validation:** `registerSay` and `PolarisChatAdapter` pass unit tests; SAY encodes the complete body required by Polaris and rejects empty, oversized or roomless input. A controlled Polaris/Octane run in room AAA verified the avatar seated on a free stool, emitted a public message, switched from the active chat-bubble style to an explicit alternative, and emitted a second message.
+
+### F5.8 WHISPER
+- [x] Map WHISPER to Polaris `RoomUserWhisperEvent` header `1543`.
+- [x] Encode recipient prefix, text, bubble id and colour in Polaris order.
+- [x] Require a non-empty single-word room recipient and a valid message.
+- [x] Add exact-byte, adapter and semantic capability tests.
+
+**F5.8 validation:** `registerWhisper` and `PolarisChatAdapter` pass unit tests. A live Polaris/Octane run in room AAA sent a directed whisper from `octane_test_2_mt` to Cabana.
 
 Implement semantic actions one at a time:
 
@@ -308,6 +316,7 @@ Implement semantic actions one at a time:
 4. `START_TYPING`
 5. `STOP_TYPING`
 6. `SAY`
+7. `WHISPER`
 
 For every capability define:
 - input schema;
