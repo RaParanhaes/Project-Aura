@@ -35,11 +35,13 @@ Useful evidence:
 - movement/chat/friend behaviors;
 - buffering room chat until room-user identity mapping exists.
 
-Potential reuse: selected protocol/session code or patterns after compatibility and attribution review.
+F2.2 reviewed it against the frozen local Polaris/Octane evidence. Its concepts are useful, but it is not the protocol authority and AURA must not inherit packet IDs or compatibility assumptions without reconciliation against the frozen target.
 
 Known license: ISC.
 
-Classification: **ADAPTED candidate / REFERENCE**
+Current reuse decision: reference only; no dependency, vendoring or copied source. Any later source adaptation requires an explicit reuse-mode update and attribution review.
+
+Classification: **REFERENCE**
 
 ## Gurkengewuerz/nitro-ai-agent
 
