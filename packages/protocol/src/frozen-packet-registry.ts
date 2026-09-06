@@ -56,6 +56,15 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
     clientSymbol: 'RoomEnterComposer',
   }),
   frozenPacket({
+    name: 'ROOM_MODEL',
+    direction: 'client_to_server',
+    header: 2300,
+    owner: 'composer',
+    contractStatus: 'contract',
+    serverSymbol: 'RequestRoomHeightmapEvent',
+    clientSymbol: 'GetRoomEntryDataMessageComposer',
+  }),
+  frozenPacket({
     name: 'SECURITY_TICKET',
     direction: 'client_to_server',
     header: 2419,

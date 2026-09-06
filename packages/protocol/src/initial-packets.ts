@@ -11,6 +11,7 @@ const SECURITY_TICKET = c2s('SECURITY_TICKET');
 const CLIENT_PONG = c2s('CLIENT_PONG');
 const USER_INFO = c2s('USER_INFO');
 const ROOM_ENTER = c2s('ROOM_ENTER');
+const ROOM_ENTRY_DATA = c2s('ROOM_MODEL');
 const AUTHENTICATED = s2c('AUTHENTICATED');
 const CLIENT_PING = s2c('CLIENT_PING');
 const USER_HOME_ROOM = s2c('USER_HOME_ROOM');
@@ -109,6 +110,15 @@ export class RoomEnterComposer {
         writer.writeInt(this.spawnX).writeInt(this.spawnY);
       }
     });
+  }
+}
+
+/** Completes the two-stage room-entry handshake after RoomOpen (758). */
+export class RoomEntryDataComposer {
+  public readonly definition = ROOM_ENTRY_DATA;
+
+  public encode(): Uint8Array {
+    return encodePacketBody(this.definition, () => undefined);
   }
 }
 

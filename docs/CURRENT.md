@@ -5,7 +5,7 @@
 **Last completed milestone:** F5.5 — START_TYPING
 **Next milestone:** F5.6 — STOP_TYPING
 **Status:** F5 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED
 
 ## F1 result
 
@@ -103,7 +103,7 @@ Focused tests cover compatibility identity, definition validation, direction/own
 - authenticated response;
 - application Ping/Pong keepalive;
 - user-info request;
-- room enter with optional spawn coordinates;
+- room enter with optional spawn coordinates and the required post-`RoomOpen` room-data request;
 - UserHomeRoom and RoomOpen response parsing.
 
 All codecs resolve their headers through the frozen registry and fail on wrong headers or trailing body bytes. Body codecs remain independent of WebSocket/session lifecycle and authentication credential acquisition.
@@ -164,19 +164,25 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 
 ## F5.2 result — ENTER_ROOM
 
-`registerEnterRoom` adds room-id/password validation, a current-room precondition and an injected command adapter. Accepted requests remain `pending` until a later room observation confirms entry.
+`registerEnterRoom` adds room-id/password validation, a current-room precondition and an injected command adapter. `PolarisRoomEntryAdapter` now completes the required two-stage exchange: `RoomEnter` (2312), `RoomOpen` (758), then `GetRoomEntryData` (2300). Accepted requests remain `pending` until a later room observation confirms entry.
 
 ## F5.3 result — WALK_TO
 
 `registerWalkTo` adds non-negative safe-integer coordinate validation, requires an observed room and dispatches movement through an injected command adapter. Accepted requests remain `pending` until a later movement observation confirms the effect.
 
+## F5.4 result — LOOK_AT
+
+`registerLookAt` adds non-negative safe-integer coordinate validation, requires an observed room and dispatches orientation through an injected command adapter. Accepted requests remain `pending` until a later orientation observation confirms the effect.
+
 ## F5.5 result — START_TYPING
 
-`registerStartTyping` defines a bodyless semantic action, requires an observed room and dispatches typing state through an injected command adapter. Accepted requests remain `pending` until a later typing observation confirms the effect.`
+`registerStartTyping` defines a bodyless semantic action, requires an observed room and dispatches typing state through an injected command adapter. Accepted requests remain `pending` until a later typing observation confirms the effect.
 
 ## RoomUsers integration result
 
-`@aura/protocol` parses Polaris `RoomUsers` packets (server header `374`) with strict field consumption and exposes each observed user's identity and tile position. The contract fixture decodes both `Cabana` and `octane_test_1_mt` from one roster. This proves roster interpretation; browser rendering remains an adapter concern.
+`@aura/protocol` now parses Polaris `RoomUsers` packets (server header `374`) with strict field consumption and exposes each observed user's identity and tile position. The contract test decodes both `Cabana` and `octane_test_1_mt` from the same roster.
+
+The runtime bridge registers header `374` with `EventNormalizer` and projects the roster into `WorldStateSnapshot.users`. A live local two-account test in room AAA confirmed the normal visibility path: the account already in the room received a `RoomUsers` packet containing `octane_test_1_mt`, while the entrant received the roster containing `Cabana` and both test accounts. The existing Octane Renderer owns the visual avatar; AURA participates as a normal Polaris client and does not need a second embedded renderer.
 
 ## F3.2 result — transport boundary
 

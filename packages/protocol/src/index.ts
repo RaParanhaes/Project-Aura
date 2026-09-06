@@ -20,6 +20,7 @@ export {
   PingParser,
   PongComposer,
   RoomEnterComposer,
+  RoomEntryDataComposer,
   RoomOpenParser,
   SSOTicketComposer,
   UniqueIDComposer,

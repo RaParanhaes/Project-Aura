@@ -9,6 +9,7 @@ import {
   PingParser,
   PongComposer,
   RoomEnterComposer,
+  RoomEntryDataComposer,
   RoomOpenParser,
   SSOTicketComposer,
   UniqueIDComposer,
@@ -61,6 +62,7 @@ describe('frozen initial packet contracts', () => {
     expect(hex(new RoomEnterComposer(42, 'pw', 3, 4).encode())).toBe(
       fixtures.roomEnterWithSpawn,
     );
+    expect(hex(new RoomEntryDataComposer().encode())).toBe(fixtures.roomEntryData);
   });
 
   it('matches exact parser bytes and values for the first server session path', () => {
@@ -85,6 +87,7 @@ describe('frozen initial packet contracts', () => {
       ['client_to_server', 'CLIENT_PONG', 2596],
       ['client_to_server', 'USER_INFO', 357],
       ['client_to_server', 'ROOM_ENTER', 2312],
+      ['client_to_server', 'ROOM_MODEL', 2300],
       ['server_to_client', 'AUTHENTICATED', 2491],
       ['server_to_client', 'CLIENT_PING', 3928],
       ['server_to_client', 'USER_HOME_ROOM', 2875],

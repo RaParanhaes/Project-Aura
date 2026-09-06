@@ -25,6 +25,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Observed WorldState | ✅ | — | — | — | — | — |
 | WorldState stale-event rules | ✅ | — | — | — | — | — |
 | Capability contracts | ✅ | — | — | — | — | — |
+| ENTER_ROOM capability | ✅ | ✅ | ENV ✅ | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -54,6 +55,9 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/world-state.test.ts` proves observed-event projection, monotonic revisions and preservation of room facts across ping events.
 - `tests/unit/world-state.test.ts` also proves stale observations are ignored without revision regression.
 - `tests/unit/capability-registry.test.ts` proves semantic input validation, preconditions, unknown-capability rejection and pending execution results.
+- `tests/unit/enter-room.test.ts` proves ENTER_ROOM validation, current-room rejection and adapter dispatch.
+- `tests/unit/polaris-room-entry.test.ts` proves that room entry sends 2312, consumes 758 once and sends the required bodyless 2300 request before Polaris roster hydration.
+- Local Polaris validation with two test accounts proved that an existing room occupant receives header 374 for the account entering afterwards; this environment check is repeatable but is not part of the hermetic CI suite.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.

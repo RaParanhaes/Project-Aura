@@ -1,4 +1,2 @@
-import type {} from '@aura/protocol';
-
-/** Polaris-specific adapter implementation starts after protocol primitives exist. */
-export {};
+export { PolarisRoomEntryAdapter } from './room-entry.js';
+export type { PolarisPacketSender, PolarisRoomEntryInput } from './room-entry.js';
