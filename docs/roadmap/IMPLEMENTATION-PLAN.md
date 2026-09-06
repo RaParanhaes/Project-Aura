@@ -112,16 +112,27 @@ Rules:
 **F2.1 validation:** the local hotel target is frozen in `docs/reference/COMPATIBILITY.md` using immutable commits/fingerprints/hashes. Polaris is `4.2.82` based on `11f35d8c4d2a6f371b355107d4c7e477717cb2de` with a dirty-tree fingerprint and runtime JAR SHA-256; Octane and the renderer are likewise pinned; the protocol contract is schema 2 with SHA-256 `fb8dd00dcaa7657b58781b835c035fefc692797c1fabb9db5ba6770ce52d67b`; and the effective client release is confirmed as `NITRO-3-6-0`. This freezes the target but does not yet claim successful AURA-to-Polaris integration.
 
 ### F2.2 Study existing implementation evidence
-- Inspect Polaris `packet-field-contracts.json` and relevant handlers.
-- Inspect compatible portions of `cayank/packet-client`.
-- Record license/reuse mode before adapting code.
+- [x] Inspect the frozen Polaris framing/readers/writers and `packet-field-contracts.json` tooling.
+- [x] Inspect handshake, authentication, heartbeat and room-entry handlers relevant to the first session path.
+- [x] Cross-check wire behavior with the frozen Octane/Octane Renderer implementation.
+- [x] Inspect the dirty Polaris/Octane delta for protocol-impacting changes.
+- [x] Inspect `cayank/packet-client` as external reference and record license/reuse mode.
+- [x] Separate confirmed static wire rules from runtime-only questions.
+
+**F2.2 validation:** the read-only evidence study recorded in `docs/research/POLARIS-PROTOCOL-EVIDENCE.md` confirms big-endian `[4-byte length][2-byte header][body]` framing, primitive encoding, partial/multi-packet buffering requirements, the minimum ReleaseVersion → MachineID → SecureLogin → Authenticated sequence, application Ping/Pong heartbeat, and absence of protocol-relevant dirty-tree changes. `cayank/packet-client` is ISC and remains REFERENCE only. Runtime questions around SSO consumption/recovery timing and host WebSocket access are explicitly deferred to integration phases and do not block generic packet primitives.
 
 ### F2.3 Packet primitives
-- Frame length/header handling.
-- Integer fields.
-- Boolean fields.
-- String fields.
-- Error handling for malformed/partial data.
+- Implement `PacketReader` with explicit bounds checking.
+- Implement `PacketWriter`.
+- Implement `PacketFrame` for header + body.
+- Encode/decode the 4-byte length prefix and 2-byte header.
+- Support byte, boolean, short, int, long, string and raw bytes.
+- Support multiple complete packets in accumulated input.
+- Preserve incomplete remainder until a packet is complete.
+- Reject invalid lengths and enforce a configurable maximum packet size.
+- Add focused primitive/frame unit tests.
+
+**F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state.
 
 ### F2.4 Registry and contracts
 - Stable packet identifiers/contracts.

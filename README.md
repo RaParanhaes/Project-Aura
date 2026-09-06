@@ -17,9 +17,10 @@ AURA is not the game server and is not the renderer:
 **F1 — Development Foundation: COMPLETE**  
 **Current phase: F2 — Protocol Foundation**  
 **F2.1 — Freeze Compatibility Target: COMPLETE**  
-**Next milestone: F2.2 — Study Existing Implementation Evidence**
+**F2.2 — Study Existing Implementation Evidence: COMPLETE**  
+**Next milestone: F2.3 — Packet Primitives**
 
-The repository has a verified TypeScript/Node development foundation and an explicit Polaris/Octane compatibility target. Protocol implementation has not started yet; F2.2 studies the frozen contract and existing implementation evidence before AURA writes packet primitives.
+The repository has a verified TypeScript/Node development foundation, an explicit Polaris/Octane compatibility target and confirmed static wire-protocol evidence. F2.3 is the first protocol implementation milestone and is intentionally limited to generic packet primitives/framing; concrete packet IDs and WebSocket session lifecycle remain later milestones.
 
 Start with:
 
@@ -86,6 +87,7 @@ A JavaScript `dist/` build is intentionally not emitted yet. The workspaces are 
 - [`docs/architecture/FLOW.md`](docs/architecture/FLOW.md) — Polaris ↔ AURA ↔ LLM flow.
 - [`docs/roadmap/ROADMAP.md`](docs/roadmap/ROADMAP.md) — phase sequence.
 - [`docs/roadmap/IMPLEMENTATION-PLAN.md`](docs/roadmap/IMPLEMENTATION-PLAN.md) — operational step-by-step plan.
+- [`docs/research/POLARIS-PROTOCOL-EVIDENCE.md`](docs/research/POLARIS-PROTOCOL-EVIDENCE.md) — F2.2 confirmed wire/protocol evidence and phase boundaries.
 - [`docs/research/OPEN-QUESTIONS.md`](docs/research/OPEN-QUESTIONS.md) — questions that require evidence rather than guesses.
 
 ## Development workflow
