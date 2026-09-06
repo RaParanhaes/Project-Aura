@@ -184,7 +184,11 @@ Rules:
 ## F3 — RealSession
 
 ### F3.1 Session lifecycle model
-Define explicit states such as disconnected, connecting, authenticating, online, reconnecting and failed.
+- [x] Define explicit states: disconnected, connecting, authenticating, online, reconnecting and failed.
+- [x] Gate outbound sends on the online state and expose deterministic reconnect behavior.
+- [x] Keep transport and authentication behind injectable ports.
+
+**F3.1 validation:** `@aura/runtime` exposes `RealSession`, `SessionTransport` and `AuthProvider`. Unit tests cover startup, authentication failure, transport loss, reconnect and send/close state gates. Concrete WebSocket transport and real credentials remain F3.2/F3.3 work.
 
 ### F3.2 Transport
 - WebSocket connection.

@@ -1,11 +1,11 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
-**Current phase:** F2 — Protocol Foundation  
+**Current phase:** F3 — RealSession
 **Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F3 — RealSession
-**Status:** F2 IN PROGRESS  
-**Implementation status:** F2 PROTOCOL FOUNDATION READY FOR SESSION INTEGRATION; RUNTIME WEBSOCKET/AUTHENTICATION NOT IMPLEMENTED
+**Next milestone:** F3.2 — Transport
+**Status:** F3 IN PROGRESS
+**Implementation status:** F3.1 SESSION LIFECYCLE MODEL COMPLETE; TRANSPORT ADAPTER, HEARTBEAT AND AUTHENTICATION INTEGRATION REMAIN
 
 ## F1 result
 
@@ -116,10 +116,15 @@ Focused tests cover exact bytes, optional fields, bodyless packets, strict parse
 
 The initial F2 packet surface is now complete. Runtime WebSocket transport, authentication credential acquisition, heartbeat orchestration, reconnect and recovery remain F3 work.
 
+## F3.1 result — session lifecycle model
+
+`@aura/runtime` now exposes `RealSession` with explicit `disconnected`, `connecting`, `authenticating`, `online`, `reconnecting` and `failed` states. The session owns lifecycle transitions, gates outbound sends on `online`, forwards inbound payloads through a callback, records startup failures and supports deterministic reconnect attempts. `SessionTransport` and `AuthProvider` are ports; no concrete WebSocket or credential acquisition is included yet.
+
+Focused unit tests cover startup/authentication transitions, send/close gating, unexpected transport close and recovery, and fail-closed authentication errors.
+
 ## Do not start early
 
-- WebSocket/session/authentication lifecycle before F3;
-- RealSession/WebSocket/authentication lifecycle before F3;
+- Concrete WebSocket/session transport before F3.2;
 - WorldState implementation (F4);
 - Capabilities (F5);
 - Persistence/recovery implementation (F6);
