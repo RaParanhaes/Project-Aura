@@ -24,10 +24,11 @@ AURA is not the game server and is not the renderer:
 **F2.6 — Fixtures and Tests: COMPLETE**
 **F3.1 — Session Lifecycle Model: COMPLETE**
 **F3.2 — Transport: COMPLETE**
-**F3.3 — Authentication Boundary: IN PROGRESS**
-**Next milestone: F3.4 — First Real Login**
+**F3.3 — Authentication Boundary: COMPLETE**
+**F3.4 — First Real Login: IN PROGRESS**
+**Next milestone: F3.5 — Disconnect/Reconnect**
 
-The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has an explicit RealSession lifecycle, an injectable WebSocket transport adapter, heartbeat timeout controller and credential/authentication boundary; real local CMS/SSO integration remains F3.3 work.
+The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has an explicit RealSession lifecycle, an injectable WebSocket transport adapter, heartbeat timeout controller and credential/authentication boundary; the first-login flow is ready for local CMS/SSO verification.
 
 Start with:
 

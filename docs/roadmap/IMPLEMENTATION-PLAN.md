@@ -207,9 +207,11 @@ Rules:
 
 ### F3.4 First real login
 Golden proof:
-- account authenticates;
-- Polaris recognizes it as a normal user session;
-- no browser/Octane renderer is required.
+- [x] Compose the transport, authentication boundary and RealSession into a first-login flow.
+- [ ] Prove a configured account authenticates against the local CMS/SSO path.
+- [ ] Prove Polaris recognizes it as a normal user session without browser/Octane renderer.
+
+**F3.4 validation:** `firstLogin(session)` returns success only after the session reaches `online`, with unit coverage for sequencing. The local end-to-end golden proof remains pending environment credentials and is the next integration activity.
 
 ### F3.5 Disconnect/reconnect
 - Detect transport loss.
