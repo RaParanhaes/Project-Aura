@@ -1,11 +1,11 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
-**Current phase:** F3 — RealSession
+**Current phase:** F4 — WorldState
 **Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F4 — WorldState
+**Next milestone:** F4.2 — Room Hydration
 **Status:** F3 IN PROGRESS
-**Implementation status:** F3.1/F3.2/F3.3/F3.4 COMPLETE; F3.5 DISCONNECT/RECONNECT IMPLEMENTED; LIVE RECOVERY PROOF REMAINS
+**Implementation status:** F3 COMPLETE; F4.1 EVENT NORMALIZATION IMPLEMENTED; ROOM HYDRATION REMAINS
 
 ## F1 result
 
@@ -141,6 +141,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F3.5 result — disconnect/reconnect coordination
 
 `RealSession` accepts recovery after an unexpected transport close, and `SessionManager` enforces at most one registered session per agent identity. Unit coverage proves duplicate-session rejection, cleanup and reconnect eligibility. Live reconnect/resume behavior remains environment-dependent.
+
+## F4.1 result — event normalization
+
+`@aura/domain` defines stable event kinds and payloads for session and initial room signals. `@aura/runtime` exposes `EventNormalizer`, which maps packet headers through injected decoders, stamps observation time and ignores unknown packets without coupling domain code to protocol details.
 
 ## F3.2 result — transport boundary
 
