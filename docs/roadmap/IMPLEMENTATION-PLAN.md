@@ -25,19 +25,19 @@ Rules:
 - [x] Architecture overview.
 - [x] Polaris ↔ AURA ↔ LLM flow.
 - [x] Initial accepted ADRs.
-- [ ] Review docs for contradictions/duplication.
+- [x] Review central docs for contradictions/duplication.
 
 ### D0.4 Planning and research memory
 - [x] Roadmap.
 - [x] Implementation plan.
-- [ ] References catalog.
-- [ ] Open questions list.
+- [x] References catalog.
+- [x] Open questions list.
 
 ### D0.5 Development rules
-- [ ] Development workflow.
-- [ ] Definition of Done.
-- [ ] Update documentation router and live project state.
-- [ ] Final documentation audit.
+- [x] Development workflow.
+- [x] Definition of Done.
+- [x] Update documentation router and live project state.
+- [ ] Final documentation audit and merge.
 
 **D0 Done when:** a new coding agent can determine the project purpose, accepted architecture, authority order, current phase, next task and prohibited shortcuts from the repository alone.
 
