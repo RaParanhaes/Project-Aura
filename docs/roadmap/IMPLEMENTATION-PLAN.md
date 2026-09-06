@@ -234,6 +234,11 @@ Golden proof:
 **F4.1 validation:** `@aura/domain` owns event types and `@aura/runtime` exposes `EventNormalizer`; unit tests cover normalization, timestamps, unknown packets and duplicate registration. Room hydration remains F4.2.
 
 ### F4.2 Room transition/hydration
+- [x] Add an explicit loading/ready/failed room hydration state.
+- [x] Validate room snapshots before releasing dependent events.
+- [x] Buffer dependent events until the hydration barrier is ready.
+
+**F4.2 validation:** `RoomHydrator` owns snapshot validation and pending-event release; unit tests cover valid hydration, buffering and invalid snapshot failure. Full Polaris room payload integration remains F4.3 work.
 - Track entering/changing rooms.
 - Build minimum room readiness barrier.
 - Buffer events that cannot yet be resolved safely, such as chat before user identity mapping.

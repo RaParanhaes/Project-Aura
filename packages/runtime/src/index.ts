@@ -20,3 +20,5 @@ export type { FirstLoginResult } from './session/first-login.js';
 export { SessionManager } from './session/session-manager.js';
 export { EventNormalizer } from './world/event-normalizer.js';
 export type { EventDecoder, InboundPacket } from './world/event-normalizer.js';
+export { RoomHydrator } from './world/room-hydrator.js';
+export type { RoomHydrationState } from './world/room-hydrator.js';

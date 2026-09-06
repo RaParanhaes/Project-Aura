@@ -16,3 +16,8 @@ export type DomainEvent<K extends DomainEventKind = DomainEventKind> = {
   readonly observedAt: number;
   readonly payload: DomainEventPayload[K];
 };
+
+export type RoomSnapshot = {
+  readonly roomId: number;
+  readonly revision: number;
+};
