@@ -1,4 +1,11 @@
-import type {} from '@aura/domain';
-
-/** Runtime implementation is introduced incrementally in later Foundation phases. */
-export {};
+export {
+  RealSession,
+  SessionError
+} from './session/real-session.js';
+export type {
+  AuthProvider,
+  SessionCloseReason,
+  SessionState,
+  SessionTransport,
+  Unsubscribe
+} from './session/real-session.js';

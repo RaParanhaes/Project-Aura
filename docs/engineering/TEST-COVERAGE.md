@@ -15,6 +15,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Packet registry / identity contracts | ✅ | ⚠ | — | — | — | — |
 | Initial packet bodies | ✅ | ⚠ | — | — | — | — |
 | Frozen packet fixtures / contracts | ✅ | ✅ | — | — | — | — |
+| RealSession lifecycle model | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -34,6 +35,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/packet-registry.test.ts` proves frozen compatibility metadata, direction/ownership rules, duplicate rejection, direction-scoped lookup, unknown lookup semantics and immutable identity definitions.
 - `tests/unit/initial-packets.test.ts` proves exact initial composer bytes, optional room-entry fields, bodyless packets, strict authenticated/home-room parsers and malformed-body/header rejection.
 - `tests/contracts/initial-packets.contract.test.ts` compares the initial composers/parsers with frozen wire fixtures and verifies every fixture header through the F2.4 registry.
+- `tests/unit/real-session.test.ts` proves explicit RealSession lifecycle transitions, send gating, close/reconnect behavior and fail-closed authentication errors.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.
