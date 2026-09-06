@@ -27,6 +27,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Capability contracts | ✅ | — | — | — | — | — |
 | ENTER_ROOM capability | ✅ | ✅ | ENV ✅ | — | — | — |
 | STOP_TYPING capability | ✅ | ✅ | — | — | — | — |
+| SAY capability and chat packet | ✅ | ✅ | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -59,6 +60,8 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/enter-room.test.ts` proves ENTER_ROOM validation, current-room rejection and adapter dispatch.
 - `tests/unit/polaris-room-entry.test.ts` proves that room entry sends 2312, consumes 758 once and sends the required bodyless 2300 request before Polaris roster hydration.
 - `tests/unit/stop-typing.test.ts` proves STOP_TYPING validation, room precondition and pending command dispatch.
+- `tests/unit/say.test.ts` proves SAY validation, room precondition and pending command dispatch.
+- `tests/unit/polaris-chat.test.ts` proves the exact RoomUserTalk packet bytes.
 - `tests/unit/polaris-typing.test.ts` proves both typing transitions emit complete bodyless Polaris packets (1597 and 1474).
 - Local Polaris validation with two test accounts proved that an existing room occupant receives header 374 for the account entering afterwards; this environment check is repeatable but is not part of the hermetic CI suite.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.

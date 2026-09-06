@@ -292,6 +292,14 @@ Golden proof:
 
 **F5.6 validation:** `registerStopTyping` and `PolarisTypingAdapter` are covered by unit tests. Both typing transitions resolve to exact six-byte packets (`1597`/`1474`) and neither command is emitted without an observed room.
 
+### F5.7 SAY
+- [x] Map SAY to Polaris `RoomUserTalkEvent` header `1314`.
+- [x] Encode text, bubble id and colour in renderer-compatible order.
+- [x] Add room precondition and maximum chat length validation.
+- [x] Add exact-byte and adapter tests.
+
+**F5.7 validation:** `registerSay` and `PolarisChatAdapter` pass unit tests; SAY encodes the complete body required by Polaris and rejects empty, oversized or roomless input.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`

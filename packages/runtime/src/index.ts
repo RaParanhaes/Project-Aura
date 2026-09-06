@@ -37,3 +37,5 @@ export { registerStartTyping } from './capabilities/start-typing.js';
 export type { StartTypingCommand, StartTypingInput } from './capabilities/start-typing.js';
 export { registerStopTyping } from './capabilities/stop-typing.js';
 export type { StopTypingCommand, StopTypingInput } from './capabilities/stop-typing.js';
+export { registerSay } from './capabilities/say-command.js';
+export type { SayCommand, SayInput } from './capabilities/say-command.js';
