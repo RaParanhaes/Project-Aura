@@ -64,6 +64,8 @@ export const FROZEN_PACKET_DEFINITIONS = Object.freeze([
     serverSymbol: 'RequestRoomHeightmapEvent',
     clientSymbol: 'GetRoomEntryDataMessageComposer',
   }),
+  frozenPacket({ name: 'UNIT_TYPING_STOP', direction: 'client_to_server', header: 1474, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserStopTypingEvent', clientSymbol: 'RoomUnitTypingStopComposer' }),
+  frozenPacket({ name: 'UNIT_TYPING', direction: 'client_to_server', header: 1597, owner: 'composer', contractStatus: 'contract', serverSymbol: 'RoomUserStartTypingEvent', clientSymbol: 'RoomUnitTypingStartComposer' }),
   frozenPacket({
     name: 'SECURITY_TICKET',
     direction: 'client_to_server',

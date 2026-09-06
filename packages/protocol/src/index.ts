@@ -22,6 +22,8 @@ export {
   RoomEnterComposer,
   RoomEntryDataComposer,
   RoomOpenParser,
+  StartTypingComposer,
+  StopTypingComposer,
   SSOTicketComposer,
   UniqueIDComposer,
   UserHomeRoomParser,

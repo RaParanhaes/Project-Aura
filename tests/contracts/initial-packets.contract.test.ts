@@ -10,6 +10,8 @@ import {
   PongComposer,
   RoomEnterComposer,
   RoomEntryDataComposer,
+  StartTypingComposer,
+  StopTypingComposer,
   RoomOpenParser,
   SSOTicketComposer,
   UniqueIDComposer,
@@ -63,6 +65,8 @@ describe('frozen initial packet contracts', () => {
       fixtures.roomEnterWithSpawn,
     );
     expect(hex(new RoomEntryDataComposer().encode())).toBe(fixtures.roomEntryData);
+    expect(hex(new StartTypingComposer().encode())).toBe('00000002063d');
+    expect(hex(new StopTypingComposer().encode())).toBe('0000000205c2');
   });
 
   it('matches exact parser bytes and values for the first server session path', () => {
@@ -88,6 +92,8 @@ describe('frozen initial packet contracts', () => {
       ['client_to_server', 'USER_INFO', 357],
       ['client_to_server', 'ROOM_ENTER', 2312],
       ['client_to_server', 'ROOM_MODEL', 2300],
+      ['client_to_server', 'UNIT_TYPING_STOP', 1474],
+      ['client_to_server', 'UNIT_TYPING', 1597],
       ['server_to_client', 'AUTHENTICATED', 2491],
       ['server_to_client', 'CLIENT_PING', 3928],
       ['server_to_client', 'USER_HOME_ROOM', 2875],

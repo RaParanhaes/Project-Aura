@@ -285,6 +285,13 @@ Golden proof:
 
 **F5.2 validation:** `registerEnterRoom` exposes the semantic contract and unit tests cover validation, duplicate-room rejection and adapter dispatch. `PolarisRoomEntryAdapter` sends the required second-stage room data request after `RoomOpen`. A live local test with two test accounts in room AAA confirmed that the existing occupant receives header `374` containing the entering account and that the entrant receives the complete roster.
 
+### F5.6 STOP_TYPING
+- [x] Define a bodyless semantic input, room precondition and pending result.
+- [x] Map STOP_TYPING to Polaris' bodyless header `1474`.
+- [x] Keep START_TYPING paired with its complete header `1597` mapping.
+
+**F5.6 validation:** `registerStopTyping` and `PolarisTypingAdapter` are covered by unit tests. Both typing transitions resolve to exact six-byte packets (`1597`/`1474`) and neither command is emitted without an observed room.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`
