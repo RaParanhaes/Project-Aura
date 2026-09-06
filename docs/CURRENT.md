@@ -3,9 +3,9 @@
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F5 — Capabilities
 **Last completed milestone:** F5.3 — WALK_TO
-**Next milestone:** F5.4 — LOOK_AT
+**Next milestone:** F5.5 — START_TYPING
 **Status:** F5 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED
 
 ## F1 result
 
