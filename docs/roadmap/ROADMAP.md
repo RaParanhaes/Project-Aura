@@ -118,6 +118,8 @@ At this point the project may declare **AURA FOUNDATION STABLE**.
 
 These layers are intentionally not frozen in detail yet. Their architecture will be decided using evidence from the working Foundation.
 
+The active detailed sequence begins in [`POST-FOUNDATION.md`](POST-FOUNDATION.md) with **P1 — Perception and attention**.
+
 Possible sequence:
 
 - Perception and attention;

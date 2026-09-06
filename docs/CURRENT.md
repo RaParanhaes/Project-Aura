@@ -1,11 +1,11 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
-**Current phase:** F8 — Foundation Validation
-**Last completed milestone:** F8.5 — Complete golden scenario and Foundation gate
-**Next milestone:** Post-Foundation — Perception and attention design
-**Status:** FOUNDATION STABLE; POST-FOUNDATION PLANNING
-**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8.1 COMPLETE; F8.2 COMPLETE; F8.3 COMPLETE; F8.4 COMPLETE; F8.5 COMPLETE
+**Current phase:** P1 — Perception and Attention
+**Last completed milestone:** P1.1 — Resident-relative perception
+**Next milestone:** P1.2 — Deterministic attention ranking
+**Status:** FOUNDATION STABLE; P1 IN PROGRESS
+**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1.1 COMPLETE
 
 ## F6.1 result — durable state boundary
 
@@ -60,6 +60,12 @@ The local Polaris response was corrected to distinguish controlled restart recov
 The repeatable golden run used two real AURA identities in AAA. `aura_f7_1` authenticated, observed `aura_f7_2` in the shared roster, sent START_TYPING, SAY and STOP_TYPING, sent WALK to the adjacent tile, disconnected and reconnected with `sessionResumed=true` while remaining in room 1. The movement confirmation path was already live-validated in F8.2; the combined run exercised the same packet adapters and recovery handshake in one resident flow.
 
 The F8 requirements now have repeatable evidence for authentication, room hydration and shared presence, movement confirmation, typing/chat, persistence, reconnect, controlled Polaris restart recovery and twenty-session load. The Foundation completion gate is satisfied; future cognition layers remain outside F8.
+
+## P1.1 result — resident-relative perception
+
+`@aura/runtime` now projects a bounded perception from the Polaris-confirmed `WorldStateSnapshot`. The filter resolves the resident by user id, limits visible units by tile radius and capacity, orders candidates deterministically and retains the originating world revision. It returns no nearby units until both room and self-roster context are confirmed.
+
+The post-Foundation sequence is defined in `docs/roadmap/POST-FOUNDATION.md`. P1 remains deterministic and provider-independent; Ollama is not required for perception or attention.
 
 ### Visual validation note
 

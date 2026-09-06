@@ -41,6 +41,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | 20 sessions | — | — | ✅ | — | — | ✅ |
 | 30 sessions | — | — | — | — | — | ⚠ deferred |
 | Primary golden scenario | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Resident-relative perception filter | ✅ | — | — | — | — | — |
 
 ## Current test baseline
 

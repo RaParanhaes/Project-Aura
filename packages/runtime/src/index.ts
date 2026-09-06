@@ -25,6 +25,8 @@ export type { EventDecoder, InboundPacket } from './world/event-normalizer.js';
 export { RoomHydrator } from './world/room-hydrator.js';
 export type { RoomHydrationState } from './world/room-hydrator.js';
 export { WorldState } from './world/world-state.js';
+export { PerceptionFilter } from './perception/perception-filter.js';
+export type { PerceivedRoomUser, PerceptionFilterOptions, PerceptionSnapshot, PerceptionStatus } from './perception/perception-filter.js';
 export { CapabilityRegistry } from './capabilities/capability-registry.js';
 export type { CapabilityContext, CapabilityDefinition, CapabilityResult } from './capabilities/capability-registry.js';
 export { registerEnterRoom } from './capabilities/enter-room.js';
