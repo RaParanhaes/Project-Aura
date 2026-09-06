@@ -42,6 +42,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | 30 sessions | — | — | — | — | — | ⚠ deferred |
 | Primary golden scenario | ✅ | ✅ | ✅ | ✅ | ✅ | — |
 | Resident-relative perception filter | ✅ | — | — | — | — | — |
+| Deterministic attention ranking | ✅ | — | — | — | — | — |
 
 ## Current test baseline
 
