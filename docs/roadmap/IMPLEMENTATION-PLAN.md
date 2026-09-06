@@ -227,7 +227,11 @@ Golden proof:
 ## F4 — WorldState
 
 ### F4.1 Event normalization
-Convert raw server packets into stable domain events.
+- [x] Define stable domain event kinds and payloads for initial session signals.
+- [x] Convert inbound packets through injected decoders into timestamped domain events.
+- [x] Ignore unknown packet headers without leaking protocol details into the domain.
+
+**F4.1 validation:** `@aura/domain` owns event types and `@aura/runtime` exposes `EventNormalizer`; unit tests cover normalization, timestamps, unknown packets and duplicate registration. Room hydration remains F4.2.
 
 ### F4.2 Room transition/hydration
 - Track entering/changing rooms.

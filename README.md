@@ -15,7 +15,7 @@ AURA is not the game server and is not the renderer:
 
 **D0 — Documentation Foundation: COMPLETE**  
 **F1 — Development Foundation: COMPLETE**  
-**Current phase: F3 — RealSession**
+**Current phase: F4 — WorldState**
 **F2.1 — Freeze Compatibility Target: COMPLETE**  
 **F2.2 — Study Existing Implementation Evidence: COMPLETE**  
 **F2.3 — Packet Primitives: COMPLETE**  
@@ -26,10 +26,11 @@ AURA is not the game server and is not the renderer:
 **F3.2 — Transport: COMPLETE**
 **F3.3 — Authentication Boundary: COMPLETE**
 **F3.4 — First Real Login: COMPLETE**
-**F3.5 — Disconnect/Reconnect: IN PROGRESS**
-**Next milestone: F4 — WorldState**
+**F3.5 — Disconnect/Reconnect: COMPLETE**
+**F4.1 — Event Normalization: IN PROGRESS**
+**Next milestone: F4.2 — Room Hydration**
 
-The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has an explicit RealSession lifecycle, an injectable WebSocket transport adapter, heartbeat timeout controller, credential/authentication boundary and single-session coordination.
+The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication and reconnect coordination, plus a domain event normalizer that keeps packet decoding behind injected adapters.
 
 Start with:
 
