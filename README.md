@@ -11,11 +11,12 @@ AURA is not the game server and is not the renderer:
 - **AURA** manages headless sessions, world projections, agent continuity, capabilities, recovery and, later, cognition/social behavior.
 - **LLMs (for example Ollama)** are optional reasoning providers used only when language or higher-level reasoning is needed.
 
-## Current phase
+## Project status
 
-**D0 — Documentation Foundation**
+**D0 — Documentation Foundation: COMPLETE**  
+**Next: F1 — Development Foundation**
 
-Before functional implementation begins, the repository must explain the project well enough that a new human or coding agent can understand the accepted architecture, current task, open questions and implementation order without relying on chat history.
+The repository now records the accepted project direction, architecture, implementation sequence, open questions and development rules so future work does not depend on chat history.
 
 Start with:
 
