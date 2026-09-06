@@ -38,7 +38,9 @@ AURA is not the game server and is not the renderer:
 **F8.2 — WALK_TO Wire Validation: COMPLETE**
 **F8.3 — Reconnect and Session Recovery: COMPLETE**
 **F8.4 — Polaris Restart Reconciliation: COMPLETE**
-**Next milestone: F8.5 — Complete Golden Scenario and Foundation Gate**
+**F8.5 — Complete Golden Scenario and Foundation Gate: COMPLETE**
+**Foundation status: STABLE**
+**Next milestone: Post-Foundation — Perception and attention design**
 
 The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for handshake, authentication, keepalive, room entry, chat and movement packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect recovery, event normalization, room hydration barriers, an observed WorldState projection with stale-event protection, persistence checkpoints and a semantic capability boundary. Live validation covers room visibility, movement confirmation, chat, multi-session operation and recovery after a controlled Polaris restart.
 

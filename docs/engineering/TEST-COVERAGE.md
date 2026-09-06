@@ -40,6 +40,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | AURA restart recovery | ✅ | — | ✅ | ✅ | ✅ | — |
 | 20 sessions | — | — | ✅ | — | — | ✅ |
 | 30 sessions | — | — | — | — | — | ⚠ deferred |
+| Primary golden scenario | ✅ | ✅ | ✅ | ✅ | ✅ | — |
 
 ## Current test baseline
 

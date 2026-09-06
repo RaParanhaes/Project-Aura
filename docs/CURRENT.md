@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
 **Current phase:** F8 — Foundation Validation
-**Last completed milestone:** F7.4 — Twenty-session stability and resource baseline
-**Next milestone:** F8.5 — Complete golden scenario and Foundation gate
-**Status:** F8 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED AND LIVE VALIDATED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED; F6.1 DURABLE STATE BOUNDARY IMPLEMENTED AND VERIFIED; F6.2 ACTIONJOURNAL IMPLEMENTED AND VERIFIED; F6.3 CHECKPOINTS IMPLEMENTED AND VERIFIED; F6.4 RECONCILIATION IMPLEMENTED AND VERIFIED; F6.5 RESTART RECOVERY IMPLEMENTED AND VERIFIED
+**Last completed milestone:** F8.5 — Complete golden scenario and Foundation gate
+**Next milestone:** Post-Foundation — Perception and attention design
+**Status:** FOUNDATION STABLE; POST-FOUNDATION PLANNING
+**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8.1 COMPLETE; F8.2 COMPLETE; F8.3 COMPLETE; F8.4 COMPLETE; F8.5 COMPLETE
 
 ## F6.1 result — durable state boundary
 
@@ -54,6 +54,16 @@ A live test with `aura_f7_1` against the local CMS/Polaris stack authenticated, 
 A controlled container restart was exercised with `aura_f7_1` active in AAA and a valid recovery token. Polaris checkpointed the active authentication, consumed the one-time recovery token after startup and now reports the controlled recovery as `sessionResumed=true`. Because a restarted emulator has no surviving in-memory room instance, it correctly reports `roomId=0`; AURA then performs the normal room-entry handshake and returns to AAA.
 
 The local Polaris response was corrected to distinguish controlled restart recovery from a new login without treating transient room state as durable. Focused Java 25 tests passed, the local image was rebuilt, and the end-to-end scenario passed against the replacement container. `session.recovery.enabled` was restored to `0` after validation.
+
+## F8.5 result — complete golden scenario
+
+The repeatable golden run used two real AURA identities in AAA. `aura_f7_1` authenticated, observed `aura_f7_2` in the shared roster, sent START_TYPING, SAY and STOP_TYPING, sent WALK to the adjacent tile, disconnected and reconnected with `sessionResumed=true` while remaining in room 1. The movement confirmation path was already live-validated in F8.2; the combined run exercised the same packet adapters and recovery handshake in one resident flow.
+
+The F8 requirements now have repeatable evidence for authentication, room hydration and shared presence, movement confirmation, typing/chat, persistence, reconnect, controlled Polaris restart recovery and twenty-session load. The Foundation completion gate is satisfied; future cognition layers remain outside F8.
+
+### Visual validation note
+
+The golden run intentionally used chat bubble id `1`, which Polaris defines as the `ALERT` bubble; the exclamation icon above the text is therefore expected. Ordinary resident speech should use bubble id `0`. The looks for `aura_f7_1`, `aura_f7_2` and `Cabana` remain unchanged in the database; short appearance changes observed while walking or leaving are client-side movement/removal animation effects, not persisted look changes.
 
 ## F1 result
 
