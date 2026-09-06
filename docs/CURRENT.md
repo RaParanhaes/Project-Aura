@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F2 — Protocol Foundation  
-**Last completed milestone:** F2.2 — Study Existing Implementation Evidence  
-**Next milestone:** F2.3 — Packet Primitives  
+**Last completed milestone:** F2.3 — Packet Primitives  
+**Next milestone:** F2.4 — Registry and Contracts  
 **Status:** F2 IN PROGRESS  
-**Implementation status:** COMPATIBILITY TARGET FROZEN + WIRE EVIDENCE CONFIRMED; PACKET PRIMITIVES NOT IMPLEMENTED
+**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES READY; REGISTRY NOT IMPLEMENTED
 
 ## F1 result
 
@@ -56,34 +56,40 @@ Confirmed:
 
 Authoritative evidence summary: `research/POLARIS-PROTOCOL-EVIDENCE.md`.
 
-### Boundary correction
+## F2.3 result — packet primitives implemented
 
-The evidence study proposed several future classes together, but AURA keeps phase ownership explicit:
+`@aura/protocol` now exposes a dependency-free generic wire layer:
 
-- **F2.3:** generic PacketReader, PacketWriter, PacketFrame and stream/frame codec only;
-- **F2.4:** packet registry/definitions/contracts;
-- **F2.5:** concrete handshake/auth/keepalive/room-transition packets;
-- **F3:** WebSocketSession, heartbeat orchestration, authentication lifecycle and reconnect/recovery behavior.
+- `PacketReader` with strict bounds checking;
+- `PacketWriter` with explicit numeric range checks;
+- signed byte/short/int/long handling, with `bigint` for 64-bit long values;
+- IEEE-754 double support;
+- strict UTF-8 strings with unsigned 16-bit byte lengths;
+- `PacketFrame` plus deterministic frame encoding;
+- incremental `PacketStreamCodec` that buffers incomplete input and emits multiple complete packets;
+- configurable maximum packet length, with the frozen-target default currently set to `417792` bytes;
+- typed errors for bounds, invalid lengths, oversized packets, invalid values and oversized strings.
 
-Runtime questions about SSO consumption, recovery grace period, port/proxy access and close behavior do **not** block F2.3 primitives. They are retained as integration questions for the phases where AURA can actually observe them.
+The AURA reader is intentionally stricter than permissive fallback paths found in Polaris: malformed/truncated primitives, invalid boolean wire values and malformed UTF-8 fail explicitly instead of being silently truncated.
 
-## Next work — F2.3 Packet Primitives
+Focused tests cover exact wire bytes, primitive round-trips, signed ranges, long precision, UTF-8 byte lengths, malformed UTF-8, fragmented packets, multiple packets, remainder buffering and invalid/oversized lengths.
 
-Implement the generic wire layer without concrete Polaris packet IDs or session lifecycle:
+No packet registry, concrete Polaris packet class, WebSocket/session lifecycle, authentication orchestration, reconnect or heartbeat controller was introduced.
 
-1. `PacketReader` with explicit bounds checking;
-2. `PacketWriter`;
-3. `PacketFrame`;
-4. packet stream/frame codec for length/header/body;
-5. support multiple complete packets and incomplete remainder buffering;
-6. reject invalid lengths and enforce a configurable maximum packet size;
-7. add focused unit/contract fixtures for primitive encoding and frame round-trips.
+## Next work — F2.4 Registry and Contracts
 
-Do not add packet registry, authentication flow, WebSocket connection lifecycle or room state during F2.3.
+Build the typed packet identity layer on top of the generic wire primitives:
+
+1. define packet direction and stable packet-definition contracts;
+2. represent numeric header, logical name and parser/composer ownership without scattering magic IDs;
+3. seed definitions from the frozen schema-2 `packet-field-contracts.json` evidence;
+4. keep registry metadata separate from WebSocket/session lifecycle;
+5. add tests for duplicate headers, unknown lookups and allowed direction semantics;
+6. do not implement concrete handshake/auth packet bodies until F2.5.
 
 ## Do not start early
 
-- packet registry/concrete packet catalog before F2.4/F2.5;
+- concrete handshake/auth/keepalive packet implementations before F2.5;
 - RealSession/WebSocket/authentication lifecycle before F3;
 - WorldState implementation (F4);
 - Capabilities (F5);
