@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   AuthenticatedParser,
   ClientHelloComposer,
+  EnableEffectComposer,
   InfoRetrieveComposer,
   PacketBodyError,
   PacketStreamCodec,
@@ -15,6 +16,7 @@ import {
   SSOTicketComposer,
   UniqueIDComposer,
   UserHomeRoomParser,
+  parseRoomUserEffect,
 } from '../../packages/protocol/src/index.ts';
 
 function frame(bytes: Uint8Array) {
@@ -52,6 +54,7 @@ describe('initial packet composers', () => {
     expect(hex(new RoomEntryDataComposer().encode())).toBe('0000000208fc');
     expect(hex(new StartTypingComposer().encode())).toBe('00000002063d');
     expect(hex(new StopTypingComposer().encode())).toBe('0000000205c2');
+    expect(hex(new EnableEffectComposer().encode())).toBe('0000000606d800000000');
   });
 
   it('encodes room entry with optional spawn coordinates', () => {
@@ -94,5 +97,10 @@ describe('initial packet parsers', () => {
     expect(() => new PingParser().parse(pong)).toThrow(PacketBodyError);
     const malformed = frame(new Uint8Array([0, 0, 0, 3, 15, 88, 1]));
     expect(() => new PingParser().parse(malformed)).toThrow(PacketBodyError);
+  });
+
+  it('parses a room effect event strictly', () => {
+    const encoded = new Uint8Array([0, 0, 0, 14, 4, 143, 0, 0, 0, 10, 0, 0, 0, 188, 0, 0, 0, 0]);
+    expect(parseRoomUserEffect(frame(encoded))).toEqual({ roomUnitId: 10, effectId: 188, displayData: 0 });
   });
 });
