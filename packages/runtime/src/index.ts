@@ -41,5 +41,3 @@ export { registerSay } from './capabilities/say-command.js';
 export type { SayCommand, SayInput } from './capabilities/say-command.js';
 export { registerWhisper } from './capabilities/whisper-command.js';
 export type { WhisperCommand, WhisperInput } from './capabilities/whisper-command.js';
-export { registerShout } from './capabilities/shout-command.js';
-export type { ShoutCommand, ShoutInput } from './capabilities/shout-command.js';

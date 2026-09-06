@@ -1,10 +1,10 @@
 # Current Project State
 
-**Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
-**Current phase:** F5 — Capabilities
+**Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
+**Current phase:** F6 — Persistence & Recovery
 **Last completed milestone:** F5.9 — SHOUT
-**Next milestone:** F5 — remaining semantic action scope
-**Status:** F5 IN PROGRESS
+**Next milestone:** F6.1 — Durable state boundary
+**Status:** F6 IN PROGRESS
 **Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED; F5.9 SHOUT IMPLEMENTED AND LIVE VALIDATED
 
 ## F1 result
