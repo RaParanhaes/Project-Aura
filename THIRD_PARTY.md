@@ -4,7 +4,7 @@ This file tracks external projects/libraries considered or used by AURA. No exte
 
 | Project | Intended use | License / status | Reuse mode |
 |---|---|---|---|
-| `cayank/packet-client` | Habbo/Polaris headless protocol reference/seed | ISC | evaluate for adaptation |
+| `cayank/packet-client` | Habbo/Polaris headless protocol reference for framing/session/room patterns | ISC; F2.2 reviewed against frozen Polaris evidence | reference only; no dependency/vendor copy |
 | XState | lifecycle state machines | MIT | planned dependency after F1 |
 | Zod | runtime/type/AI schemas | MIT | planned dependency after F1 |
 | Vitest 5.0.0 | test runner | MIT | dependency |
@@ -24,5 +24,7 @@ This file tracks external projects/libraries considered or used by AURA. No exte
 - **vendored** — external source kept in repository.
 - **reference** — studied only; no source copied.
 - **evaluation** — actively considered, but not installed/adopted because current constraints do not justify it.
+
+`cayank/packet-client` is currently evidence only. AURA will implement its minimal protocol core against the frozen Polaris contract/handlers. If selected source or implementation logic is adapted later, change the reuse label at that time and preserve ISC attribution requirements.
 
 Any code reuse must update this file and preserve required attribution/license obligations.
