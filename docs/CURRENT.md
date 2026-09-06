@@ -3,9 +3,9 @@
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F4 — WorldState
 **Last completed milestone:** F4.3 — Observed WorldState
-**Next milestone:** F5 — Capabilities
+**Next milestone:** F5.2 — ENTER_ROOM
 **Status:** F4 IN PROGRESS
-**Implementation status:** F3 COMPLETE; F4.1/F4.2/F4.3 COMPLETE; F4.4 STATE RULES IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 CAPABILITY CONTRACTS IMPLEMENTED
 
 ## F1 result
 
@@ -157,6 +157,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F4.4 result — state rules
 
 `WorldState` discards observations older than the latest accepted timestamp, preserving its revision and room facts.
+
+## F5.1 result — capability contracts
+
+`CapabilityRegistry` validates semantic inputs and preconditions, invokes an injected executor and always reports accepted execution as `pending` until Polaris observations confirm the effect. Unknown capabilities and invalid requests are rejected explicitly.
 
 ## F3.2 result — transport boundary
 

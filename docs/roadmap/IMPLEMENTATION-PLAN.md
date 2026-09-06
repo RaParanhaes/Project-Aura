@@ -269,6 +269,13 @@ Golden proof:
 
 ## F5 — Capabilities
 
+### F5.1 Capability contracts
+- [x] Define capability input validation and precondition hooks.
+- [x] Keep packet writes behind injected executors.
+- [x] Return `pending` until an observation confirms the requested effect.
+
+**F5.1 validation:** `CapabilityRegistry` validates and dispatches semantic requests without exposing raw protocol calls; unit tests cover valid, invalid, precondition-failed and unknown requests.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`

@@ -23,3 +23,5 @@ export type { EventDecoder, InboundPacket } from './world/event-normalizer.js';
 export { RoomHydrator } from './world/room-hydrator.js';
 export type { RoomHydrationState } from './world/room-hydrator.js';
 export { WorldState } from './world/world-state.js';
+export { CapabilityRegistry } from './capabilities/capability-registry.js';
+export type { CapabilityContext, CapabilityDefinition, CapabilityResult } from './capabilities/capability-registry.js';
