@@ -13,6 +13,29 @@ export {
 } from './packet-frame.js';
 export { PacketReader } from './packet-reader.js';
 export {
+  InvalidPacketDefinitionError,
+  PACKET_DIRECTIONS,
+  definePacket,
+  ownerForDirection,
+  type PacketCompatibility,
+  type PacketContractStatus,
+  type PacketDefinition,
+  type PacketDefinitionInput,
+  type PacketDirection,
+  type PacketOwner,
+} from './packet-definition.js';
+export {
+  FROZEN_PACKET_DEFINITIONS,
+  FROZEN_PACKET_REGISTRY,
+  FROZEN_POLARIS_COMPATIBILITY,
+} from './frozen-packet-registry.js';
+export {
+  DuplicatePacketHeaderError,
+  DuplicatePacketNameError,
+  PacketRegistry,
+  UnknownPacketDefinitionError,
+} from './packet-registry.js';
+export {
   DEFAULT_MAX_PACKET_LENGTH,
   PacketStreamCodec,
   type PacketStreamCodecOptions,

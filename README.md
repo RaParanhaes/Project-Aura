@@ -19,9 +19,10 @@ AURA is not the game server and is not the renderer:
 **F2.1 — Freeze Compatibility Target: COMPLETE**  
 **F2.2 — Study Existing Implementation Evidence: COMPLETE**  
 **F2.3 — Packet Primitives: COMPLETE**  
-**Next milestone: F2.4 — Registry and Contracts**
+**F2.4 — Registry and Contracts: COMPLETE**
+**Next milestone: F2.5 — Initial Packets**
 
-The repository now has the generic packet wire layer required by later Polaris contracts: strict primitive readers/writers, deterministic framing and incremental stream decoding. F2.4 adds packet identity/registry metadata; concrete handshake/auth packet bodies and WebSocket session lifecycle remain later milestones.
+The protocol package now has strict wire primitives plus a direction-aware registry for stable packet identities, ownership and frozen-target compatibility metadata. F2.5 adds the first concrete handshake/auth/keepalive packet bodies; WebSocket session lifecycle remains F3 work.
 
 Start with:
 

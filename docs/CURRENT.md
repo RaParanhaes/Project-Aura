@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F2 — Protocol Foundation  
-**Last completed milestone:** F2.3 — Packet Primitives  
-**Next milestone:** F2.4 — Registry and Contracts  
+**Last completed milestone:** F2.4 — Registry and Contracts
+**Next milestone:** F2.5 — Initial Packets
 **Status:** F2 IN PROGRESS  
-**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES READY; REGISTRY NOT IMPLEMENTED
+**Implementation status:** COMPATIBILITY TARGET + WIRE EVIDENCE + PACKET PRIMITIVES + PACKET REGISTRY READY; CONCRETE PACKET BODIES NOT IMPLEMENTED
 
 ## F1 result
 
@@ -28,7 +28,7 @@ Key identity:
 - Polaris `4.2.82`, base commit `11f35d8c4d2a6f371b355107d4c7e477717cb2de`, with recorded dirty-state fingerprint and runtime JAR SHA-256;
 - Octane base commit `80f105adb8786093a194d7f10cb1517ec580b0f1`, with recorded dirty-state fingerprint;
 - Octane Renderer `2.1.0`, commit `88dade32f88285fe3ff1d30387841ea66f15acf1`;
-- Polaris packet contract schema `2`, SHA-256 `fb8dd00dcaa7657b58781b835c035fefc692797c1fabb9db5ba6770ce52d67b`;
+- Polaris packet contract schema `2`, SHA-256 `fb8dd00dcaa7657b58781b835c0357fefc692797c1fabb9db5ba6770ce52d67b`;
 - effective client release `NITRO-3-6-0`;
 - Polaris internal WebSocket port `2096`.
 
@@ -76,16 +76,34 @@ Focused tests cover exact wire bytes, primitive round-trips, signed ranges, long
 
 No packet registry, concrete Polaris packet class, WebSocket/session lifecycle, authentication orchestration, reconnect or heartbeat controller was introduced.
 
-## Next work — F2.4 Registry and Contracts
+## F2.4 result — registry and contracts implemented
 
-Build the typed packet identity layer on top of the generic wire primitives:
+`@aura/protocol` now exposes a direction-aware identity layer on top of the wire primitives:
 
-1. define packet direction and stable packet-definition contracts;
-2. represent numeric header, logical name and parser/composer ownership without scattering magic IDs;
-3. seed definitions from the frozen schema-2 `packet-field-contracts.json` evidence;
-4. keep registry metadata separate from WebSocket/session lifecycle;
-5. add tests for duplicate headers, unknown lookups and allowed direction semantics;
-6. do not implement concrete handshake/auth packet bodies until F2.5.
+- stable packet definitions with direction, header, logical name and composer/parser ownership;
+- compatibility metadata for Polaris `4.2.82`, client release `NITRO-3-6-0` and the schema-2 contract fingerprint;
+- an immutable initial catalog containing the identities needed by the first session path;
+- direction-scoped lookup by header or logical name;
+- optional and required lookup semantics for unknown packets;
+- explicit rejection of duplicate headers and names within one direction;
+- support for the same header or logical name in opposite directions;
+- contract status metadata distinguishing paired contracts, exemptions and unpaired evidence.
+
+The registry contains identity metadata only. It does not encode/decode concrete packet bodies and has no WebSocket, authentication or session lifecycle behavior.
+
+Focused tests cover compatibility identity, definition validation, direction/ownership rules, duplicate detection, unknown lookups, opposite-direction semantics and immutable metadata.
+
+## Next work — F2.5 Initial Packets
+
+Implement only the concrete packet bodies required by the first session path:
+
+1. release/version handshake;
+2. machine identification;
+3. secure login/authentication;
+4. ping/pong keepalive;
+5. user-info request and the minimum room-transition packets needed by F3/F4;
+6. use registry definitions for every header rather than repeating numeric IDs;
+7. keep WebSocket/session lifecycle and authentication orchestration in F3.
 
 ## Do not start early
 
