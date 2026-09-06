@@ -21,6 +21,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | First-login flow | ✅ | — | — | — | — | — |
 | Disconnect/reconnect coordination | ✅ | — | — | — | — | — |
 | Event normalization | ✅ | — | — | — | — | — |
+| Room hydration barrier | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -46,6 +47,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/first-login.test.ts` proves the composed first-login flow reaches `online` only after transport and authentication complete.
 - `tests/unit/session-manager.test.ts` proves duplicate active sessions are rejected and cleanup permits recovery.
 - `tests/unit/event-normalizer.test.ts` proves registered packet normalization, observation timestamps, unknown-packet handling and duplicate decoder rejection.
+- `tests/unit/room-hydrator.test.ts` proves event buffering, snapshot validation and ready/failed hydration transitions.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.
