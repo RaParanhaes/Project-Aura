@@ -135,7 +135,7 @@ Rules:
 
 **F2.3 validation:** `@aura/protocol` contains only generic, dependency-free wire primitives and framing. The reader is intentionally strict on bounds, boolean values and UTF-8. Tests cover exact frame bytes, primitive round-trips, malformed input, fragmentation, multiple packets and remainder buffering. Formal frozen Polaris packet fixtures remain F2.6 work; F2.3 does not claim full packet-contract coverage.
 
-**F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state. **Status: COMPLETE pending the merge gate for this change.**
+**F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state. **Status: COMPLETE.**
 
 ### F2.4 Registry and contracts
 - Stable packet identifiers/contracts.
@@ -210,7 +210,7 @@ Convert raw server packets into stable domain events.
 
 ### F4.4 State rules
 - only Polaris observations update observed state;
-- pending intent/action remains separate;
+- pending intent is not mistaken for confirmed state;
 - maintain revision/version information useful for stale-decision detection later.
 
 **F4 Done when:** AURA can reconstruct a coherent minimal room view from server events and expose it without raw-packet knowledge.
