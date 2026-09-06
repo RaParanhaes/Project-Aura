@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F5 — Capabilities
-**Last completed milestone:** F5.3 — WALK_TO
-**Next milestone:** F5.5 — START_TYPING
+**Last completed milestone:** F5.5 — START_TYPING
+**Next milestone:** F5.6 — STOP_TYPING
 **Status:** F5 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED
 
 ## F1 result
 
@@ -169,6 +169,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F5.3 result — WALK_TO
 
 `registerWalkTo` adds non-negative safe-integer coordinate validation, requires an observed room and dispatches movement through an injected command adapter. Accepted requests remain `pending` until a later movement observation confirms the effect.
+
+## F5.5 result — START_TYPING
+
+`registerStartTyping` defines a bodyless semantic action, requires an observed room and dispatches typing state through an injected command adapter. Accepted requests remain `pending` until a later typing observation confirms the effect.`
 
 ## F3.2 result — transport boundary
 
