@@ -1,0 +1,15 @@
+{
+  "name": "project-aura",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Autonomous User Resident Agents for persistent virtual worlds.",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "doctor": "node scripts/doctor.mjs",
+    "preflight": "node scripts/preflight.mjs",
+    "verify": "node scripts/verify-structure.mjs"
+  }
+}
