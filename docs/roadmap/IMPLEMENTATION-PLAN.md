@@ -346,8 +346,12 @@ For every capability define:
 - repository/store interface;
 - no sockets/timers/live clients inside persisted state.
 
+**F6.1 result:** `@aura/persistence` defines the versioned `AgentState` schema and `AgentStateRepository` port. Persisted input is validated before restore and unknown fields, unsupported versions and transient runtime objects are rejected. The in-memory adapter is test-only; durable database storage remains a later F6 milestone. **Status: COMPLETE.**
+
 ### F6.2 ActionJournal
 Track action ID, intent, start time and outcome states such as pending, confirmed, rejected and ambiguous.
+
+**F6.2 result:** `ActionJournal` records semantic intent and outcome transitions. Actions begin as `pending`; ambiguous effects can be reconciled once to `confirmed` or `rejected`, while finalized entries cannot be overwritten. **Status: COMPLETE.**
 
 ### F6.3 Checkpoints
 Persist only continuity that is meaningful to restore.
