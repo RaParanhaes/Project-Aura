@@ -32,9 +32,9 @@ jobs:
 
       - name: Capture generated lockfile
         run: |
-          echo '=== AURA_LOCKFILE_BEGIN ==='
-          cat pnpm-lock.yaml
-          echo '=== AURA_LOCKFILE_END ==='
+          printf 'AURA_LOCK_GZ_BASE64='
+          gzip -c pnpm-lock.yaml | base64 -w0
+          printf '\n'
 
       - name: Doctor
         run: pnpm run doctor
