@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F4 — WorldState
-**Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F4.3 — Observed WorldState
-**Status:** F3 IN PROGRESS
-**Implementation status:** F3 COMPLETE; F4.1 COMPLETE; F4.2 ROOM HYDRATION BARRIER IMPLEMENTED
+**Last completed milestone:** F4.2 — Room Hydration
+**Next milestone:** F4.4 — State Rules
+**Status:** F4 IN PROGRESS
+**Implementation status:** F3 COMPLETE; F4.1/F4.2 COMPLETE; F4.3 OBSERVED WORLDSTATE IMPLEMENTED
 
 ## F1 result
 
@@ -149,6 +149,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F4.2 result — room hydration barrier
 
 `RoomHydrator` tracks idle/loading/ready/failed states, validates room snapshots and buffers dependent domain events until a valid snapshot is accepted. Hydration failures retain the failed state and do not release buffered events.
+
+## F4.3 result — observed WorldState
+
+`WorldState` projects only normalized domain observations, increments a monotonic revision for each event and tracks observed room/home-room context. Pings advance observation time without changing room facts; no requested action can mutate the projection.
 
 ## F3.2 result — transport boundary
 

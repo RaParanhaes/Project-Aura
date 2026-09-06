@@ -28,10 +28,11 @@ AURA is not the game server and is not the renderer:
 **F3.4 — First Real Login: COMPLETE**
 **F3.5 — Disconnect/Reconnect: COMPLETE**
 **F4.1 — Event Normalization: COMPLETE**
-**F4.2 — Room Hydration: IN PROGRESS**
-**Next milestone: F4.3 — Observed WorldState**
+**F4.2 — Room Hydration: COMPLETE**
+**F4.3 — Observed WorldState: IN PROGRESS**
+**Next milestone: F4.4 — State Rules**
 
-The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect coordination, event normalization and room hydration barriers.
+The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. Runtime now has session lifecycle, transport, authentication, reconnect coordination, event normalization, room hydration barriers and an observed WorldState projection.
 
 Start with:
 
