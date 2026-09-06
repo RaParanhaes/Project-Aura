@@ -29,3 +29,5 @@ export { registerEnterRoom } from './capabilities/enter-room.js';
 export type { EnterRoomCommand, EnterRoomInput } from './capabilities/enter-room.js';
 export { registerWalkTo } from './capabilities/walk-to.js';
 export type { WalkToCommand, WalkToInput } from './capabilities/walk-to.js';
+export { registerLookAt } from './capabilities/look-at.js';
+export type { LookAtCommand, LookAtInput } from './capabilities/look-at.js';
