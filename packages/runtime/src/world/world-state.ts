@@ -17,6 +17,9 @@ export class WorldState {
   }
 
   apply(event: DomainEvent): WorldStateSnapshot {
+    if (this.observedAtValue !== undefined && event.observedAt < this.observedAtValue) {
+      return this.snapshot;
+    }
     this.revisionValue += 1;
     this.observedAtValue = event.observedAt;
     switch (event.kind) {

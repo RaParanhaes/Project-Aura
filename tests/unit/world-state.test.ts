@@ -14,4 +14,10 @@ describe('WorldState', () => {
     state.apply({ kind: 'session_authenticated', observedAt: 1, payload: { sessionResumed: false, roomId: 9 } });
     expect(state.apply({ kind: 'server_ping', observedAt: 2, payload: {} })).toMatchObject({ revision: 2, roomId: 9 });
   });
+
+  it('ignores stale observations without advancing the revision', () => {
+    const state = new WorldState();
+    state.apply({ kind: 'session_authenticated', observedAt: 10, payload: { sessionResumed: false, roomId: 9 } });
+    expect(state.apply({ kind: 'session_authenticated', observedAt: 9, payload: { sessionResumed: false, roomId: 2 } })).toMatchObject({ revision: 1, roomId: 9, lastObservedAt: 10 });
+  });
 });

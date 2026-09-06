@@ -257,9 +257,11 @@ Golden proof:
 - typing.
 
 ### F4.4 State rules
-- only Polaris observations update observed state;
-- pending intent is not mistaken for confirmed state;
-- maintain revision/version information useful for stale-decision detection later.
+- [x] Only normalized Polaris observations update observed state.
+- [x] Keep pending intent separate from confirmed state.
+- [x] Maintain revisions and reject stale observations.
+
+**F4.4 validation:** `WorldState` ignores events older than the latest accepted observation while preserving its revision and facts. Unit coverage proves stale-event rejection.
 
 **F4 Done when:** AURA can reconstruct a coherent minimal room view from server events and expose it without raw-packet knowledge.
 
