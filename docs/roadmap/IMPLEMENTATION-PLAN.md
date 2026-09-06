@@ -199,9 +199,11 @@ Rules:
 **F3.2 validation:** `WebSocketSessionTransport` and `HeartbeatController` are exported from `@aura/runtime` and covered by unit tests without a live server. The adapter deliberately does not decode protocol packets; that remains the responsibility of the protocol/runtime integration.
 
 ### F3.3 Authentication boundary
-- Define `AuthProvider` interface.
-- Prove the actual local CMS/SSO path.
-- Keep auth-specific details outside protocol/domain logic.
+- [x] Define `AuthProvider`, `CredentialProvider` and `AuthHandshake` interfaces.
+- [ ] Prove the actual local CMS/SSO path.
+- [x] Keep auth-specific details outside protocol/domain logic and zeroize short-lived credentials.
+
+**F3.3 validation:** `CredentialAuthProvider` bridges an injected credential source and handshake port while keeping authentication details out of `@aura/protocol` and `@aura/domain`. Unit tests cover success/failure cleanup. Local CMS/SSO proof remains an environment-dependent F3.4 prerequisite.
 
 ### F3.4 First real login
 Golden proof:

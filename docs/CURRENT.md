@@ -3,9 +3,9 @@
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F3 — RealSession
 **Last completed milestone:** F2.6 — Fixtures and Tests
-**Next milestone:** F3.3 — Authentication Boundary
+**Next milestone:** F3.4 — First Real Login
 **Status:** F3 IN PROGRESS
-**Implementation status:** F3.1 COMPLETE; F3.2 TRANSPORT ADAPTER AND HEARTBEAT CONTROLLER COMPLETE; REAL CREDENTIAL INTEGRATION REMAINS
+**Implementation status:** F3.1/F3.2 COMPLETE; F3.3 AUTHENTICATION BOUNDARY IMPLEMENTED; LOCAL CMS/SSO PROOF REMAINS
 
 ## F1 result
 
@@ -129,6 +129,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 - Capabilities (F5);
 - Persistence/recovery implementation (F6);
 - Ollama, memory and social systems.
+
+## F3.3 result — authentication boundary
+
+`@aura/runtime` now exposes `CredentialProvider`, `AuthHandshake` and `CredentialAuthProvider`. Credential acquisition and handshake completion are injected ports, keeping CMS/SSO details outside protocol and domain packages. Credentials are short-lived byte material and are zeroized after the handshake succeeds or fails. A real local CMS/SSO proof still requires the configured hotel environment and test account.
 
 ## F3.2 result — transport boundary
 
