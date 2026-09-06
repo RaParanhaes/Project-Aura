@@ -1,70 +1,45 @@
 # Current Project State
 
 **Completed phase:** D0 — Documentation Foundation  
-**Status:** COMPLETE  
-**Next phase:** F1 — Development Foundation  
-**Implementation status:** NOT STARTED
+**Current phase:** F1 — Development Foundation  
+**Last completed milestone:** F1.1 — Runtime / Workspace Baseline  
+**Next milestone:** F1.2 — Test Baseline  
+**Status:** F1 IN PROGRESS  
+**Implementation status:** TOOLING BASELINE READY
 
-## D0 result
+## F1.1 result
 
-The repository now provides enough durable context for a new human or coding agent to determine, without chat history:
+The approved repository skeleton is now a real strict TypeScript workspace without introducing Polaris protocol, session, gameplay or AI behavior.
 
-- what AURA is and is not;
-- what Polaris, Octane and AURA each own;
-- the accepted Polaris ↔ AURA ↔ future LLM flow;
-- the difference between observed world state, desired/pending action and persistent agent continuity;
-- accepted decisions versus research/open questions;
-- the implementation phase sequence and operational task order;
-- the lightweight development workflow and Definition of Done;
-- the authority order for conflicting documentation;
-- where future work belongs in the repository.
+Validated in CI:
 
-## Completed documentation foundation
+- Node.js remains constrained to major 24;
+- pnpm remains pinned to 11.25.0 through `packageManager`;
+- TypeScript is pinned to 7.0.2;
+- shared strict compiler settings live in `tsconfig.base.json`;
+- `apps/aura-core` and all existing `packages/*` modules are real pnpm workspace projects;
+- declared workspace dependencies resolve through type-only imports;
+- `pnpm run verify` now performs structure verification plus workspace type checking;
+- GitHub Actions installs dependencies and runs the same verification gate successfully.
 
-- Repository and module folder structure.
-- Root/module READMEs.
-- Project vision, objectives, principles and glossary.
-- Architecture overview and end-to-end flow.
-- Initial accepted ADRs.
-- Roadmap and step-by-step implementation plan.
-- Foundation completion gate.
-- External references catalog.
-- Open technical questions.
-- Development workflow and Definition of Done.
-- Coding-agent navigation rules in `AGENTS.md`.
-- Documentation router in `INDEX.md`.
+## Next work — F1.2 Test Baseline
 
-## Next work — F1 Development Foundation
+Add the minimum test foundation only:
 
-F1 begins only in a new focused implementation change.
-
-Planned order:
-1. runtime/workspace baseline (Node/pnpm/strict TypeScript);
-2. test baseline;
-3. architecture/dependency guardrails;
-4. structured logging baseline;
-5. expanded `pnpm run verify` gate.
-
-Detailed steps: `roadmap/IMPLEMENTATION-PLAN.md`.
+1. add Vitest;
+2. add one focused smoke/unit test proving the baseline;
+3. keep the existing test-category folders intact;
+4. integrate tests into `pnpm run verify` and CI.
 
 ## Do not start early
 
-- Polaris protocol implementation (F2).
-- RealSession implementation (F3).
+- Architecture dependency enforcement (F1.3).
+- Pino/structured logging implementation (F1.4).
+- Polaris packet implementation (F2).
+- RealSession/WebSocket/authentication (F3).
 - WorldState implementation (F4).
-- Capability implementation (F5).
+- Capabilities (F5).
 - Persistence/recovery implementation (F6).
-- Ollama/LLM integration.
-- Long-term memory.
-- Social/group conversation engine.
-- Needs, beliefs and norms.
-- Economy/room planning.
+- Ollama, memory and social systems.
 
-## Sources for the next contributor
-
-- `INDEX.md` — documentation router.
-- `roadmap/ROADMAP.md` — phase-level sequence.
-- `roadmap/IMPLEMENTATION-PLAN.md` — operational task sequence.
-- `development/WORKFLOW.md` — how changes should be made.
-- `development/DEFINITION-OF-DONE.md` — completion evidence.
-- `research/OPEN-QUESTIONS.md` — unresolved questions that require evidence rather than guesses.
+Detailed sequence: `roadmap/IMPLEMENTATION-PLAN.md`.

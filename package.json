@@ -2,6 +2,7 @@
   "name": "project-aura",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "Autonomous User Resident Agents for persistent virtual worlds.",
   "engines": {
     "node": ">=24 <25"
@@ -10,6 +11,11 @@
   "scripts": {
     "doctor": "node scripts/doctor.mjs",
     "preflight": "node scripts/preflight.mjs",
-    "verify": "node scripts/verify-structure.mjs"
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "verify:structure": "node scripts/verify-structure.mjs",
+    "verify": "pnpm run verify:structure && pnpm run typecheck"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
   }
 }

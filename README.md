@@ -14,9 +14,11 @@ AURA is not the game server and is not the renderer:
 ## Project status
 
 **D0 — Documentation Foundation: COMPLETE**  
-**Next: F1 — Development Foundation**
+**F1 — Development Foundation: IN PROGRESS**  
+**F1.1 — Runtime / Workspace Baseline: COMPLETE**  
+**Next: F1.2 — Test Baseline**
 
-The repository now records the accepted project direction, architecture, implementation sequence, open questions and development rules so future work does not depend on chat history.
+The repository now has a strict TypeScript workspace baseline validated in CI, while protocol/session/gameplay/AI implementation remains intentionally untouched.
 
 Start with:
 
@@ -34,7 +36,7 @@ AURA must never assume an action succeeded merely because it sent a packet. Obse
 ```text
 Project-Aura/
 ├── apps/
-│   └── aura-core/              # executable AURA application
+│   └── aura-core/              # executable AURA application/composition root
 ├── packages/
 │   ├── domain/                 # stable domain concepts and ports
 │   ├── protocol/               # Polaris wire protocol contracts/codecs
@@ -60,7 +62,7 @@ Project-Aura/
 └── .github/                    # CI and contribution templates
 ```
 
-Folders intentionally contain small `README.md` files that define ownership and boundaries before implementation grows.
+Each existing app/package is now a pnpm workspace project with its own `package.json`, `tsconfig.json` and minimal TypeScript public surface. The actual feature implementations are introduced only in their planned phases.
 
 ## Planning
 
@@ -75,11 +77,12 @@ Folders intentionally contain small `README.md` files that define ownership and 
 ## Development workflow
 
 ```bash
+corepack enable
+pnpm install
 pnpm run doctor
-pnpm run preflight -- reconnect
 pnpm run verify
 ```
 
-These commands currently support the repository bootstrap and will grow with the implementation phases.
+`pnpm run verify` currently checks required repository artifacts and strict TypeScript compilation across the workspace. More checks are added only when their corresponding F1 milestones are implemented.
 
 Before changing code or architecture, read [`AGENTS.md`](AGENTS.md).
