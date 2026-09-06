@@ -5,7 +5,7 @@
 **Last completed milestone:** F5.5 — START_TYPING
 **Next milestone:** F5.6 — STOP_TYPING
 **Status:** F5 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED
 
 ## F1 result
 
@@ -173,6 +173,10 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 ## F5.5 result — START_TYPING
 
 `registerStartTyping` defines a bodyless semantic action, requires an observed room and dispatches typing state through an injected command adapter. Accepted requests remain `pending` until a later typing observation confirms the effect.`
+
+## RoomUsers integration result
+
+`@aura/protocol` parses Polaris `RoomUsers` packets (server header `374`) with strict field consumption and exposes each observed user's identity and tile position. The contract fixture decodes both `Cabana` and `octane_test_1_mt` from one roster. This proves roster interpretation; browser rendering remains an adapter concern.
 
 ## F3.2 result — transport boundary
 
