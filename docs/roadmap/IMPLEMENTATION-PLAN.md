@@ -122,17 +122,20 @@ Rules:
 **F2.2 validation:** the read-only evidence study recorded in `docs/research/POLARIS-PROTOCOL-EVIDENCE.md` confirms big-endian `[4-byte length][2-byte header][body]` framing, primitive encoding, partial/multi-packet buffering requirements, the minimum ReleaseVersion → MachineID → SecureLogin → Authenticated sequence, application Ping/Pong heartbeat, and absence of protocol-relevant dirty-tree changes. `cayank/packet-client` is ISC and remains REFERENCE only. Runtime questions around SSO consumption/recovery timing and host WebSocket access are explicitly deferred to integration phases and do not block generic packet primitives.
 
 ### F2.3 Packet primitives
-- Implement `PacketReader` with explicit bounds checking.
-- Implement `PacketWriter`.
-- Implement `PacketFrame` for header + body.
-- Encode/decode the 4-byte length prefix and 2-byte header.
-- Support byte, boolean, short, int, long, string and raw bytes.
-- Support multiple complete packets in accumulated input.
-- Preserve incomplete remainder until a packet is complete.
-- Reject invalid lengths and enforce a configurable maximum packet size.
-- Add focused primitive/frame unit tests.
+- [x] Implement `PacketReader` with explicit bounds checking.
+- [x] Implement `PacketWriter`.
+- [x] Implement `PacketFrame` for header + body.
+- [x] Encode/decode the 4-byte length prefix and 2-byte header.
+- [x] Support signed byte, boolean, short, int, long, double, string and raw bytes.
+- [x] Preserve 64-bit long precision with `bigint`.
+- [x] Support multiple complete packets in accumulated input.
+- [x] Preserve incomplete remainder until a packet is complete.
+- [x] Reject invalid lengths and enforce a configurable maximum packet size.
+- [x] Add focused primitive/frame unit tests with exact-byte assertions.
 
-**F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state.
+**F2.3 validation:** `@aura/protocol` contains only generic, dependency-free wire primitives and framing. The reader is intentionally strict on bounds, boolean values and UTF-8. Tests cover exact frame bytes, primitive round-trips, malformed input, fragmentation, multiple packets and remainder buffering. Formal frozen Polaris packet fixtures remain F2.6 work; F2.3 does not claim full packet-contract coverage.
+
+**F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state. **Status: COMPLETE pending the merge gate for this change.**
 
 ### F2.4 Registry and contracts
 - Stable packet identifiers/contracts.
