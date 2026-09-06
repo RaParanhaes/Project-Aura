@@ -21,3 +21,10 @@ export type RoomSnapshot = {
   readonly roomId: number;
   readonly revision: number;
 };
+
+export type WorldStateSnapshot = {
+  readonly revision: number;
+  readonly roomId: number | undefined;
+  readonly homeRoom: number | undefined;
+  readonly lastObservedAt: number | undefined;
+};

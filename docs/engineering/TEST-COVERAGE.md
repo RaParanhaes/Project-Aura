@@ -22,6 +22,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Disconnect/reconnect coordination | ✅ | — | — | — | — | — |
 | Event normalization | ✅ | — | — | — | — | — |
 | Room hydration barrier | ✅ | — | — | — | — | — |
+| Observed WorldState | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -48,6 +49,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/session-manager.test.ts` proves duplicate active sessions are rejected and cleanup permits recovery.
 - `tests/unit/event-normalizer.test.ts` proves registered packet normalization, observation timestamps, unknown-packet handling and duplicate decoder rejection.
 - `tests/unit/room-hydrator.test.ts` proves event buffering, snapshot validation and ready/failed hydration transitions.
+- `tests/unit/world-state.test.ts` proves observed-event projection, monotonic revisions and preservation of room facts across ping events.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.

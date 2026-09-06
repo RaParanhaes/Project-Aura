@@ -244,6 +244,11 @@ Golden proof:
 - Buffer events that cannot yet be resolved safely, such as chat before user identity mapping.
 
 ### F4.3 Core observed state
+- [x] Project normalized observations into a stable WorldState snapshot.
+- [x] Maintain monotonic observation revisions and timestamps.
+- [x] Keep requested actions separate from observed state mutation.
+
+**F4.3 validation:** `WorldState` accepts normalized `DomainEvent` observations and exposes immutable snapshots with monotonic revisions. Unit tests cover room/home-room projection and non-mutating ping observations.
 - room identity;
 - users;
 - room-unit ↔ user mapping;
