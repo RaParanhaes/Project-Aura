@@ -17,6 +17,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Frozen packet fixtures / contracts | ✅ | ✅ | — | — | — | — |
 | RealSession lifecycle model | ✅ | — | — | — | — | — |
 | WebSocket transport / heartbeat | ✅ | — | — | — | — | — |
+| Authentication boundary | ✅ | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -38,6 +39,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/contracts/initial-packets.contract.test.ts` compares the initial composers/parsers with frozen wire fixtures and verifies every fixture header through the F2.4 registry.
 - `tests/unit/real-session.test.ts` proves explicit RealSession lifecycle transitions, send gating, close/reconnect behavior and fail-closed authentication errors.
 - `tests/unit/session-transport.test.ts` proves binary WebSocket message dispatch/send behavior and heartbeat ping/timeout handling with fake timers.
+- `tests/unit/authentication-boundary.test.ts` proves injected credential/handshake ports and credential zeroization on success and failure.
 - Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
 - Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
 - Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.
