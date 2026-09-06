@@ -152,12 +152,20 @@ Rules:
 **F2.4 boundary:** no concrete packet body codec, WebSocket lifecycle, authentication orchestration, heartbeat controller or room state. **Status: COMPLETE.**
 
 ### F2.5 Initial packets
-Implement only the minimum packets required to prove a session:
-- release/version handshake;
-- machine identification;
-- secure login/auth message;
-- ping/pong/keepalive;
-- minimum room transition packets needed by F3/F4.
+- [x] Implement release/version handshake composer.
+- [x] Implement machine identification composer.
+- [x] Implement secure login/SSO ticket composer.
+- [x] Implement authenticated response parser.
+- [x] Implement ping/pong keepalive codecs.
+- [x] Implement user-info request composer.
+- [x] Implement room-enter composer with optional spawn coordinates.
+- [x] Implement the minimum UserHomeRoom and RoomOpen response parsers needed by F3/F4.
+- [x] Resolve every concrete header through the F2.4 registry.
+- [x] Reject wrong headers and trailing body data deterministically.
+
+**F2.5 validation:** `@aura/protocol` contains concrete composers/parsers for the first session path. Tests prove renderer-compatible field order and exact bytes for machine identity, SSO, keepalive and room entry, plus strict parsing for authentication, home-room and room-open responses. No WebSocket/session lifecycle or credential acquisition is introduced.
+
+**F2.5 boundary:** frozen Polaris byte fixtures and exhaustive contract comparison remain F2.6 work; WebSocket/session lifecycle remains F3. **Status: COMPLETE.**
 
 ### F2.6 Fixtures and tests
 - Known byte fixtures.
