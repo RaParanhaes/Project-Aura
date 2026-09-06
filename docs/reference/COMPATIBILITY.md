@@ -58,7 +58,7 @@ The runtime JAR was produced from a dirty Polaris tree. Therefore the supported 
 |---|---|
 | Contract | `packet-field-contracts.json` |
 | Schema | `2` |
-| SHA-256 | `fb8dd00dcaa7657b58781b835c035fefc692797c1fabb9db5ba6770ce52d67b` |
+| SHA-256 | `fb8dd00dcaa7657b58781b835c0357fefc692797c1fabb9db5ba6770ce52d67b` |
 
 The repository stores the contract identity/fingerprint rather than a machine-specific local path. F2.2 must inspect this exact contract plus the relevant Polaris handlers before AURA protocol code is derived from it.
 

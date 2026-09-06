@@ -7,14 +7,22 @@ Encode/decode the supported Polaris/Habbo wire protocol and expose typed protoco
 Packet framing, primitive readers/writers, headers, composers/parsers, fixtures/contracts.
 
 ## Current public surface
-F2.3 provides only generic wire mechanics:
+F2.3 provides generic wire mechanics:
 
 - `PacketReader` and `PacketWriter` for confirmed big-endian primitives;
 - `PacketFrame` for header + body;
 - incremental `PacketStreamCodec` for length-prefixed framing, multiple packets and incomplete remainder buffering;
 - typed protocol errors for malformed/bounds/range conditions.
 
-The reader is intentionally fail-fast on malformed/truncated primitive data. Concrete packet identities and registry metadata start in F2.4/F2.5, not in the primitive layer.
+F2.4 adds the identity layer used by later concrete packets:
+
+- immutable `PacketDefinition` metadata for direction, header, logical name and owner;
+- `PacketRegistry` lookup by direction plus header or name;
+- explicit duplicate and unknown-packet errors;
+- frozen Polaris/client/contract compatibility metadata;
+- an initial identity catalog for the first session path.
+
+The reader remains fail-fast on malformed/truncated primitive data. Registry definitions do not contain body codecs; concrete composers/parsers begin in F2.5.
 
 ## Does not own
 Authentication policy, WebSocket/session lifecycle, agent goals, world semantics, persistence or AI behavior.

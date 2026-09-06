@@ -109,7 +109,7 @@ Rules:
 - [x] Confirm effective client release behavior and Octane/Polaris release agreement.
 - [x] Define host and same-Compose-network WebSocket targets without machine-specific paths.
 
-**F2.1 validation:** the local hotel target is frozen in `docs/reference/COMPATIBILITY.md` using immutable commits/fingerprints/hashes. Polaris is `4.2.82` based on `11f35d8c4d2a6f371b355107d4c7e477717cb2de` with a dirty-tree fingerprint and runtime JAR SHA-256; Octane and the renderer are likewise pinned; the protocol contract is schema 2 with SHA-256 `fb8dd00dcaa7657b58781b835c035fefc692797c1fabb9db5ba6770ce52d67b`; and the effective client release is confirmed as `NITRO-3-6-0`. This freezes the target but does not yet claim successful AURA-to-Polaris integration.
+**F2.1 validation:** the local hotel target is frozen in `docs/reference/COMPATIBILITY.md` using immutable commits/fingerprints/hashes. Polaris is `4.2.82` based on `11f35d8c4d2a6f371b355107d4c7e477717cb2de` with a dirty-tree fingerprint and runtime JAR SHA-256; Octane and the renderer are likewise pinned; the protocol contract is schema 2 with SHA-256 `fb8dd00dcaa7657b58781b835c0357fefc692797c1fabb9db5ba6770ce52d67b`; and the effective client release is confirmed as `NITRO-3-6-0`. This freezes the target but does not yet claim successful AURA-to-Polaris integration.
 
 ### F2.2 Study existing implementation evidence
 - [x] Inspect the frozen Polaris framing/readers/writers and `packet-field-contracts.json` tooling.
@@ -138,9 +138,18 @@ Rules:
 **F2.3 boundary:** no packet registry, concrete packet IDs, WebSocket lifecycle, authentication orchestration or room state. **Status: COMPLETE.**
 
 ### F2.4 Registry and contracts
-- Stable packet identifiers/contracts.
-- No protocol header numbers scattered outside the protocol package.
-- Version/compatibility metadata.
+- [x] Define stable packet identity contracts with direction and logical name.
+- [x] Encode composer/parser ownership from packet direction.
+- [x] Keep protocol header numbers in the protocol package's frozen catalog.
+- [x] Record schema, contract fingerprint, Polaris version and client release metadata.
+- [x] Seed the minimum first-session identities from frozen contract evidence.
+- [x] Reject duplicate headers/names within a direction while allowing opposite-direction reuse.
+- [x] Provide optional and required lookup behavior for unknown packets.
+- [x] Add focused registry/definition unit tests.
+
+**F2.4 validation:** `@aura/protocol` exposes immutable packet definitions and a direction-aware `PacketRegistry`. The initial catalog records 11 first-session identities from the frozen schema-2 contract evidence, including paired contracts, documented exemptions and the unpaired Pong registry entry. Tests prove compatibility identity, ownership rules, duplicate rejection, unknown lookups and allowed reuse across opposite directions.
+
+**F2.4 boundary:** no concrete packet body codec, WebSocket lifecycle, authentication orchestration, heartbeat controller or room state. **Status: COMPLETE.**
 
 ### F2.5 Initial packets
 Implement only the minimum packets required to prove a session:
