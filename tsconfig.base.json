@@ -16,7 +16,7 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "noUncheckedSideEffectImports": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "types": []
   }
 }

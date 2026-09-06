@@ -11,13 +11,15 @@ This file tracks external projects/libraries considered or used by AURA. No exte
 | dependency-cruiser 18.2.0 | architecture/import dependency enforcement | MIT; evaluated, deferred because TypeScript 7.0.2 is not supported | reference/evaluation |
 | fast-check | property/state-machine testing | MIT | planned for critical tests |
 | Drizzle ORM | persistence/migrations | Apache-2.0 | planned evaluation |
-| Pino | structured logging | MIT | planned dependency in F1.4 |
+| Pino 10.3.1 | structured JSON logging | MIT | dependency |
+| @types/node 24.6.1 | Node.js type declarations required by observability/Pino | MIT | dev dependency |
 | TypeScript 7.0.2 | compiler/type checking | Apache-2.0 | dependency |
 | AgentSociety / AI Town / Concordia / OASIS / TinyTroupe | architecture/social-agent research | reference | concepts only unless explicitly reviewed |
 
 ## Reuse labels
 
 - **dependency** — installed external library.
+- **dev dependency** — installed build/test/type tooling that is not part of runtime delivery.
 - **adapted** — compatible source/concept ported with attribution/license compliance.
 - **vendored** — external source kept in repository.
 - **reference** — studied only; no source copied.

@@ -2,10 +2,10 @@
 
 **Completed phase:** D0 — Documentation Foundation  
 **Current phase:** F1 — Development Foundation  
-**Last completed milestone:** F1.3 — Architecture Guardrails  
-**Next milestone:** F1.4 — Observability Baseline  
+**Last completed milestone:** F1.4 — Observability Baseline  
+**Next milestone:** F1.5 — Verification Gate  
 **Status:** F1 IN PROGRESS  
-**Implementation status:** TYPECHECK + TESTS + ARCHITECTURE GUARDS READY
+**Implementation status:** TYPECHECK + TESTS + ARCHITECTURE GUARDS + OBSERVABILITY READY
 
 ## F1.1 result
 
@@ -17,33 +17,34 @@ Vitest is active and the unit/smoke baseline runs in CI.
 
 ## F1.3 result
 
-The repository now mechanically protects the current AURA workspace boundaries.
+Repository-owned architecture guardrails validate manifests, source imports, workspace boundaries and circular dependencies in CI.
+
+`dependency-cruiser@18.2.0` remains deliberately deferred because it does not support the pinned TypeScript 7.0.2. Knip remains deferred until dead-code analysis provides useful signal.
+
+## F1.4 result
+
+The repository now has a structured logging foundation through `@aura/observability`.
 
 Validated in CI:
 
-- `pnpm run architecture` validates package manifests and source imports;
-- allowed/forbidden `@aura/*` dependency directions are explicit;
-- internal dependencies must use `workspace:` versions;
-- source imports must be declared in the importing workspace manifest;
-- deep imports into another workspace are forbidden;
-- relative imports crossing workspace boundaries are forbidden;
-- circular dependencies are detected in both manifest and source-import graphs;
-- unit tests prove valid edges, invalid edges, deep-import recognition and cycle detection;
-- `pnpm run verify` now runs structure verification, architecture verification, strict type checking and unit tests.
+- Pino 10.3.1 provides structured JSON logging;
+- `createLogger(...)` is the single AURA logger creation entry point;
+- `withLogContext(...)` adds optional `traceId`, `sessionId`, `agentId`, `actionId` and `component` correlation fields;
+- common credential fields are redacted before records reach the destination;
+- focused unit tests prove context propagation and credential redaction;
+- `@types/node` 24.6.1 is scoped to the observability package because Pino's declarations require Node types;
+- the shared TypeScript baseline now uses `skipLibCheck: true` so third-party declaration internals do not break strict checking of AURA source code;
+- `pnpm run verify` passes with the observability package enabled.
 
-`dependency-cruiser@18.2.0` was evaluated but not installed because it does not currently support the project's pinned TypeScript 7.0.2. The repository-owned verifier is the accepted F1.3 baseline; dependency-cruiser should be re-evaluated when TypeScript 7.1+ compatibility is available.
+## Next work — F1.5 Verification Gate
 
-Knip was not added because dead-code analysis has little useful signal at this stage and is not required to enforce the current architecture.
+Close the Development Foundation without adding product behavior:
 
-## Next work — F1.4 Observability Baseline
-
-Add only the structured logging foundation:
-
-1. add Pino;
-2. define the minimum log fields needed later for agent/session/trace correlation;
-3. provide a single observability entry point instead of ad-hoc console logging;
-4. add focused tests;
-5. keep protocol/session implementation out of scope.
+1. audit the canonical `pnpm run verify` sequence;
+2. confirm structure, architecture, strict type checking and tests all run from the same command locally and in CI;
+3. decide whether a minimal build/emission check is required for F1 acceptance;
+4. review F1 Definition of Done and compatibility records;
+5. mark F1 complete only after the final gate is green.
 
 ## Do not start early
 
