@@ -28,6 +28,7 @@ export {
   SSOTicketComposer,
   UniqueIDComposer,
   UserHomeRoomParser,
+  WhisperComposer,
   type AuthenticatedPayload,
   type UserHomeRoomPayload,
 } from './initial-packets.js';

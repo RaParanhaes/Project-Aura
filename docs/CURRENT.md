@@ -2,10 +2,10 @@
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation  
 **Current phase:** F5 — Capabilities
-**Last completed milestone:** F5.7 — SAY
-**Next milestone:** F5.8 — WHISPER
+**Last completed milestone:** F5.8 — WHISPER
+**Next milestone:** F5.9 — SHOUT
 **Status:** F5 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED
+**Implementation status:** F3/F4 COMPLETE; F5.1 COMPLETE; F5.2 ENTER_ROOM IMPLEMENTED AND LIVE VALIDATED; F5.3 WALK_TO IMPLEMENTED; F5.4 LOOK_AT IMPLEMENTED; F5.5 START_TYPING IMPLEMENTED; F5.6 STOP_TYPING IMPLEMENTED; F5.7 SAY IMPLEMENTED AND LIVE VALIDATED; F5.8 WHISPER IMPLEMENTED AND LIVE VALIDATED
 
 ## F1 result
 
@@ -184,7 +184,11 @@ Focused unit tests cover startup/authentication transitions, send/close gating, 
 
 ## F5.7 result — SAY
 
-`registerSay` validates room speech and `PolarisChatAdapter` emits the complete `RoomUserTalkEvent` packet on header 1314 with text, bubble and colour fields. Tests cover exact bytes, validation and room preconditions.
+`registerSay` validates room speech and `PolarisChatAdapter` emits the complete `RoomUserTalkEvent` packet on header 1314 with text, bubble and colour fields. Tests cover exact bytes, validation and room preconditions. A live Polaris/Octane test in room AAA confirmed the test avatar can sit on a selected free stool, speak, and speak again after a confirmed change to a non-active chat-bubble style.
+
+## F5.8 result — WHISPER
+
+`registerWhisper` validates a single-word recipient, room presence and message length. `PolarisChatAdapter` emits the complete `RoomUserWhisperEvent` packet on header 1543, with the recipient prefix, text, bubble and colour fields. A live local test sent a whisper from `octane_test_2_mt` to Cabana in room AAA.
 
 ## RoomUsers integration result
 

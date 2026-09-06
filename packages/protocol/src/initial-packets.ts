@@ -15,6 +15,7 @@ const ROOM_ENTRY_DATA = c2s('ROOM_MODEL');
 const UNIT_TYPING_STOP = c2s('UNIT_TYPING_STOP');
 const UNIT_TYPING = c2s('UNIT_TYPING');
 const UNIT_CHAT = c2s('UNIT_CHAT');
+const UNIT_WHISPER = c2s('UNIT_WHISPER');
 const AUTHENTICATED = s2c('AUTHENTICATED');
 const CLIENT_PING = s2c('CLIENT_PING');
 const USER_HOME_ROOM = s2c('USER_HOME_ROOM');
@@ -140,6 +141,14 @@ export class SayComposer {
   public constructor(private readonly text: string, private readonly bubble = 0, private readonly color = '') {}
   public encode(): Uint8Array {
     return encodePacketBody(this.definition, (writer) => writer.writeString(this.text).writeInt(this.bubble).writeString(this.color));
+  }
+}
+
+export class WhisperComposer {
+  public readonly definition = UNIT_WHISPER;
+  public constructor(private readonly recipient: string, private readonly text: string, private readonly bubble = 0, private readonly color = '') {}
+  public encode(): Uint8Array {
+    return encodePacketBody(this.definition, (writer) => writer.writeString(`${this.recipient} ${this.text}`).writeInt(this.bubble).writeString(this.color));
   }
 }
 
