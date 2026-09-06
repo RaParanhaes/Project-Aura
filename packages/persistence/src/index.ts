@@ -10,3 +10,5 @@ export { CHECKPOINT_SCHEMA_VERSION, InMemoryCheckpointStore, parseAgentCheckpoin
 export type { AgentCheckpoint, CheckpointStore } from './checkpoint.js';
 export { ActionReconciler } from './reconciliation.js';
 export type { ObserveAction, ReconciliationObservation, ReconciliationResult } from './reconciliation.js';
+export { RestartRecovery } from './restart-recovery.js';
+export type { RecoveryPlan } from './restart-recovery.js';
