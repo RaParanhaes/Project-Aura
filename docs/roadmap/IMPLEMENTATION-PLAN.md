@@ -84,11 +84,17 @@ Rules:
 **F1.4 validation:** GitHub Actions passes Pino 10.3.1 structured logging tests for correlation context and credential redaction. The shared TypeScript configuration keeps AURA source strict while using `skipLibCheck: true` to avoid revalidating incompatible third-party declaration internals.
 
 ### F1.5 Verification gate
-- Expand `pnpm run verify` to include the checks that exist at this stage.
-- Make CI run the same verification command.
-- Review the final F1 Definition of Done and compatibility record.
+- [x] Commit `pnpm-lock.yaml` and require frozen dependency installation in CI.
+- [x] Make `pnpm run verify` the single local/CI quality gate.
+- [x] Include doctor, structure verification, architecture verification, strict type checking and unit tests in that gate.
+- [x] Review the F1 Definition of Done and compatibility record.
+- [x] Decide whether emitted build output is required for F1 acceptance.
 
-**F1 Done when:** a minimal AURA application/package can build, typecheck and test in CI, and architecture violations are automatically detected.
+**F1.5 validation:** GitHub Actions installs the committed dependency graph with `pnpm install --frozen-lockfile` and then runs the same canonical `pnpm run verify` command used locally.
+
+**Build decision:** no emitted `dist/` build is required in F1. The current private workspaces are TypeScript development surfaces and there is no executable session runtime to package yet. Strict type checking is the F1 compile gate. Build/emission must be introduced when a real runtime/package output exists rather than forcing packaging decisions early.
+
+**F1 Done when:** dependency installation is deterministic, the repository passes one canonical verification gate in CI, architecture violations are mechanically rejected, and the typecheck, test and observability baselines are active. **Status: COMPLETE.**
 
 ---
 
