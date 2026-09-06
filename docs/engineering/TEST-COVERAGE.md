@@ -8,6 +8,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 |---|---:|---:|---:|---:|---:|---:|
 | Repository / TypeScript baseline | ✅ | — | — | — | — | — |
 | Test runner baseline | ✅ | — | — | — | — | — |
+| Architecture guardrails | ✅ | — | — | — | — | — |
 | Packet codec | — | — | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
@@ -22,7 +23,9 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 ## Current test baseline
 
 - `tests/unit/foundation.test.ts` proves Vitest can execute TypeScript tests and load the AURA application entrypoint.
-- `pnpm run verify` is the canonical CI/local gate and currently includes repository structure, strict type checking and unit tests.
+- `tests/unit/architecture-guardrails.test.ts` proves accepted/forbidden workspace edges, deep-import detection and circular-dependency detection.
+- `pnpm run architecture` validates the real repository manifests and source imports.
+- `pnpm run verify` is the canonical CI/local gate and currently includes repository structure, architecture boundaries, strict type checking and unit tests.
 - Coverage percentage thresholds are intentionally not introduced yet; meaningful behavior does not exist yet to make a percentage useful.
 
 ## Planned Golden Scenarios
