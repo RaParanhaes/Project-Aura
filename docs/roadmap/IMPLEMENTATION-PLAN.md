@@ -46,11 +46,15 @@ Rules:
 ## F1 — Development Foundation
 
 ### F1.1 Runtime/workspace baseline
-- Pin supported Node major version.
-- Pin pnpm through `packageManager`.
-- Add strict TypeScript base configuration.
-- Make existing packages/app valid workspace projects.
-- Prove imports/build/typecheck across boundaries.
+- [x] Pin supported Node major version.
+- [x] Pin pnpm through `packageManager`.
+- [x] Pin TypeScript compiler version.
+- [x] Add strict TypeScript base configuration.
+- [x] Make existing packages/app valid workspace projects.
+- [x] Prove workspace imports/typecheck across declared boundaries.
+- [x] Add typecheck to `pnpm run verify` and CI.
+
+**F1.1 validation:** GitHub Actions successfully installs the workspace and passes structure verification plus strict TypeScript checking for `aura-core` and all existing packages.
 
 ### F1.2 Test baseline
 - Add Vitest.
