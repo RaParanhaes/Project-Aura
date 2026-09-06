@@ -308,6 +308,14 @@ Golden proof:
 
 **F5.8 validation:** `registerWhisper` and `PolarisChatAdapter` pass unit tests. A live Polaris/Octane run in room AAA sent a directed whisper from `octane_test_2_mt` to Cabana.
 
+### F5.9 SHOUT
+- [x] Map SHOUT to Polaris `RoomUserShoutEvent` header `2085`.
+- [x] Encode text, bubble id and colour in Polaris order.
+- [x] Require observed room presence and a valid message.
+- [x] Add exact-byte, adapter and semantic capability tests.
+
+**F5.9 validation:** `registerShout` and `PolarisChatAdapter` pass unit tests. A live Polaris/Octane run in room AAA sent a Shift+Enter shout from `octane_test_2_mt`.
+
 Implement semantic actions one at a time:
 
 1. `ENTER_ROOM`
@@ -317,6 +325,7 @@ Implement semantic actions one at a time:
 5. `STOP_TYPING`
 6. `SAY`
 7. `WHISPER`
+8. `SHOUT`
 
 For every capability define:
 - input schema;

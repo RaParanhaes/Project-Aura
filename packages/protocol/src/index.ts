@@ -22,6 +22,7 @@ export {
   RoomEnterComposer,
   RoomEntryDataComposer,
   SayComposer,
+  ShoutComposer,
   RoomOpenParser,
   StartTypingComposer,
   StopTypingComposer,
