@@ -14,6 +14,7 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 | Packet codec | ✅ | ⚠ | — | — | — | — |
 | Packet registry / identity contracts | ✅ | ⚠ | — | — | — | — |
 | Initial packet bodies | ✅ | ⚠ | — | — | — | — |
+| Frozen packet fixtures / contracts | ✅ | ✅ | — | — | — | — |
 | Authentication | — | — | — | — | — | — |
 | Enter room / hydration | — | — | — | — | — | — |
 | Walk | — | — | — | — | — | — |
@@ -32,9 +33,10 @@ Legend: ✅ covered · ⚠ partial · — not yet implemented · ENV requires ex
 - `tests/unit/protocol-primitives.test.ts` proves primitive round-trips, exact frame bytes, strict bounds/range/UTF-8 handling, fragmented input, multiple packets and remainder buffering.
 - `tests/unit/packet-registry.test.ts` proves frozen compatibility metadata, direction/ownership rules, duplicate rejection, direction-scoped lookup, unknown lookup semantics and immutable identity definitions.
 - `tests/unit/initial-packets.test.ts` proves exact initial composer bytes, optional room-entry fields, bodyless packets, strict authenticated/home-room parsers and malformed-body/header rejection.
-- Packet codec contract coverage remains **partial** until F2.6 adds frozen Polaris fixtures and full encode/decode contract tests.
-- Packet registry contract coverage remains **partial** until F2.6 validates the concrete F2.5 packet codecs against frozen byte fixtures.
-- Initial packet body contract coverage remains **partial** until F2.6 compares all concrete codecs with frozen Polaris/Octane fixtures.
+- `tests/contracts/initial-packets.contract.test.ts` compares the initial composers/parsers with frozen wire fixtures and verifies every fixture header through the F2.4 registry.
+- Packet codec contract coverage now covers the frozen initial packet fixtures; broader packet catalog coverage remains future work.
+- Packet registry contract coverage now covers all initial fixture identities; broader packet catalog coverage remains future work.
+- Initial packet body contract coverage now covers the frozen first-session composers/parsers; runtime integration remains unverified.
 - `pnpm run architecture` validates the real repository manifests and source imports.
 - `pnpm run verify` is the canonical local/CI gate and includes `doctor`, repository structure, architecture boundaries, strict type checking and unit tests.
 - GitHub Actions installs from the committed dependency graph with `pnpm install --frozen-lockfile` before running the same `pnpm run verify` command.

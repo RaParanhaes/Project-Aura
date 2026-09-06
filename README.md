@@ -21,9 +21,10 @@ AURA is not the game server and is not the renderer:
 **F2.3 — Packet Primitives: COMPLETE**  
 **F2.4 — Registry and Contracts: COMPLETE**
 **F2.5 — Initial Packets: COMPLETE**
-**Next milestone: F2.6 — Fixtures and Tests**
+**F2.6 — Fixtures and Tests: COMPLETE**
+**Next milestone: F3 — RealSession**
 
-The protocol package now has strict wire primitives, a direction-aware registry and concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets. F2.6 adds frozen byte fixtures and broader contract coverage; WebSocket session lifecycle remains F3 work.
+The protocol package now has strict wire primitives, a direction-aware registry, concrete composers/parsers for the first handshake, authentication, keepalive and room-entry packets, and frozen byte fixtures with contract tests. WebSocket session lifecycle remains F3 work.
 
 Start with:
 
