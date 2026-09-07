@@ -1,11 +1,30 @@
 # Current Project State
 
 **Completed phases:** D0 — Documentation Foundation; F1 — Development Foundation; F5 — Capabilities  
-**Current phase:** P1 — Perception and Attention
-**Last completed milestone:** P1.3 — Perception event window
-**Next milestone:** P1.4 — Live shared-room validation
-**Status:** FOUNDATION STABLE; P1 IN PROGRESS
-**Implementation status:** F3/F4 COMPLETE; F5 COMPLETE; F6 COMPLETE; F7 COMPLETE; F8 COMPLETE; P1.1 COMPLETE; P1.2 COMPLETE; P1.3 COMPLETE
+**Current phase:** P3 — Room interaction implementation
+**Last completed milestone:** P3.12 — Live AAA interaction validation
+**Last completed milestone:** P3.13 — Live profile, inventory and catalog reads
+**Next milestone:** P3.14 — Permissions, cooldowns and rate limits
+**Status:** FOUNDATION STABLE; P1/P2 COMPLETE; P3 IN PROGRESS
+**Implementation status:** F3–F8 COMPLETE; P1/P2 COMPLETE; P3.1–P3.13 COMPLETE; P3.14 RATE LIMIT VALIDATION IN PROGRESS
+
+## P3.14 result — capability throttling boundary
+
+`CapabilityRegistry` now supports per-capability cooldowns and bounded request windows. `aura-core` applies policies to gestures, dance, posture, orientation and read requests before a packet is sent. Cooldown and window rejection are covered by deterministic tests. Polaris permission-denial scenarios remain to be exercised with a restricted test account before this milestone closes.
+
+## P3.10–P3.11 result — Polaris binary packets and aura-core adapter
+
+`@aura/protocol` now has frozen composers for action, sign, dance, posture and orientation plus parsers for action and dance confirmations. `PolarisActionAdapter` is the aura-core transport boundary for room entry, movement, typing, chat, gestures, dance, posture and orientation; it registers the corresponding semantic capabilities and decodes `RoomUserActionComposer` (1631), `RoomUserDanceComposer` (2233) and `RoomUserStatusComposer` (1640) confirmations.
+
+The real Polaris smoke test authenticated `aura_f7_1`, entered AAA (room 1), sent kiss, dance type 3, sit and orient `(4,5)`, and received action `2`, dance `3` and status frames including the resident's posture/orientation. No effect packet was emitted during this run. Full verification passed with 55 test files and 148 tests.
+
+## P3.12 result — live AAA interaction validation
+
+The two-user run authenticated `aura_f7_1`, entered AAA and observed `Cabana` in the shared `RoomUsers` roster. It sent kiss, dance type 3, sit, orientation `(4,5)` and sign 5; Polaris returned the expected action `1631`, dance `2233` and status `1640` confirmations, including `sign 5` and posture state. The only effect packet had ID `0`, so no unexpected visual effect was applied.
+
+## P3.13 result — read wire validation
+
+The local Polaris read path now has frozen request composers for public profile (`3265`), inventory items (`3150`), inventory badges (`2769`) and catalog page (`412`), with bounded parsers for profile, badges and response metadata. A real `aura_f7_1` session entered AAA and decoded all four confirmations: profile `3898`, inventory `994`, badges `717` and catalog `804`. Polaris uses `fragment=-1` for an empty inventory; this case is explicitly accepted. The run performed no purchase.
 
 ## F6.1 result — durable state boundary
 
@@ -74,6 +93,80 @@ The post-Foundation sequence is defined in `docs/roadmap/POST-FOUNDATION.md`. P1
 ## P1.3 result — perception event window
 
 `PerceptionEventWindow` retains recent roster, movement, typing and chat evidence with bounded capacity and time-to-live. Movement updates for one user are coalesced, ordered social events remain intact, capacity drops are observable and chat text is preserved as opaque data.
+
+## P1.4 result — live shared-room validation
+
+The live P1.4 run used two AURA residents and Cabana in room AAA. `aura_f7_1` produced a ready resident-relative perception containing `aura_f7_2` and Cabana; deterministic attention selected `aura_f7_2` after an explicit interaction signal. The bounded event window recorded roster, typing, chat and movement evidence, and the recovery connection returned `sessionResumed=true` with `roomId=1`.
+
+P1 is complete. The next post-Foundation layer is P2.1, which will define goal and activity contracts without adding an LLM dependency.
+
+## Effect guard correction
+
+The live P1.4 observation exposed a transient Polaris `CAMERABOT` effect (`effectId=188`) on an AURA avatar, even though the users had no persisted or rank effect. `aura-core` now sends the standard `EnableEffectEvent(0)` clear command whenever it receives a non-zero room-effect event, preventing an external room/client trigger from remaining active on the resident. The Polaris emulator remains unchanged.
+
+The corrected live run observed the non-zero event, sent the clear packet, and then received only `effectId=0`; no effect remained active during recovery.
+
+## P2.1 result — goal and activity contracts
+
+`@aura/domain` now separates durable goal intent from observed world state through typed goal and activity contracts. `ActivityPlanner` accepts only active goals, supported capabilities and matching world/perception revisions; stale or unsupported proposals are rejected, and accepted activities have explicit running, completed and cancelled lifecycle transitions. P2.1 has no LLM dependency.
+
+## P2.2 result — activity execution boundary
+
+`@aura/runtime` now exposes `ActivityExecutor`, which revalidates accepted activities against current world/perception revisions and delegates only through `CapabilityRegistry`. Valid execution remains `pending` until a Polaris observation confirms the action; stale, rejected or unsupported activities are refused at the boundary.
+
+## P2.3 result — goal scheduling and cancellation
+
+`@aura/domain` now provides a deterministic FIFO `GoalScheduler` and explicit cancellation. Cancelling a goal in `ActivityPlanner` marks the goal and all unfinished activities as cancelled, preventing stale intent from reaching execution.
+
+## P2.4 result — activity confirmation reconciliation
+
+`ActivityPlanner.reconcile` now closes an activity only after an explicit confirmed observation at or above its source world revision. Stale confirmations are rejected and unconfirmed observations leave the activity pending, preserving Polaris as the authority for completion.
+
+The roadmap now reserves P3 milestones for social gestures (including beijo and placas), dance/posture, object use and item transfer, room creation/management, and view direction/orientation. These actions require explicit targets, capability authorization and observed completion.
+
+The packet and confirmation mapping for those actions is recorded in `docs/roadmap/ROOM-ACTION-PACKET-MATRIX.md`.
+
+## P2.5 result — bounded activity retry policy
+
+`ActivityRetryPolicy` now retries only known transient failures, caps attempts deterministically and stops immediately for cancelled goals or permanent capability failures. Each retry is intended to be issued only after the execution boundary supplies a fresh world revision.
+
+## P3.1 result — social gestures
+
+`@aura/runtime` now exposes the `SOCIAL_GESTURE` capability for wave, kiss and sign actions. Inputs validate gesture type, optional target and sign selection; room presence is required, and valid execution remains pending until Polaris confirms the resulting room observation.
+
+## P3.2 result — dance and posture
+
+`@aura/runtime` now exposes `DANCE` with Polaris-compatible types `0..4` and `POSTURE` for sit/stand. Both capabilities require confirmed room presence and remain pending until dance or status observations confirm the transition.
+
+## P3.3 result — object use and item transfer
+
+`@aura/runtime` now exposes `USE_OBJECT` and `TRANSFER_ITEM`. Both require confirmed room presence, validate positive item/target identifiers and keep execution pending until the furniture or transfer confirmation is observed from Polaris.
+
+## P3.4 result — room creation and management
+
+`@aura/runtime` now exposes `CREATE_ROOM` with Polaris-compatible name, description, model, category, capacity and trade-mode validation. The capability remains pending until `RoomCreatedComposer` confirms the new room identifier.
+
+## P3.5 result — view direction and orientation
+
+`@aura/runtime` now exposes `ORIENT` for tile or visible-user targets. It rejects invalid coordinates and targets outside the confirmed world snapshot, then remains pending until Polaris returns the orientation status update.
+
+The next P3 milestones now include bounded reads of other users' public profile data (outfit, bio, badges and achievements), the resident's own profile/inventory data, and read-only shop/catalog browsing before purchase actions.
+
+## P3.6 result — user profile and appearance inspection
+
+`@aura/domain` now validates bounded profile observations containing user identity, look, bio/motto, badges and achievement score. The parser freezes the resulting snapshot and rejects oversized or malformed untrusted fields before they enter resident state.
+
+## P3.7 result — inventory and achievement inspection
+
+`@aura/domain` now validates a separate self-data snapshot for wardrobe, badges, achievements and inventory item IDs. Lists are bounded, identifiers are positive and the frozen snapshot keeps private resident data distinct from public profile inspection.
+
+## P3.8 result — shop and catalog browsing
+
+`@aura/domain` now validates bounded catalog page observations with offer IDs, item names, prices and currencies. Catalog reads remain separate from purchase capabilities and reject malformed or oversized external data.
+
+## P3.9 result — integrated room interaction scenarios
+
+The integrated contract scenario now runs a goal through social gesture and posture capabilities, verifies both executions remain pending before observation, and closes each activity only after a current confirmation. No purchase or irreversible action is included.
 
 ### Visual validation note
 
