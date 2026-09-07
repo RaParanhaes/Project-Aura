@@ -19,4 +19,15 @@ describe('CapabilityRegistry', () => {
     await expect(registry.request('ENTER_ROOM', 2, context, 'action-3')).resolves.toMatchObject({ status: 'rejected', reason: 'room hydration required' });
     await expect(registry.request('WALK_TO', {}, context, 'action-4')).resolves.toMatchObject({ status: 'rejected' });
   });
+
+  it('enforces cooldown and window limits before sending a command', async () => {
+    let now = 1000; const execute = vi.fn(async () => {});
+    const registry = new CapabilityRegistry({ now: () => now, rateLimits: { WAVE: { cooldownMs: 100, maxPerWindow: 2, windowMs: 1000 } } });
+    registry.register({ name: 'WAVE', validate: (value): value is object => typeof value === 'object' && value !== null, execute });
+    await expect(registry.request('WAVE', {}, context, 'a')).resolves.toMatchObject({ status: 'pending' });
+    await expect(registry.request('WAVE', {}, context, 'b')).resolves.toMatchObject({ status: 'rejected' });
+    now += 100; await expect(registry.request('WAVE', {}, context, 'c')).resolves.toMatchObject({ status: 'pending' });
+    now += 100; await expect(registry.request('WAVE', {}, context, 'd')).resolves.toMatchObject({ status: 'rejected', reason: expect.stringContaining('rate limit') });
+    expect(execute).toHaveBeenCalledTimes(2);
+  });
 });
