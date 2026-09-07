@@ -24,6 +24,7 @@ export {
   SayComposer,
   ShoutComposer,
   RoomUnitWalkComposer,
+  EnableEffectComposer,
   RoomOpenParser,
   StartTypingComposer,
   StopTypingComposer,
@@ -36,6 +37,14 @@ export {
 } from './initial-packets.js';
 export { parseUnitStatus } from './unit-status.js';
 export type { UnitStatus } from './unit-status.js';
+export { parseRoomUserEffect } from './room-user-effect.js';
+export type { RoomUserEffect } from './room-user-effect.js';
+export { RoomUnitActionComposer, RoomUnitDanceComposer, RoomUnitOrientComposer, RoomUnitPostureComposer, RoomUnitSignComposer, parseRoomUserAction, parseRoomUserDance } from './room-actions.js';
+export type { RoomUserAction, RoomUserDance } from './room-actions.js';
+export { CatalogPageRequestComposer, InventoryBadgesRequestComposer, InventoryItemsRequestComposer, UserProfileRequestComposer, READ_CONFIRMATION_HEADERS } from './read-packets.js';
+export type { ReadConfirmationKind } from './read-packets.js';
+export { parseCatalogPageRead, parseInventoryBadgesRead, parseInventoryItemsRead, parseUserProfileRead } from './read-parsers.js';
+export type { CatalogPageRead, InventoryBadgesRead, InventoryItemsRead, UserProfileRead } from './read-parsers.js';
 export {
   InvalidPacketDefinitionError,
   PACKET_DIRECTIONS,
