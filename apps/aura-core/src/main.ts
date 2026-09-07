@@ -21,6 +21,8 @@ import {
   type WebSocketLike,
   SessionRecoveryTokenStore
 } from '@aura/runtime';
+import { CapabilityRegistry } from '@aura/runtime';
+import { PolarisActionAdapter } from './polaris-action-adapter.js';
 
 const env = (globalThis as unknown as { process?: { env?: Record<string, string | undefined> } }).process?.env ?? {};
 const argv = (globalThis as unknown as { process?: { argv?: string[] } }).process?.argv ?? [];
@@ -72,11 +74,23 @@ class PolarisHandshake implements AuthHandshake {
 }
 
 if (ticket) {
+const transport = new WebSocketSessionTransport(wsUrl, url => wsUrl.includes('127.0.0.1:8080') ? new OriginWebSocket(url) as unknown as WebSocketLike : new WebSocketCtor!(url));
+const inboundCodec = new PacketStreamCodec();
+const actionAdapter = new PolarisActionAdapter(transport);
+const capabilities = new CapabilityRegistry({ rateLimits: {
+  SOCIAL_GESTURE: { cooldownMs: 750, maxPerWindow: 6, windowMs: 10_000 },
+  DANCE: { cooldownMs: 500, maxPerWindow: 10, windowMs: 10_000 },
+  POSTURE: { cooldownMs: 500, maxPerWindow: 10, windowMs: 10_000 },
+  ORIENT: { cooldownMs: 150, maxPerWindow: 20, windowMs: 10_000 },
+  INSPECT_USER: { cooldownMs: 500, maxPerWindow: 20, windowMs: 10_000 },
+  BROWSE_SHOP: { cooldownMs: 500, maxPerWindow: 20, windowMs: 10_000 },
+} });
+actionAdapter.registerCapabilities(capabilities);
 const session = new RealSession(
   env.AURA_AGENT_ID ?? 'aura-core-agent',
-  new WebSocketSessionTransport(wsUrl, url => wsUrl.includes('127.0.0.1:8080') ? new OriginWebSocket(url) as unknown as WebSocketLike : new WebSocketCtor!(url)),
+  transport,
   new CredentialAuthProvider(new EnvironmentCredentials(), new PolarisHandshake()),
-  payload => { new PacketStreamCodec().push(payload); }
+  payload => { for (const frame of inboundCodec.push(payload)) actionAdapter.handle(frame); }
 );
 
 await session.start();
